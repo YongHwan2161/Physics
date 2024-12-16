@@ -16,8 +16,8 @@
   "customMessageOnAutoBackup": false,
   "autoBackupAfterFileChange": false,
   "treeStructure": false,
-  "refreshSourceControl": false,
-  "basePath": "Physics",
+  "refreshSourceControl": true,
+  "basePath": "",
   "differentIntervalCommitAndPush": false,
   "changedFilesInStatusBar": false,
   "showedMobileNotice": true,
@@ -25,10 +25,10 @@
   "showBranchStatusBar": true,
   "setLastSaveToLastCommit": false,
   "submoduleRecurseCheckout": false,
-  "gitDir": "Physics.git",
+  "gitDir": "",
   "showFileMenu": true,
-  "authorInHistoryView": "full",
-  "dateInHistoryView": true,
+  "authorInHistoryView": "hide",
+  "dateInHistoryView": false,
   "lineAuthor": {
     "show": false,
     "followMovement": "inactive",
@@ -50,9 +50,7 @@
     },
     "textColorCss": "var(--text-muted)",
     "ignoreWhitespace": false,
-    "gutterSpacingFallbackLength": 5,
-    "lastShownAuthorDisplay": "initials",
-    "lastShownDateTimeFormatOptions": "date"
+    "gutterSpacingFallbackLength": 5
   },
   "autoCommitMessage": "vault backup: {{date}}"
 }

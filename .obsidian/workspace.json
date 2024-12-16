@@ -146,7 +146,7 @@
             }
           },
           {
-            "id": "e8d338db46592827",
+            "id": "61a9495438bf4246",
             "type": "leaf",
             "state": {
               "type": "git-view",
@@ -173,6 +173,6 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "441f72bdc3a13ae9",
+  "active": "56d38416e2cf2761",
   "lastOpenFiles": []
 }
