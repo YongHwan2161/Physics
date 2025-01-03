@@ -1,0 +1,6 @@
+{
+	"nodes":[
+		{"id":"c3ee38881e8bbeec","x":-125,"y":178,"width":265,"height":162,"type":"text","text":"$$\\pmb{\\lambda}=\\left(\n\\begin{array}{3}\n\\lambda_{11} & \n\\end{array}\\right)$$"}
+	],
+	"edges":[]
+}
