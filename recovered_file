@@ -1,0 +1,41 @@
+전역 사용자명/이메일 구성하기
+`git config --global user.name "Your name"`
+`git config --global user.email "Your email address"`
+저장소별 사용자명/이메일 구성하기(해당 저장소 디렉터리로 이동 후)
+`git config user.name "Your name"`
+`git config user.email "Your email address"`
+전역 설정 정보 조회
+`git config --global --list`
+저장소별 설정 정보 조회
+`git config --list`
+출력 예시:
+```shell
+~/.../Documents/Yonghwan $ git config --list
+safe.directory=/storage/emulated/0/Documents/Yonghwan
+user.email=ant713800@gmail.com
+user.name=YongHwan2161
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=https://github.com/YongHwan2161/Physics.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+```
+새로운 저장소 초기화하기
+```shell
+mkdir /path/newDir
+cd /path/newDir
+git init
+```
+저장소 복제하기
+`git clone <저장소 url>`
+새로운 원격 저장소 추가하기(??)
+`git remote add <원격 저장소><저장소 url>`
+> 예시: `git remote add origin master`
+## 추적 상태 제거
+git에 올리고 싶지 않은 파일/폴더들은 `.gitignore`에 넣어서 git tracking을 방지할 수 있다. 하지만 이미 git으로 관리중이던 파일의 경우에는 `.gitignore`에 추가해도 git이 계속 추적을 하기 때문에 commit할 때 계속 변경사항으로 뜬다. 이를 방지하기 위해서는 `rm` 명령어를 사용해서 git에서 제거해 줘야 한다.  `--cached` 옵션은 파일을 삭제하지는 않고 추적만 안하도록 하기 위한 것이다.
+```bash
+git rm -r --cached whatever_you_want/
+```

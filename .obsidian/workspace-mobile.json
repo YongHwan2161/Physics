@@ -8,45 +8,13 @@
         "type": "tabs",
         "children": [
           {
-            "id": "eb78ea2c367fdbfc",
+            "id": "dd7562914ea5f8e4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2024-12-16.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "2024-12-16"
-            }
-          },
-          {
-            "id": "8b77b31da48b0777",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "plank's constant.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "plank's constant"
-            }
-          },
-          {
-            "id": "1687e2c60882c0fe",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "MathJax.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "MathJax"
+              "title": "New tab"
             }
           }
         ]
@@ -123,6 +91,7 @@
         "state": {
           "type": "backlink",
           "state": {
+            "file": "Git.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -169,7 +138,7 @@
         }
       }
     ],
-    "currentTab": 3
+    "currentTab": 0
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -182,12 +151,44 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "eb78ea2c367fdbfc",
+  "active": "dd7562914ea5f8e4",
   "lastOpenFiles": [
     "편미분.md",
+    "plank's constant.md",
     "2024-12-16.md",
     "1D Schrödinger equation.md",
-    "plank's constant.md",
-    "MathJax.md"
+    "Git.md",
+    "철학/의지와 표상으로서의 세계/칸트 철학 비판.md",
+    "Mathematics/Matrix/Rotation Matrix.md",
+    "철학",
+    "Mathematics/Matrix",
+    "MathJax.md",
+    "Physics/Matrices, Vectors, and Vector Calculus.md",
+    "Images/Pasted image 20250102132655.jpg",
+    "Example 1.1.md",
+    "Obsidian.md",
+    "Pasted.md",
+    "Images/Pasted image 20250102130050.jpg",
+    "Physics/Newton's law.md",
+    "Computer Sciences.md",
+    "Mathematics/Calculus/함수의 미분.md",
+    "Mathematics/Calculus/극한.md",
+    "Mathematics/Taylor Series.md",
+    "Mathematics/부채꼴의 넓이.md",
+    "Mathematics/삼각형의 넓이.md",
+    "Mathematics/Trigonometric Functions.md",
+    "Mathematics/Exponential Function.md",
+    "Mathematics/Euler's formula.md",
+    "Mathematics/Imagenary number.md",
+    "Mathematics",
+    "Figure.md",
+    "Images/Pasted image 20241231125200.jpg",
+    "Images",
+    "Physics/Schrödinger equation.md",
+    "철학/의지와 표상으로서의 세계",
+    "Physics/potential energy.md",
+    "Physics",
+    "Mathematics/Set theory",
+    "Mathematics/Calculus"
   ]
 }
