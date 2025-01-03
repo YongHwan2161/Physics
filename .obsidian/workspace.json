@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "plank's constant.md",
+                "file": "Git.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "plank's constant"
+              "title": "Git"
             }
           }
         ]
@@ -139,10 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "plank's constant.md"
+                "file": "Git.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of plank's constant"
+              "title": "Outline of Git"
             }
           },
           {
@@ -151,12 +151,12 @@
             "state": {
               "type": "git-view",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -173,6 +173,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "56d38416e2cf2761",
-  "lastOpenFiles": []
+  "active": "b66b369d9429b420",
+  "lastOpenFiles": [
+    "Untitled.canvas",
+    "Git.md",
+    "MathJax.md",
+    "Obsidian.md",
+    "Physics/plank's constant 1.md"
+  ]
 }
