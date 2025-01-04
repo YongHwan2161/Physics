@@ -1,6 +1,11 @@
 {
 	"nodes":[
-		{"id":"c3ee38881e8bbeec","x":20,"y":178,"width":220,"height":142,"type":"text","text":"Square Matrix\n$$\\pmb{\\lambda}=\\left(\n\\begin{array}{3}\n\\lambda_{11} & \\lambda_{12} & \\lambda_{13}\\\\\n\\lambda_{21} & \\lambda_{22} & \\lambda_{23}\\\\\n\\lambda_{31} & \\lambda_{32} & \\lambda_{33}\\\\\n\\end{array}\\right)$$"}
+		{"id":"9b0699e933a2405f","x":-145,"y":-50,"width":808,"height":797,"color":"1","type":"group","label":"Untitled group"},
+		{"id":"0307d05cf1185498","x":-125,"y":-30,"width":250,"height":60,"type":"text","text":"ㅅㅅㅅㅅ"},
+		{"id":"1bc9b6387bda17c0","x":87,"y":386,"width":250,"height":60,"type":"text","text":"ㅎ거갸"},
+		{"id":"5a9922a622bfad16","x":243,"y":327,"width":400,"height":400,"type":"file","file":"Git.md"}
 	],
-	"edges":[]
+	"edges":[
+		{"id":"2dd0afdd7e7b2c6e","fromNode":"0307d05cf1185498","fromSide":"bottom","toNode":"1bc9b6387bda17c0","toSide":"top"}
+	]
 }

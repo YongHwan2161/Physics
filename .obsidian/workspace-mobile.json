@@ -30,12 +30,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based Database.md",
+                "file": "Mathematics/Matrix/Rotation Matrix.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Graph Based Database"
+              "title": "Rotation Matrix"
             }
           }
         ],
@@ -113,7 +113,7 @@
         "state": {
           "type": "backlink",
           "state": {
-            "file": "Graph Based Database.md",
+            "file": "Mathematics/Matrix/Rotation Matrix.md",
             "collapseAll": false,
             "extraContext": false,
             "sortOrder": "alphabetical",
@@ -175,12 +175,12 @@
   },
   "active": "4904908220fc3264",
   "lastOpenFiles": [
-    "Untitled.canvas",
-    "Graph Based Database.md",
+    "Physics/Matrices, Vectors, and Vector Calculus.md",
     "Mathematics/Matrix/Rotation Matrix.md",
     "Untitled 1.canvas",
+    "Graph Based Database.md",
+    "Untitled.canvas",
     "Mathematics/Matrix Operations.md",
-    "Physics/Matrices, Vectors, and Vector Calculus.md",
     "Git.md",
     "Figure.md",
     "Mathematics/Example 1.1.md",
