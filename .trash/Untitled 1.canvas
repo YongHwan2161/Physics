@@ -1,0 +1,6 @@
+{
+	"nodes":[
+		{"id":"c3ee38881e8bbeec","x":20,"y":178,"width":220,"height":142,"type":"text","text":"Square Matrix\n$$\\pmb{\\lambda}=\\left(\n\\begin{array}{3}\n\\lambda_{11} & \\lambda_{12} & \\lambda_{13}\\\\\n\\lambda_{21} & \\lambda_{22} & \\lambda_{23}\\\\\n\\lambda_{31} & \\lambda_{32} & \\lambda_{33}\\\\\n\\end{array}\\right)$$"}
+	],
+	"edges":[]
+}
