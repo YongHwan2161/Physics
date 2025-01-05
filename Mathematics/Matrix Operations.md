@@ -1,0 +1,1 @@
+ The matrix $\pmb{\lambda}$ given 
