@@ -64,3 +64,29 @@ void save_DB() {
     fclose(map_file);
 }
 ```
+
+# `check_and_init_DB`
+- 프로그램이 시작될 때 다음과 같은 순서로 데이터베이스를 초기화한다:
+  1. binary-data 디렉토리에 data.bin과 map.bin 파일이 존재하는지 확인한다.
+  2. 파일이 존재하지 않으면 새로운 데이터베이스를 생성하고 저장한다.
+  3. 파일이 존재하면 기존 데이터베이스를 사용한다.
+ - 참조 함수: [[Functions#`create_DB`|create_DB]], [[Functions#save_DB|save_DB]]
+```c
+int check_and_init_DB() {
+    FILE* data_file = fopen(DATA_FILE, "rb");
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    if (!data_file || !map_file) {
+        if (data_file) fclose(data_file);
+        if (map_file) fclose(map_file);
+        // Files don't exist, create new database
+        create_DB();
+        save_DB();
+        return 1;  // New database created
+    }
+    // TODO: Load existing database
+    fclose(data_file);
+    fclose(map_file);
+    printf("Found existing database files\n");
+    return 0;  // Existing database found
+}
+```
