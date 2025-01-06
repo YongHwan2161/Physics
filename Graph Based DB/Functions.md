@@ -3,6 +3,7 @@
 - binary file directory가 있는지 확인 후 없으면 생성
 - initialize database
 - initialize free space
+- 초기화 상태 return
 ```c
 int initialize_system() {
     // 1. Check and create binary-data directory
@@ -17,12 +18,16 @@ int initialize_system() {
         return INIT_ERROR;
     }
     // 3. Initialize free space management
-    init_free_space();
-    // If this was a new database, create initial free space file
-    if (db_status == INIT_NEW_DB) {
-        save_free_space();
+    int fs_status = init_free_space();
+    if (fs_status == FREE_SPACE_ERROR) {
+        printf("Error initializing free space management\n");
+        return INIT_ERROR;
     }
-    return db_status;
+    // Return NEW if either database or free space was newly created
+    if (db_status == INIT_NEW_DB || fs_status == FREE_SPACE_NEW) {
+        return INIT_NEW_DB;
+    }
+    return INIT_SUCCESS;
 }
 ```
 
@@ -102,6 +107,37 @@ void init_free_space() {
 }
 ```
 
+
+
+# initialize_database
+- DB 초기화 함수이다. 
+- map.bin과 data.bin 파일이 존재하는지 확인 후 없으면 생성한다. [[Functions#`create_DB`|create_DB]], [[Functions#`save_DB`|save_DB]]
+- 
+```c
+int initialize_database() {
+    // Check if map.bin exists
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    FILE* data_file = fopen(DATA_FILE, "rb");
+    if (!map_file || !data_file) {
+        // Need to create new database
+        if (map_file) fclose(map_file);
+        if (data_file) fclose(data_file);
+        create_DB();
+        save_DB();
+        return INIT_NEW_DB;
+    }
+    // Initialize CoreMap and load mapping information
+    init_core_mapping();
+    // Load initial set of nodes
+    Core = (uchar**)malloc(MaxCoreSize * sizeof(uchar*));
+    for (int i = 0; i < MaxCoreSize && i < 256; i++) {
+        load_node_to_core(i);
+    }
+    fclose(map_file);
+    fclose(data_file);
+    return INIT_SUCCESS;
+}
+```
 
 
 # `create_new_node`
