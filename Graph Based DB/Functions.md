@@ -1,3 +1,82 @@
+# 초기화 관련 함수
+## `save_node_to_file`
+- save_node_to_file 함수는 개별 node를 binary file에 저장하는 함수이다:
+  1. 현재 data file의 위치(offset)를 구한다
+  2. 이 offset을 map file에 저장한다
+  3. node의 실제 데이터를 data file에 저장한다
+```c
+void save_node_to_file(FILE* data_file, FILE* map_file, int index) {
+    uchar* node = Core[index];
+    long offset = ftell(data_file);  // Get current position in data file
+    // Write offset to map file
+    fwrite(&offset, sizeof(long), 1, map_file);
+    
+    // Read size as power of 2 (first 2 bytes)
+    ushort size_power = *(ushort*)node;
+    uint actual_size = 1 << size_power;  // 2^size_power
+    // Write the entire node data
+    fwrite(node, sizeof(uchar), actual_size, data_file);
+}
+```
+
+## `init_core_mapping`
+- [[Variables#`CoreMap`|CoreMap]] 변수를 초기화하는 함수이다. 
+- 
+```c
+void init_core_mapping() {
+    CoreMap = (NodeMapping*)malloc(256 * sizeof(NodeMapping));
+    // Initialize with default values
+    for (int i = 0; i < 256; i++) {
+        CoreMap[i].core_position = -1;
+        CoreMap[i].is_loaded = 0;
+        CoreMap[i].file_offset = 0;
+    }
+    // Read offsets from map.bin
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    if (map_file) {
+        // Skip number of nodes
+        fseek(map_file, sizeof(uint), SEEK_SET);
+        // Read all offsets
+        for (int i = 0; i < 256; i++) {
+            fread(&CoreMap[i].file_offset, sizeof(long), 1, map_file);
+        }
+        fclose(map_file);
+    }
+}
+```
+
+## `init_free_space`
+- [[Variables#`FreeSpace`|free_space 구조체]]를 초기화하는 함수이다. 프로그램 실행시 처음 호출되는 함수이다. 
+- free_space를 0 또는 NULL로 초기화한 뒤, free-space.bin 파일이 있으면 해당 파일로부터 free space 정보를 가져와서 free_space에 저장한다. 
+```c
+void init_free_space() {
+    free_space = (FreeSpace*)malloc(sizeof(FreeSpace));
+    free_space->count = 0;
+    free_space->blocks = NULL;
+    free_space->free_indices = NULL;
+    free_space->index_count = 0;
+    // Try to load existing free space data
+    FILE* fs_file = fopen(FREE_SPACE_FILE, "rb");
+    if (fs_file) {
+        // Read block count
+        fread(&free_space->count, sizeof(uint), 1, fs_file);
+        if (free_space->count > 0) {
+            free_space->blocks = (FreeBlock*)malloc(free_space->count * sizeof(FreeBlock));
+            fread(free_space->blocks, sizeof(FreeBlock), free_space->count, fs_file);
+        }
+        // Read free indices
+        fread(&free_space->index_count, sizeof(uint), 1, fs_file);
+        if (free_space->index_count > 0) {
+            free_space->free_indices = (uint*)malloc(free_space->index_count * sizeof(uint));
+            fread(free_space->free_indices, sizeof(uint), free_space->index_count, fs_file);
+        }
+        fclose(fs_file);
+    }
+}
+```
+
+
+
 # `create_new_node`
 -  새로운 node를 생성하는 함수이다. 새로운 노드에 기록되는 값은 `initValues` 변수를 참조한다. [[Variables#`initValues`|initValues]]
 - 16 바이트의 memory 공간을 할당하고 이 공간을 가리키는 포인터인 `newNode`를 `Core[index]`에 저장한다. 
@@ -20,26 +99,6 @@ void create_DB() {
     for (int i = 0; i < 256; ++i) {
         create_new_node(i);
     }
-}
-```
-
-# `save_node_to_file`
-- save_node_to_file 함수는 개별 node를 binary file에 저장하는 함수이다:
-  1. 현재 data file의 위치(offset)를 구한다
-  2. 이 offset을 map file에 저장한다
-  3. node의 실제 데이터를 data file에 저장한다
-```c
-void save_node_to_file(FILE* data_file, FILE* map_file, int index) {
-    uchar* node = Core[index];
-    long offset = ftell(data_file);  // Get current position in data file
-    // Write offset to map file
-    fwrite(&offset, sizeof(long), 1, map_file);
-    
-    // Read size as power of 2 (first 2 bytes)
-    ushort size_power = *(ushort*)node;
-    uint actual_size = 1 << size_power;  // 2^size_power
-    // Write the entire node data
-    fwrite(node, sizeof(uchar), actual_size, data_file);
 }
 ```
 
@@ -169,28 +228,3 @@ void load_node_from_file(FILE* data_file, long offset, int index) {
 }
 ```
 
-# `init_core_mapping`
-- [[Variables#`CoreMap`|CoreMap]] 변수를 초기화하는 함수이다. 
-- 
-```c
-void init_core_mapping() {
-    CoreMap = (NodeMapping*)malloc(256 * sizeof(NodeMapping));
-    // Initialize with default values
-    for (int i = 0; i < 256; i++) {
-        CoreMap[i].core_position = -1;
-        CoreMap[i].is_loaded = 0;
-        CoreMap[i].file_offset = 0;
-    }
-    // Read offsets from map.bin
-    FILE* map_file = fopen(MAP_FILE, "rb");
-    if (map_file) {
-        // Skip number of nodes
-        fseek(map_file, sizeof(uint), SEEK_SET);
-        // Read all offsets
-        for (int i = 0; i < 256; i++) {
-            fread(&CoreMap[i].file_offset, sizeof(long), 1, map_file);
-        }
-        fclose(map_file);
-    }
-}
-```

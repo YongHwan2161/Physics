@@ -1,3 +1,5 @@
+# Node
+- [[Node]]
 # Channel
 - 채널은 노드마다 1개 이상 부여될 수 있는 개념이다. 같은 노드 내에서 서로 다른 채널을 가진 경우에는, Node에 저장된 데이터는 공유하지만, 각각의 채널은 서로 독립적이다. 따라서 한 채널에서의 연결 관계들은 다른 채널의 연결 관계들과 완전히 독립적이다.
 - 각 노드는 적어도 하나의 채널을 가진다. 
@@ -18,20 +20,8 @@
 - link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. 
 
-# free space
-- data.bin에 저장되는 데이터는 반드시 index 순서로 저장되는 것이 아니다. 또한 모든 저장공간이 차곡차곡 쌓여 있어서 빈 공간이 없는 구조도 아니다. 그 이유는 이미 특정 index의 node data가 할당되어 있는 상태에서 node data의 크기가 커지는 경우에는 새로 저장공간을 할당해 줘야 하는데, 이 때 이 하나의 node data  때문에, 나머지 index의 node data가 저장된 binary file을 수정하는 것은 매우 비효율적이기 때문이다. 이 때는 기존에 node data가 저장된 공간은 free space로 회수하고, binary file의 끝 위치 혹은 free space에서 관리하는 해당하는 크기의 공간을 새로 할당하는 방식을 사용해야 한다. 그래야 변경하려는 data의 node 정보만 수정하고 나머지 data들은 건들지 않을 수 있다. 
-- free space는 binary file로 관리되어야 하며(그래야 프로그램 종료시에도 정보를 유지할 수 있으므로), 프로그램 실행시에는 모두 RAM에 올려놓고 사용한다(용량이 크지 않으므로 다 올려도 됨).
-- free space binary file과 map.bin, 그리고 data.bin 파일은 수정사항이 발생할 때 모두 함께 업데이트 되어야 한다. 어느 하나만 업데이트 되고 나머지는 업데이트되지 않는다면 오류가 발생할 수 있으므로 반드시 세 binary file은 동기화 되어 있어야 한다. 
-- free space는 삭제된 node index의 목록도 관리해야 한다. 삭제된 index는 나중에 재활용해야 하기 때문이다. 
-## free space가 생기는 경우
-### node data 삭제:
-- node data를 삭제하면 삭제한 node data가 free space로 이동한다. 해당하는 node data의 size와 offset이 free space에 저장되는 것이다. 그리고 CoreMap에서는 node data를 unload하고, data.bin에서 해당 node data를 모두 0으로 초기화한다. 
-### node data 수정
-  - node data를 수정하는 과정에서 ch을 추가하거나, link를 추가하는 등의 작업으로 인해서 node data size가 증가하다가 기존에 할당된 크기를 넘어서는 경우에는 새로 공간을 할당해 줘야 한다. 이 때, 기존에 할당된 공간은 free space로 반납하고, 새로운 공간을 재할당해 줘야 한다. 
-## free space가 줄어드는 경우
-### node data 생성
-- node를 새로 만드는 경우에는 먼저 16바이트 공간이 free space에 존재하는지 확인한 후, 있으면 그 공간을 그대로 활용해서 node를 생성한다. 이 때 node index는 삭제된 node index가 있는 경우에는 index를 재활용하고, 그렇지 않은 경우에는 새로운 index를 부여한다. 
-- 
+# Free Space
+- [[Free Space]]
 # DB가 존재하는지 확인 및 load
 - 처음 프로그램이 실행되면 현재 directory에 binary file이 존재하는지 먼저 확인한다. 만약 이미 binary file이 존재한다면 그 파일을 그대로 사용하고, 존재하지 않는다면, 새로 database를 생성해야 한다. database 파일이 이미 있는지 확인하는 함수는 [[Functions#`check_and_init_DB`|check_and_init_DB]] 참조 
 - 데이터베이스가 이미 존재하는 경우에는 데이터베이스에 존재하는 binary file을 메모리로 로드하여 사용할 수 있다. 참조: [[Functions#`load_DB`|load_DB]], [[Functions#`load_node_from_file`|load_node_from_file]]
@@ -62,3 +52,9 @@
 - 
 이러한 구조를 통해 프로그램이 다시 시작될 때 map.bin 파일을 읽어서 각 node의 위치를 빠르게 찾을 수 있으며, 필요한 node의 데이터만 data.bin 파일에서 읽어올 수 있다.
 
+# Initialization
+- 프로그램이 실행되면 먼저 데이터가 저장된 binary file들이 있는지, 있다면, RAM에 올려야 하는 데이터들을 읽어서 RAM에 올리는 등 초기화 작업을 진행해야 한다. 
+- 먼저 binary-data folder가 있는지 확인하여 없으면 생성한다. 
+- map.bin file이 있는지 확인하고, 없으면 생성한다. map.bin file이 있으면 CoreMap에 mapping information을 올린다. 
+- data.bin file이 있는지 확인하고, 없으면 database를 새로 생성한다(참조: [[Functions#`create_DB`|create_DB]]). 데이터베이스를 새로 생성하는 경우에는 data.bin 파일로 저장을 해 두어야 한다. data.bin file이 있는 경우에는 map.bin file을 참조하여 index 0부터 255까지 Core variable에 올린다. 
+- free-space.bin file이 있는지 확인하고, 없으면 생성한다. 없는 경우에는 FreeSpace를 초기화한 뒤에 binary file을 저장해 놓는다. 

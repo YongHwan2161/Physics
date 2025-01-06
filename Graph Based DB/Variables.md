@@ -32,3 +32,21 @@ typedef struct {
 
 NodeMapping* CoreMap;
 ```
+
+# `FreeSpace`
+- free space를 관리하는 구조체이다. 
+- free blocks의 개수를 나타내는 `count`, free blocks 정보가 저장된 array의 포인터가 저장된 blocks, 삭제된 node의 index가 기록된 array의 포인터인 `free_indices`, 삭제된 index의 개수를 저장하는 index_count
+- `FreeBlock`은 block size를 power of 2로 나타낸 `size`와 data.bin에서의 offset을 저장하는 구조체이다. 
+```c
+typedef struct {
+    uint size;          // Size of free block (power of 2)
+    long offset;        // Offset in data.bin
+} FreeBlock;
+  
+typedef struct {
+    uint count;         // Number of free blocks
+    FreeBlock* blocks;  // Array of free blocks
+    uint* free_indices; // Array of deleted node indices
+    uint index_count;   // Number of free indices
+} FreeSpace;
+```
