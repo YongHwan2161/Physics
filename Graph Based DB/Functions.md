@@ -102,31 +102,60 @@ int check_and_init_DB() {
   3. Core 배열을 할당한다
   4. 각 node의 offset을 읽고 해당 node를 로딩한다
   5. 파일들을 닫는다
-- 참조 함수: [[Functions#`load_node_from_file`|load_node_from_file]]
+- 참조 함수: [[Functions#]]
 ```c
 void load_DB() {
+    Core = (uchar**)malloc(MaxCoreSize * sizeof(uchar*));
+    init_core_mapping();
+    // Initially load first MaxCoreSize nodes
+    for (int i = 0; i < MaxCoreSize && i < 256; i++) {
+        load_node_to_core(i);
+    }
+    printf("Database loaded successfully\n");
+    }
+```
+
+# `load_node_to_core`
+- binary file에 저장되어 있는 node data를 RAM에 올리는 함수이다. 
+- 참조: [[Functions#`load_node_from_file`|load_node_from_file]]
+```c
+int load_node_to_core(int node_index) {
+    if (CoreSize >= MaxCoreSize) {
+        // Need to unload something first
+        // For now, unload the first loaded node
+        for (int i = 0; i < 256; i++) {
+            if (CoreMap[i].is_loaded) {
+                unload_node_from_core(i);
+                break;
+            }
+        }
+    }
+  
+    // Load the node
     FILE* data_file = fopen(DATA_FILE, "rb");
     FILE* map_file = fopen(MAP_FILE, "rb");
     if (!data_file || !map_file) {
-        printf("Error opening files for reading\n");
-        return;
+        if (data_file) fclose(data_file);
+        if (map_file) fclose(map_file);
+        return -1;
     }
-    // Read number of nodes
-    uint num_nodes;
-    fread(&num_nodes, sizeof(uint), 1, map_file);
-    // Allocate Core array
-    Core = (uchar**)malloc(num_nodes * sizeof(uchar*));
-    // Read each node's offset and load the node
-    for (int i = 0; i < num_nodes; i++) {
-        long offset;
-        fread(&offset, sizeof(long), 1, map_file);
-        load_node_from_file(data_file, offset, i);
-    }
+  
+    // Skip number of nodes
+    fseek(map_file, sizeof(uint), SEEK_SET);
+    // Get node offset
+    long offset;
+    fseek(map_file, node_index * sizeof(long), SEEK_CUR);
+    fread(&offset, sizeof(long), 1, map_file);
+    // Load the node
+    CoreMap[node_index].core_position = CoreSize;
+    CoreMap[node_index].is_loaded = 1;
+    load_node_from_file(data_file, offset, CoreSize);
+    CoreSize++;
     fclose(data_file);
     fclose(map_file);
+    return CoreMap[node_index].core_position;
 }
 ```
-
 # `load_node_from_file`
 - load_node_from_file 함수는 개별 node를 binary file에서 읽어오는 함수이다:
   1. 주어진 offset 위치로 이동한다
