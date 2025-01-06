@@ -1,9 +1,10 @@
 # `create_new_node`
 -  새로운 node를 생성하는 함수이다. 새로운 노드에 기록되는 값은 `initValues` 변수를 참조한다. [[Variables#`initValues`|initValues]]
+- 16 바이트의 memory 공간을 할당하고 이 공간을 가리키는 포인터인 `newNode`를 `Core[index]`에 저장한다. 
 ```c
 void create_new_node(int index) {
-    uchar* newNode = (uchar*)malloc(12 * sizeof(uchar));
-    for (int i = 0; i < 12; ++i) {
+    uchar* newNode = (uchar*)malloc(16 * sizeof(uchar));
+    for (int i = 0; i < 16; ++i) {
         newNode[i] = initValues[i];
     }
     Core[index] = newNode;
@@ -33,9 +34,12 @@ void save_node_to_file(FILE* data_file, FILE* map_file, int index) {
     long offset = ftell(data_file);  // Get current position in data file
     // Write offset to map file
     fwrite(&offset, sizeof(long), 1, map_file);
-    // Write node data to data file
-    uint node_size = *(uint*)node;  // First 4 bytes contain size
-    fwrite(node, sizeof(uchar), node_size + 4, data_file);  // +4 to include size field
+    
+    // Read size as power of 2 (first 2 bytes)
+    ushort size_power = *(ushort*)node;
+    uint actual_size = 1 << size_power;  // 2^size_power
+    // Write the entire node data
+    fwrite(node, sizeof(uchar), actual_size, data_file);
 }
 ```
 
@@ -126,23 +130,24 @@ void load_DB() {
 # `load_node_from_file`
 - load_node_from_file 함수는 개별 node를 binary file에서 읽어오는 함수이다:
   1. 주어진 offset 위치로 이동한다
-  2. node size를 읽어온다
+  2. node size를 읽어온다(2 바이트)
   3. 필요한 메모리를 할당한다
-  4. 전체 node 데이터를 읽어온다
-  5. Core 배열의 해당 index 위치에 저장한다
+  4. 다시 원리 offset 위치로 이동한다(2 바이트 앞으로)
+  5. 전체 node 데이터를 읽어온다
+  6. Core 배열의 해당 index 위치에 저장한다
 ```c
 void load_node_from_file(FILE* data_file, long offset, int index) {
-    // Move to the correct position in data file
     fseek(data_file, offset, SEEK_SET);
-    // Read size first
-    uint node_size;
-    fread(&node_size, sizeof(uint), 1, data_file);
+    // Read size power first (2 bytes)
+    ushort size_power;
+    fread(&size_power, sizeof(ushort), 1, data_file);
+    // Calculate actual size
+    uint actual_size = 1 << size_power;
     // Allocate memory for the node
-    uchar* newNode = (uchar*)malloc((node_size + 4) * sizeof(uchar));
-    // Move back to read the whole node including size
-    fseek(data_file, offset, SEEK_SET);
-    fread(newNode, sizeof(uchar), node_size + 4, data_file);
-    // Store in Core
+    uchar* newNode = (uchar*)malloc(actual_size * sizeof(uchar));
+    // Move back 2 bytes instead of seeking from start
+    fseek(data_file, -2, SEEK_CUR);
+    fread(newNode, sizeof(uchar), actual_size, data_file);
     Core[index] = newNode;
 }
 ```
