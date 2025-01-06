@@ -3,6 +3,9 @@
 # [[Channel 관련 함수]]
 
 # [[Axis 관련 함수]]
+
+# [[Command 관련 함수]]
+
 # `create_new_node`
 -  새로운 node를 생성하는 함수이다. 새로운 노드에 기록되는 값은 `initValues` 변수를 참조한다. [[Variables#`initValues`|initValues]]
 - 16 바이트의 memory 공간을 할당하고 이 공간을 가리키는 포인터인 `newNode`를 `Core[index]`에 저장한다. 
