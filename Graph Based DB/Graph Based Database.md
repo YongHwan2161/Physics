@@ -11,6 +11,8 @@
 - 채널 데이터에 접근하기 위해서는 채널 수 정보 다음부터 원하는 채널번호의 offset을 찾아서 해당 offset으로 이동하면 된다. offset은 node data의 시작점을 기준으로 계산한다. 
 ## Node data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
+- node data를 읽기 위해서는 node의 index와 offset을 알려주는 map data가 있어야 한다. 이 데이터를 이용해서 binary file에서 해당 node data가 위치한 offset으로 이동한 뒤 data size를 읽고(2 bytes), data size만큼 RAM으로 올리면 된다. 
+- RAM에 올려진 node data들은 Core 변수에 저장된다. 참조: [[Variables#`Core`|Core]]
 - 
 
 

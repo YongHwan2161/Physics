@@ -73,7 +73,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -225,11 +225,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "441f72bdc3a13ae9",
+  "active": "b3d195753beb62ec",
   "lastOpenFiles": [
-    "Graph Based DB/Functions.md",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Variables.md",
+    "Graph Based DB/Functions.md",
     "Graph Based DB/CGDB flow chart.canvas",
     "Graph Based DB",
     "Git.md",
