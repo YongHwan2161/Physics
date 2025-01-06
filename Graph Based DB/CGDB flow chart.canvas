@@ -2,22 +2,14 @@
 	"nodes":[
 		{"id":"2c8a647ebc36bfd9","x":-140,"y":-70,"width":260,"height":110,"type":"text","text":"data.bin과 map.bin 파일이 현재 디렉토리의 binary-file 폴더 안에 있는지?"},
 		{"id":"bcdbbd1bb4fd9827","x":-62,"y":-320,"width":105,"height":50,"color":"1","type":"text","text":"Start"},
-		{"id":"5e16ee27285f742a","x":40,"y":179,"width":250,"height":60,"type":"text","text":"data.bin과 map.bin 생성: `create_DB()` 함수 호출"},
-		{"id":"57dae3ba9ceb80f6","x":-460,"y":179,"width":250,"height":60,"type":"text","text":"데이터베이스 로드:\n`load_DB()` 함수 호출"},
-		{"id":"ac4892e9a7cae39b","x":420,"y":-220,"width":422,"height":242,"type":"text","text":"```c\nvoid create_DB() {\n    printf(\"Creating new database...\\n\");\n    Core = (uchar**)malloc(256 * sizeof(uchar*));\n    for (int i = 0; i < 256; ++i) {\n        create_new_node(i);\n    }\n}\n```"},
-		{"id":"868e8c4fd4a31b8f","x":420,"y":-480,"width":586,"height":205,"type":"text","text":"```c\nvoid create_new_node(int index) {\n    uchar* newNode = (uchar*)malloc(12 * sizeof(uchar));\n    for (int i = 0; i < 12; ++i) {\n        newNode[i] = initValues[i];\n    }\n    Core[index] = newNode;\n}\n```"},
-		{"id":"4fa1b7c31176996d","x":446,"y":390,"width":534,"height":560,"type":"text","text":"```c\nvoid save_DB() {\n    // Create directory if it doesn't exist\n    #ifdef _WIN32\n        _mkdir(DATA_DIR);\n    #else\n        mkdir(DATA_DIR, 0777);\n    #endif\n  \n    FILE* data_file = fopen(DATA_FILE, \"wb\");\n    FILE* map_file = fopen(MAP_FILE, \"wb\");\n    if (!data_file || !map_file) {\n        printf(\"Error opening files for writing\\n\");\n        return;\n    }\n    uint num_nodes = 256;\n    fwrite(&num_nodes, sizeof(uint), 1, map_file);\n    for (int i = 0; i < 256; i++) {\n        save_node_to_file(data_file, map_file, i);\n    }\n    fclose(data_file);\n    fclose(map_file);\n    printf(\"Database saved successfully\\n\");\n}\n```"},
-		{"id":"e2514d37562ecde0","x":446,"y":140,"width":638,"height":199,"type":"text","text":"```c\nvoid save_node_to_file(FILE* data_file, FILE* map_file, int index) {\n    uchar* node = Core[index];\n    long offset = ftell(data_file);\n    fwrite(&offset, sizeof(long), 1, map_file);\n    uint node_size = *(uint*)node;\n    fwrite(node, sizeof(uchar), node_size + 4, data_file);\n}\n```"},
-		{"id":"429daad41745ffbd","x":40,"y":640,"width":250,"height":60,"type":"text","text":"생성한 binary file 저장:\n`save_DB()` 함수 호출"}
+		{"id":"5e16ee27285f742a","x":40,"y":179,"width":380,"height":121,"type":"text","text":"data.bin과 map.bin 생성: `create_DB()` 함수 호출\n[[Functions#`create_DB`|create_DB]]"},
+		{"id":"57dae3ba9ceb80f6","x":-460,"y":179,"width":250,"height":121,"type":"text","text":"데이터베이스 로드:\n`load_DB()` 함수 호출\n[[Functions#`load_DB`|load_DB]]"},
+		{"id":"429daad41745ffbd","x":70,"y":380,"width":320,"height":100,"type":"text","text":"생성한 binary file 저장:\n`save_DB()` 함수 호출\n[[Functions#save_DB|sava_DB]]"}
 	],
 	"edges":[
 		{"id":"a87fd3ce0de1e9ad","fromNode":"bcdbbd1bb4fd9827","fromSide":"bottom","toNode":"2c8a647ebc36bfd9","toSide":"top","label":"check_and_init_DB()"},
 		{"id":"d8195c38242fc6ff","fromNode":"2c8a647ebc36bfd9","fromSide":"bottom","toNode":"57dae3ba9ceb80f6","toSide":"top","label":"Yes"},
 		{"id":"85f83c34896a0368","fromNode":"2c8a647ebc36bfd9","fromSide":"bottom","toNode":"5e16ee27285f742a","toSide":"top","label":"No"},
-		{"id":"a8cf5b1573019c39","fromNode":"5e16ee27285f742a","fromSide":"bottom","toNode":"429daad41745ffbd","toSide":"top"},
-		{"id":"7b0512376a141493","fromNode":"ac4892e9a7cae39b","fromSide":"left","toNode":"5e16ee27285f742a","toSide":"right"},
-		{"id":"fd2d0c82241af89b","fromNode":"868e8c4fd4a31b8f","fromSide":"bottom","toNode":"ac4892e9a7cae39b","toSide":"top"},
-		{"id":"a4825073d07c0c0f","fromNode":"4fa1b7c31176996d","fromSide":"left","toNode":"429daad41745ffbd","toSide":"right"},
-		{"id":"ff832a2e95127d80","fromNode":"e2514d37562ecde0","fromSide":"bottom","toNode":"4fa1b7c31176996d","toSide":"top"}
+		{"id":"a8cf5b1573019c39","fromNode":"5e16ee27285f742a","fromSide":"bottom","toNode":"429daad41745ffbd","toSide":"top"}
 	]
 }

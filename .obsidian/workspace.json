@@ -35,9 +35,9 @@
               "state": {
                 "file": "Graph Based DB/CGDB flow chart.canvas",
                 "viewState": {
-                  "x": -137.6279584114649,
-                  "y": 331.1044039855499,
-                  "zoom": -0.5
+                  "x": 2.2993943273649506,
+                  "y": 342.084876542227,
+                  "zoom": 0
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -72,8 +72,7 @@
               "title": "Functions"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -225,7 +224,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "726f9aad2d0f5fe0",
+  "active": "441f72bdc3a13ae9",
   "lastOpenFiles": [
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/CGDB flow chart.canvas",
