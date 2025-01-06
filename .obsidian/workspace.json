@@ -31,14 +31,17 @@
             "id": "4caed75c12d7caa0",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Graph Based DB/Functions.md",
-                "mode": "source",
-                "source": false
+                "file": "Graph Based DB/CGDB flow chart.canvas",
+                "viewState": {
+                  "x": -137.6279584114649,
+                  "y": 331.1044039855499,
+                  "zoom": -0.5
+                }
               },
-              "icon": "lucide-file",
-              "title": "Functions"
+              "icon": "lucide-layout-dashboard",
+              "title": "CGDB flow chart"
             }
           },
           {
@@ -209,12 +212,12 @@
   },
   "active": "4caed75c12d7caa0",
   "lastOpenFiles": [
-    "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Functions.md",
+    "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Variables.md",
     "Graph Based DB",
     "Git.md",
-    "Untitled.canvas",
+    "Graph Based DB/CGDB flow chart.canvas",
     "Untitled 1.canvas",
     "Mathematics/Matrix Operations.md",
     "MathJax.md",
