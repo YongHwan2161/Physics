@@ -109,7 +109,7 @@ void init_free_space() {
 
 
 
-# initialize_database
+## initialize_database
 - DB 초기화 함수이다. 
 - map.bin과 data.bin 파일이 존재하는지 확인 후 없으면 생성한다. [[Functions#`create_DB`|create_DB]], [[Functions#`save_DB`|save_DB]]
 - CoreMap을 초기화하고, map.bin 파일의 내용을 load한다. [[Functions#`init_core_mapping`|init_core_mapping]]
@@ -140,6 +140,47 @@ int initialize_database() {
 ```
 
 
+
+# channel 관련 함수
+
+## get_channel_count
+- channel 개수를 반환하는 함수.
+- node data size를 나타내는 2바이트 다음의 2바이트가 채널 개수를 가리키므로 node + 2를 가리키는 지점에서 2바이트를 읽어 ushort로 변환하고 반환한다. 
+```c
+ushort get_channel_count(uchar* node) {
+    return *(ushort*)(node + 2);  // Skip 2 bytes of size
+}
+```
+
+## get_channel_offset
+- node data의 포인터와 channel_index를 인자로 받아서 해당 channel의 offset을 int 형식으로 반환하는 함수
+- channel_index가 channel_count보다 큰 경우에는 에러를 띄우고 프로그램을 종료한다. 나중에 성능 향상을 위해 이 코드 부분은 제거할 수도 있음
+```c
+uint get_channel_offset(uchar* node, int channel_index) {
+    ushort channel_count = get_channel_count(node);
+    if (channel_index >= channel_count) {
+        printf("Error: Invalid channel index %d (max: %d)\n",
+               channel_index, channel_count - 1);
+        exit(1);  // Fatal error: invalid memory access
+    }
+    return *(uint*)(node + 4 + (channel_index * 4));  // 4: size(2) + channels(2)
+}
+```
+
+## get_channel_size
+- node data pointer와 channel_index를 인자로 받아서 channel size를 반환하는 함수. 
+- 
+```c
+ushort get_channel_size(uchar* node, int channel_index) {
+    uint offset;
+    // This will exit if channel_index is invalid
+    offset = get_channel_offset(node, channel_index);
+    // Channel size is stored in first 2 bytes of channel data
+    return *(ushort*)(node + offset);
+}
+```
+
+## 
 # `create_new_node`
 -  새로운 node를 생성하는 함수이다. 새로운 노드에 기록되는 값은 `initValues` 변수를 참조한다. [[Variables#`initValues`|initValues]]
 - 16 바이트의 memory 공간을 할당하고 이 공간을 가리키는 포인터인 `newNode`를 `Core[index]`에 저장한다. 
@@ -291,3 +332,57 @@ void load_node_from_file(FILE* data_file, long offset, int index) {
 }
 ```
 
+
+# create_axis
+- 인자로 `node_index`, `channel_index`, `axis_number`를 받는다. 
+- Core에 해당 `node_index`가 존재하지 않으면 `AXIS_ERROR`를 반환한다. 
+- `channel_index`의 offset을 구하고 offset이 0보다 작으면 역시 error를 반환한다. 채널의 offset을 구하는 함수는 
+```c
+int create_axis(int node_index, int channel_index, int axis_number) {
+    if (node_index >= 256 || !Core[node_index]) {
+        printf("Invalid node index\n");
+        return AXIS_ERROR;
+    }
+    uchar* node = Core[node_index];
+    int channel_offset = get_channel_offset(node, channel_index);
+    if (channel_offset < 0) {
+        printf("Invalid channel index\n");
+        return AXIS_ERROR;
+    }
+    // Get current axis count
+    ushort* axis_count = (ushort*)(node + channel_offset);
+    ushort current_axis_count = *axis_count;
+    // Calculate new sizes
+    int old_channel_size = get_channel_size(node, channel_index);
+    int new_channel_size = old_channel_size + 6;  // Add 6 bytes for new axis
+    // Check if we need to resize the node
+    ushort node_size_power = *(ushort*)node;
+    uint current_node_size = 1 << node_size_power;
+    uint required_size = channel_offset + new_channel_size;
+    // If required size is larger than current size, resize node
+    if (required_size > current_node_size) {
+        // Find next power of 2
+        uint new_size = current_node_size;
+        while (new_size < required_size) {
+            new_size *= 2;
+            node_size_power++;
+        }
+        // Allocate new space
+        uchar* new_node = (uchar*)malloc(new_size);
+        memcpy(new_node, node, current_node_size);
+        free(node);
+        node = new_node;
+        Core[node_index] = new_node;
+        // Update node size
+        *(ushort*)node = node_size_power;
+    }
+    // Update axis count
+    (*axis_count)++;
+    // Calculate offset for new axis data
+    int axis_data_offset = channel_offset + 2 + (current_axis_count * 6);
+    // Write axis number and its data offset
+    *(ushort*)(node + axis_data_offset) = (ushort)axis_number;
+    *(uint*)(node + axis_data_offset + 2) = axis_data_offset + 6;  // Points to after itself
+    return AXIS_SUCCESS;
+}
+```

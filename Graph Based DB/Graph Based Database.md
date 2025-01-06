@@ -15,6 +15,7 @@
 - channel data 내에서 axis에 대한 정보를 저장하는 방식은 다음과 같다.  먼저 axis의 개수를 2바이트로 나타낸다. 그리고 (6 bytes * axis의 개수)만큼 공간을 할당한다. 6 bytes는 axis number를 나타내는 2바이트와 axis data의 시작지점인 offset을 나타내는 4바이트로 이루어진다. offset의 기준점은 channel data의 시작점을 기준으로 한다. 즉, axis가 1개만 있다면, 첫번째 axis data의 offset은 2 + 6 = 8이 된다.  
 - 처음에 생성된 node는 한 개의 channel을 가지지만 axis는 가지지 않는다. 따라서 처음 생성된 node에 link를 추가하는 등의 작업을 하려면 반드시 axis를 추가해 주어야 한다. 
 - 처음 초기화할 때 channel은 1개 생성하지만, axis를 미리 생성하지 않는 이유는 axis는 종류가 있어서, 초기화 할 때 axis의 종류를 미리 지정하는 것은 큰 의미가 없기 때문이다. 
+- axis 생성 함수는  [[Functions#create_axis|create_axis]] 참조.
 - 
 
 # Link
