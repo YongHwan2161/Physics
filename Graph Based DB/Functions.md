@@ -336,6 +336,8 @@ void load_node_from_file(FILE* data_file, long offset, int index) {
 # create_axis
 - 인자로 `node_index`, `channel_index`, `axis_number`를 받는다. 
 - Core에 해당 `node_index`가 존재하지 않으면 `AXIS_ERROR`를 반환한다. 
+- create_axis 함수에서는 인자로 받은 axis_number가 현재 node,channel data에 존재하는지 확인한 후 존재하면 새로 axis를 생성할 필요가 없고, 존재하지 않는 경우에만 새로 axis를 생성해야 한다. 
+
 - `channel_index`의 offset을 구하고 offset이 0보다 작으면 역시 error를 반환한다. 채널의 offset을 구하는 함수는 
 ```c
 int create_axis(int node_index, int channel_index, int axis_number) {

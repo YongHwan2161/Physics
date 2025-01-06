@@ -17,7 +17,6 @@
 - 처음 초기화할 때 channel은 1개 생성하지만, axis를 미리 생성하지 않는 이유는 axis는 종류가 있어서, 초기화 할 때 axis의 종류를 미리 지정하는 것은 큰 의미가 없기 때문이다. 
 - axis 생성 함수는  [[Functions#create_axis|create_axis]] 참조.
 - 
-
 # Link
 - 각각의 node의 channel은 임의의 다른 node의 channel과 연결될 수 있다. 이를 link라는 개념으로 설명한다. 
 - node의 channel offset을 이용해서 해당 channel의 데이터 시작점으로 이동하면, axis의 개수에 대한 정보가 저장되어 있다. 그리고 axis의 offset을 이용해서 axis의 정보가 시작하는 위치로 이동하면 link 정보가 저장되어 있다. link는 해당 채널이 가리키는 다른 node, channel 쌍에 대한 정보를 가지고 있다. node를 나타내기 위해 4바이트를, channel을 나타내기 위해 2바이트를 사용한다. 따라서 하나의 link를 나타내기 위해서 총 6바이트가 필요하다.
