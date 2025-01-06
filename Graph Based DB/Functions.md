@@ -112,7 +112,7 @@ void init_free_space() {
 # initialize_database
 - DB 초기화 함수이다. 
 - map.bin과 data.bin 파일이 존재하는지 확인 후 없으면 생성한다. [[Functions#`create_DB`|create_DB]], [[Functions#`save_DB`|save_DB]]
-- 
+- CoreMap을 초기화하고, map.bin 파일의 내용을 load한다. [[Functions#`init_core_mapping`|init_core_mapping]]
 ```c
 int initialize_database() {
     // Check if map.bin exists

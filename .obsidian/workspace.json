@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/binary file/Free Space.md",
+                "file": "Graph Based DB/Graph Based Database.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Free Space"
+              "title": "Graph Based Database"
             }
           },
           {
@@ -236,11 +236,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f44668f38e614a0e",
+  "active": "441f72bdc3a13ae9",
   "lastOpenFiles": [
+    "Graph Based DB/Functions.md",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/binary file/Free Space.md",
-    "Graph Based DB/Functions.md",
     "Graph Based DB/Variables.md",
     "Graph Based DB/binary file/free space",
     "Graph Based DB/binary file",
