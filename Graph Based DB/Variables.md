@@ -21,6 +21,7 @@ uchar initValues[16] = {
 - node index가 RAM에 올려져 있는지, Core array에서의 해당 위치, binary file에서의 offset 정보를 저장하는 구조체이다. 
 - CoreMap 구조체에서의 index는 node data의 index와 동일하기 때문에, 구조체 내에 별도의 index를 저장할 필요는 없다. 
 - 프로그램 실행시 초기화 과정에서 map.bin file에 있는 node data offset 정보도 CoreMap에 모두 저장해 놓고 필요할 때 이용할 수 있어야 한다. 필요할 때마다 map.bin 파일을 읽어서 데이터를 활용하는 방식보다 미리 CoreMap에 모두 올려놓는 것이 더 효율적이다. map.bin data는 크기가 크지 않기 때문에 RAM에 모두 올려도 부담이 적다. 
+- CoreMap을 초기화하는 함수: [[Functions#`init_core_mapping`|init_core_mapping]]
 ```c
 // Core status tracking
 typedef struct {

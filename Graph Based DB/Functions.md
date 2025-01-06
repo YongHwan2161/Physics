@@ -43,7 +43,7 @@ void save_node_to_file(FILE* data_file, FILE* map_file, int index) {
 }
 ```
 
-# save_DB
+# `save_DB`
 - save_DB 함수는 전체 데이터베이스를 저장하는 함수이다:
   1. data.bin과 map.bin 파일을 생성한다
   2. map.bin 파일의 시작에 전체 node 개수를 저장한다
@@ -117,12 +117,12 @@ void load_DB() {
 
 # `load_node_to_core`
 - binary file에 저장되어 있는 node data를 RAM에 올리는 함수이다. 
+- offset data는 [[Variables#`CoreMap`|CoreMap]]을 참조해서 얻는다. 
 - 참조: [[Functions#`load_node_from_file`|load_node_from_file]]
 ```c
 int load_node_to_core(int node_index) {
     if (CoreSize >= MaxCoreSize) {
         // Need to unload something first
-        // For now, unload the first loaded node
         for (int i = 0; i < 256; i++) {
             if (CoreMap[i].is_loaded) {
                 unload_node_from_core(i);
@@ -131,28 +131,16 @@ int load_node_to_core(int node_index) {
         }
     }
   
-    // Load the node
     FILE* data_file = fopen(DATA_FILE, "rb");
-    FILE* map_file = fopen(MAP_FILE, "rb");
-    if (!data_file || !map_file) {
-        if (data_file) fclose(data_file);
-        if (map_file) fclose(map_file);
-        return -1;
-    }
-  
-    // Skip number of nodes
-    fseek(map_file, sizeof(uint), SEEK_SET);
-    // Get node offset
-    long offset;
-    fseek(map_file, node_index * sizeof(long), SEEK_CUR);
-    fread(&offset, sizeof(long), 1, map_file);
+    if (!data_file) return -1;
+    // Use stored offset directly
+    long offset = CoreMap[node_index].file_offset;
     // Load the node
     CoreMap[node_index].core_position = CoreSize;
     CoreMap[node_index].is_loaded = 1;
     load_node_from_file(data_file, offset, CoreSize);
     CoreSize++;
     fclose(data_file);
-    fclose(map_file);
     return CoreMap[node_index].core_position;
 }
 ```
@@ -178,5 +166,31 @@ void load_node_from_file(FILE* data_file, long offset, int index) {
     fseek(data_file, -2, SEEK_CUR);
     fread(newNode, sizeof(uchar), actual_size, data_file);
     Core[index] = newNode;
+}
+```
+
+# `init_core_mapping`
+- [[Variables#`CoreMap`|CoreMap]] 변수를 초기화하는 함수이다. 
+- 
+```c
+void init_core_mapping() {
+    CoreMap = (NodeMapping*)malloc(256 * sizeof(NodeMapping));
+    // Initialize with default values
+    for (int i = 0; i < 256; i++) {
+        CoreMap[i].core_position = -1;
+        CoreMap[i].is_loaded = 0;
+        CoreMap[i].file_offset = 0;
+    }
+    // Read offsets from map.bin
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    if (map_file) {
+        // Skip number of nodes
+        fseek(map_file, sizeof(uint), SEEK_SET);
+        // Read all offsets
+        for (int i = 0; i < 256; i++) {
+            fread(&CoreMap[i].file_offset, sizeof(long), 1, map_file);
+        }
+        fclose(map_file);
+    }
 }
 ```
