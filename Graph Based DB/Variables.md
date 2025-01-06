@@ -16,3 +16,18 @@ uchar initValues[16] = {
     0,  0, 0, 0, 0, 0    // remaining bytes initialized to 0
 };
 ```
+
+# `CoreMap`
+- node index가 RAM에 올려져 있는지, Core array에서의 해당 위치, binary file에서의 offset 정보를 저장하는 구조체이다. 
+- CoreMap 구조체에서의 index는 node data의 index와 동일하기 때문에, 구조체 내에 별도의 index를 저장할 필요는 없다. 
+- 프로그램 실행시 초기화 과정에서 map.bin file에 있는 node data offset 정보도 CoreMap에 모두 저장해 놓고 필요할 때 이용할 수 있어야 한다. 필요할 때마다 map.bin 파일을 읽어서 데이터를 활용하는 방식보다 미리 CoreMap에 모두 올려놓는 것이 더 효율적이다. map.bin data는 크기가 크지 않기 때문에 RAM에 모두 올려도 부담이 적다. 
+```c
+// Core status tracking
+typedef struct {
+    int core_position;   // Position in Core array (-1 if not loaded)
+    int is_loaded;      // 1 if loaded in RAM, 0 if not
+    long file_offset;   // Offset position in data.bin
+} NodeMapping;
+
+NodeMapping* CoreMap;
+```

@@ -12,6 +12,7 @@
 
 # Node data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
+- node data를 찾을 때는 먼저 Core 변수에 node data가 저장되어 있는지 확인해야 한다. 확인후 이미 RAM에 올라와 있는 경우에는 Core에 있는 데이터를 그대로 가져오면 되고, 없는 경우에는 binary file에서 데이터를 불러와야 한다. 
 - node data를 읽기 위해서는 node의 index와 offset을 알려주는 map data가 있어야 한다. 이 데이터를 이용해서 binary file에서 해당 node data가 위치한 offset으로 이동한 뒤 data size를 읽고(2 bytes), data size만큼 RAM으로 올리면 된다. 
 - RAM에 올려진 node data들은 Core 변수에 저장된다. 참조: [[Variables#`Core`|Core]]
 - 

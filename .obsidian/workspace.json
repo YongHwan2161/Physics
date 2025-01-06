@@ -35,8 +35,7 @@
               "title": "Node"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       },
       {
         "id": "df523d78af4f1eda",
@@ -223,12 +222,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "594785c1ec721c4f",
+  "active": "441f72bdc3a13ae9",
   "lastOpenFiles": [
-    "Graph Based DB/Graph Based Database.md",
-    "Graph Based DB/Node.md",
     "Graph Based DB/Functions.md",
     "Graph Based DB/Variables.md",
+    "Graph Based DB/Node.md",
+    "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/CGDB flow chart.canvas",
     "Graph Based DB",
     "Git.md",
