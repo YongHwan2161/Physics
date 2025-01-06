@@ -53,7 +53,7 @@
 이러한 구조를 통해 프로그램이 다시 시작될 때 map.bin 파일을 읽어서 각 node의 위치를 빠르게 찾을 수 있으며, 필요한 node의 데이터만 data.bin 파일에서 읽어올 수 있다.
 
 # Initialization
-- 프로그램이 실행되면 먼저 데이터가 저장된 binary file들이 있는지, 있다면, RAM에 올려야 하는 데이터들을 읽어서 RAM에 올리는 등 초기화 작업을 진행해야 한다. 
+- 프로그램이 실행되면 먼저 데이터가 저장된 binary file들이 있는지, 있다면, RAM에 올려야 하는 데이터들을 읽어서 RAM에 올리는 등 초기화 작업을 진행해야 한다. 참조 : 
 - 먼저 binary-data folder가 있는지 확인하여 없으면 생성한다. 
 - map.bin file이 있는지 확인하고, 없으면 생성한다. map.bin file이 있으면 CoreMap에 mapping information을 올린다. 
 - data.bin file이 있는지 확인하고, 없으면 database를 새로 생성한다(참조: [[Functions#`create_DB`|create_DB]]). 데이터베이스를 새로 생성하는 경우에는 data.bin 파일로 저장을 해 두어야 한다. data.bin file이 있는 경우에는 map.bin file을 참조하여 index 0부터 255까지 Core variable에 올린다. 

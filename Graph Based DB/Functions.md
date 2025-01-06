@@ -1,4 +1,31 @@
 # 초기화 관련 함수
+## `init_system`
+- binary file directory가 있는지 확인 후 없으면 생성
+- initialize database
+- initialize free space
+```c
+int initialize_system() {
+    // 1. Check and create binary-data directory
+    if (check_and_create_directory() != 0) {
+        printf("Error creating data directory\n");
+        return INIT_ERROR;
+    }
+    // 2. Initialize database (creates or loads existing)
+    int db_status = initialize_database();
+    if (db_status == INIT_ERROR) {
+        printf("Error initializing database\n");
+        return INIT_ERROR;
+    }
+    // 3. Initialize free space management
+    init_free_space();
+    // If this was a new database, create initial free space file
+    if (db_status == INIT_NEW_DB) {
+        save_free_space();
+    }
+    return db_status;
+}
+```
+
 ## `save_node_to_file`
 - save_node_to_file 함수는 개별 node를 binary file에 저장하는 함수이다:
   1. 현재 data file의 위치(offset)를 구한다
