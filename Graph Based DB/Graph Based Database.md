@@ -9,6 +9,11 @@
 - data size 다음에는 channel 개수를 알려주는 2 bytes가 기록된다. 
 - channel 개수 다음에는 각 채널의 offset을 가리키는 4 bytes * (채널 개수) 만큼의 데이터가 기록된다. 
 - 채널 데이터에 접근하기 위해서는 채널 수 정보 다음부터 원하는 채널번호의 offset을 찾아서 해당 offset으로 이동하면 된다. offset은 node data의 시작점을 기준으로 계산한다. 
+## Node data loading
+- node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
+- 
+
+
 ## Node 생성
 - node를 생성할 때에는 $2^4=16$ bytes가 필요하다. 
 -  처음 node를 생성하면, data size 2bytes + 채널 개수 2bytes + ch 0의 offset을 기록하는 4bytes + axis 개수를 나타내는 2 bytes(axis 개수는 처음에는 0) + 나머지는 0으로 초기화하여 적어도 16바이트가 필요하기 때문이다. 
