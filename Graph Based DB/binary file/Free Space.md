@@ -3,6 +3,51 @@
 - free space는 binary file로 관리되어야 하며(그래야 프로그램 종료시에도 정보를 유지할 수 있으므로), 프로그램 실행시에는 모두 RAM에 올려놓고 사용한다(용량이 크지 않으므로 다 올려도 됨).
 - free space binary file과 map.bin, 그리고 data.bin 파일은 수정사항이 발생할 때 모두 함께 업데이트 되어야 한다. 어느 하나만 업데이트 되고 나머지는 업데이트되지 않는다면 오류가 발생할 수 있으므로 반드시 세 binary file은 동기화 되어 있어야 한다. 
 - free space는 삭제된 node index의 목록도 관리해야 한다. 삭제된 index는 나중에 재활용해야 하기 때문이다. 
+
+# node resizing
+- node space를 resize하는 로직이다. 
+- 
+```c
+uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint* new_size) {
+    // Calculate new size (next power of 2)
+    ushort node_size_power = *(ushort*)node;
+    uint current_size = 1 << node_size_power;
+    while ((1 << node_size_power) < required_size) {
+        node_size_power++;
+    }
+    // Set new size for caller
+    *new_size = 1 << node_size_power;
+    // Allocate new space
+    FreeBlock* free_block = find_free_block(*new_size);
+    uchar* new_node = NULL;
+    if (free_block) {
+        // Use found free block
+        new_node = (uchar*)malloc(*new_size);
+        memcpy(new_node, node, current_size);
+        // Update CoreMap with new location
+        CoreMap[node_index].file_offset = free_block->offset;
+        // Add old space to free space
+        add_free_block(current_size, CoreMap[node_index].file_offset);
+    } else {
+        // No suitable free block found, allocate at end of file
+        new_node = (uchar*)malloc(*new_size);
+        memcpy(new_node, node, current_size);
+        // Add old space to free space
+        add_free_block(current_size, CoreMap[node_index].file_offset);
+        // Update CoreMap with new location
+        FILE* data_file = fopen(DATA_FILE, "ab");
+        if (data_file) {
+            CoreMap[node_index].file_offset = ftell(data_file);
+            fclose(data_file);
+        }
+    }
+    // Update node size
+    *(ushort*)new_node = node_size_power;
+    // Free old node
+    free(node);
+    return new_node;
+}
+```
 # free space가 생기는 경우
 ## node data 삭제:
 - node data를 삭제하면 삭제한 node data가 free space로 이동한다. 해당하는 node data의 size와 offset이 free space에 저장되는 것이다. 그리고 CoreMap에서는 node data를 unload하고, data.bin에서 해당 node data를 모두 0으로 초기화한다. 

@@ -88,3 +88,7 @@ Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII
 
 # [[Command Line Interface(CLI)]]
 
+# CoreMap
+- data.bin file에서 node index와 node offset을 mapping해 주는 data structure이다. 
+- free space에서 node space resize할 때마다 반드시 CoreMap을 update해 주어야 한다. 그래야 프로그램 재시작 시 node offset을 정확하게 찾아서 읽을 수 있다. 
+- CoreMap의 정보를 확인하는 command: 
