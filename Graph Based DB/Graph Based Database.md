@@ -17,6 +17,11 @@
 - 처음 초기화할 때 channel은 1개 생성하지만, axis를 미리 생성하지 않는 이유는 axis는 종류가 있어서, 초기화 할 때 axis의 종류를 미리 지정하는 것은 큰 의미가 없기 때문이다. 
 - axis 생성 함수는  [[Functions#create_axis|create_axis]] 참조.
 - axis를 생성하는 과정에서 공간을 추가로 할당해야 하는 경우가 생길 수 있다. 이 경우에는 free space에 원하는 공간이 존재하는지 먼저 확인한 후, 존재하면 그 공간을 할당받아야 하고, 공간이 없는 경우에는 새로 저장공간을 할당받고 기존의 공간은 free space에 반납해야 한다. free space는 RAM에서의 공간을 관리하는 게 아니라 binary file에 저장되는 데이터 공간을 관리하는 객체이므로 RAM에서는 적절하게 기존 메모리 공간을 해제해야 한다. 
+
+## Axis 삭제
+- axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
+- axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
+- 제거하려는 axis가 마지막 axis가 아니라면 axis를 제거한 뒤에는 제거된 axis보다 뒤에 있는 모든 axis의 offset을 적절하게 수정해야 한다. 
 - 
 # Link
 - 각각의 node의 channel은 임의의 다른 node의 channel과 연결될 수 있다. 이를 link라는 개념으로 설명한다. 
@@ -25,7 +30,7 @@
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. 
 ## Link 생성
 - link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 
-- link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. [[Graph Based Database#Axis 생성|Axis 생성]]
+- link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. [[Graph Based Database#Axis 생성|Axis 생성]], [[Axis 관련 함수#has_axis|has_axis]]
 - 
 
 # Free Space
