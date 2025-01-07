@@ -37,13 +37,14 @@
 ## Link 생성
 - link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. [[Graph Based Database#Axis 생성|Axis 생성]], [[Axis 관련 함수#has_axis|has_axis]]
-- link가 존재하지 않던 axis에 새로운 lnk를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 
+- link가 존재하지 않던 axis에 새로운 lnk를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
 ```shell
 Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII
 --------  -----------------------------------------------    ----------------
-00000000  04 00 01 00 08 00 00 00 01 00 00 00 10 00 00 00    ................
+00000000  05 00 01 00 08 00 00 00 01 00 00 00 10 00 00 00    ................
+00000010  01 00 00 00 00 00 00 00 A0 70 C5 C4 54 56 00 00    .........p..TV..
 ```
-- 여기에 link를 생성하면, 0x10부터 6 bytes씩 link data가 추가되어야 하는데 저장공간이 모자라므로, 기존에 할당된 공간을 free space에 반납하고 새로운 저장공간을 할당받아야 한다. 그리고 업데이트된 정보는 data.bin과 동기화되어야 한다. 
+- 여기에 link를 생성하면, 0x12부터 6 bytes씩 link data가 추가되어야 한다. 그리고 업데이트된 정보는 data.bin과 동기화되어야 한다. 
 - 
 
 # Free Space
