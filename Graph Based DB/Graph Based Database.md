@@ -10,6 +10,12 @@
 # Axis
 - 각 채널은 다른 노드의 채널과 link로 연결되는데, 이 때 axis라는 개념이 이용된다. axis는 link의 속성을 구분해 주는 개념이다. 예를 들면 forward link와 backward link는 서로 다른 axis(axis 0와 axis 1)으로 구분된다. forward 및 backward 뿐만 아니라 더 많은 axis를 정의하여 사용할 수 있다. 
 - axis 3를 time axis로 정의하면 각 채널마다 axis 3로 채널이 생성된 시각에 대한 정보(8 bytes)를 저장하는 데이터와 연결시킬 수 있고, 그럼, 채널의 생성 시각, 수정시각 등 시간에 대한 정보를 forward, backward link들과는 독립적으로 관리할 수 있다. 이 데이터는 시각화할 때 별개의 UI를 적용하여 화면에 표시할 수도 있다.
+## Axis data structure
+- Axis data는 channel data 내에 포함되어 있다. 
+- channel offset을 시작으로 하여 첫 2 바이트는 axis의 개수를 나타낸다. 처음 channel이 생성될 때는 이 값은 0으로 초기화된다. 
+- axis 개수가 1 이상인 경우에는 그 다음 (6바이트 * axis 개수)가 axis의 number(2바이트)와 axis offset(4바이트)을 나타낸다. 
+- 각각의 axis offset에서부터 첫 2바이트는 link count, 즉 링크 개수를 나타낸다. axis와 마찬가지로 처음 axis가 생성되면 이 값은 0으로 초기화된다. 링크 개수 다음에는 (6바이트 * 링크 개수)만큼 link data가 저장된다.
+- 
 ## Axis 생성
 - Axis를 생성하기 위해서는 생성하려는 node, channel 정보와, 생성하려는 axis의 종류를 함수에게 알려주어야 한다. axis의 종류는 번호로 구분된다. 0은 forward link, 1은 backward link, 이런 식으로 사전에 정의되어 있다. 
 - channel data 내에서 axis에 대한 정보를 저장하는 방식은 다음과 같다.  먼저 axis의 개수를 2바이트로 나타낸다. 그리고 (6 bytes * axis의 개수)만큼 공간을 할당한다. 6 bytes는 axis number를 나타내는 2바이트와 axis data의 시작지점인 offset을 나타내는 4바이트로 이루어진다. offset의 기준점은 channel data의 시작점을 기준으로 한다. 즉, axis가 1개만 있다면, 첫번째 axis data의 offset은 2 + 6 = 8이 된다.  
