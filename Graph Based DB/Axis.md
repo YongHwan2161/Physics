@@ -90,7 +90,23 @@
         }
     }
 ```
-
+### new axis offset 계산
+- 새로 생성한 axis의 offset을 계산한다. 
+- axis_count가 0인 상태에서 axis를 추가하는 경우에는 new_axis_offset은 8로 고정이다(axis count(2 bytes) + axis_table(4 bytes)).
+- axis_count가 1 이상인 상태에서 axis를 추가하는 경우에는 {기존에 존재하던 마지막 axis의 offset + 2(link count) + (6 * link count) + 6(new axis entry)}이 new_axis_offset의 값이 되어야 한다. 
+```c
+    uint new_axis_offset;
+    if (current_count == 0) {
+        new_axis_offset = 8;  // Fixed offset: axis count(2) + first axis table entry(6)
+    } else {
+        // Get last axis's offset and data
+        uint* last_offset_ptr = (uint*)(node + channel_offset + 2 + ((current_count - 1) * 6) + 2);
+        uint last_axis_offset = *last_offset_ptr;
+        ushort* last_link_count = (ushort*)(node + channel_offset + last_axis_offset);
+        // Calculate new offset: last_axis_offset + link_count(2) + (link_count * 6) + 6(new axis entry)
+        new_axis_offset = last_axis_offset + 2 + (*last_link_count * 6) + 6;
+    }
+```
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
