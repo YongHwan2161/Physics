@@ -40,7 +40,8 @@
 ```
 ### required size 계산
 - required size 계산: 현재 channel의 last axis offset을 구한다. 여기서 axis offset은 node offset부터 계산한 것이 아니라, channel offset의 시작 지점을 0으로 하여 상대적으로 계산한 offset이다. 
-- `current_count`가 0인 경우에는 required_size는 channel_offset + axis_table_size + 4로 설정하면 된다. +4인 이유는 axis count가 2바이트 차지하고, link count가 2바이트 차지하기 때문이다. 
+- `current_count`가 0인 경우에는 required_size는 channel_offset + axis_table_size + 4로 설정하면 된다. +4인 이유는 axis
+- count가 2바이트 차지하고, link count가 2바이트 차지하기 때문이다. 
 ```c
     uint required_size;
     if (current_count == 0) {
@@ -54,7 +55,21 @@
         required_size = channel_offset + last_axis_offset + last_axis_data_size + 6 + 2;
     }
 ```
-
+### node resize
+- 현재 할당된 공간보다 더 많은 공간이 필요한 경우 저장공간을 재할당한다. 
+```c
+    // Check if we need more space
+    uint current_node_size = 1 << (*(ushort*)node);
+    if (required_size > current_node_size) {
+        uint new_size;
+        node = resize_node_space(node, required_size, node_index, &new_size);
+        if (!node) {
+            printf("Error: Failed to resize node\n");
+            return AXIS_ERROR;
+        }
+        Core[node_index] = node;
+    }
+```
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
