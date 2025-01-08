@@ -31,3 +31,8 @@ Size (bytes)    Offset
 16                0x00000000
 16                0x00000010
 ```
+
+# create and delete axis test
+- axis를 0부터 임의의 수까지 생성했다가 다시 모두 삭제한 뒤에 처음 상태로 정보가 올바르게 전환되는지 테스트하는 코드이다. 
+- 인자로 node, channel index, 생성할 axis의 최대 번호를 받아야 한다. 
+- 
