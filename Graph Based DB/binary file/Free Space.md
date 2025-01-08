@@ -56,3 +56,7 @@ uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint
 # free space가 줄어드는 경우
 ## node data 생성
 - node를 새로 만드는 경우에는 먼저 16바이트 공간이 free space에 존재하는지 확인한 후, 있으면 그 공간을 그대로 활용해서 node를 생성한다. 이 때 node index는 삭제된 node index가 있는 경우에는 index를 재활용하고, 그렇지 않은 경우에는 새로운 index를 부여한다. 
+
+
+# Free space 출력
+- free space에 저장된 내용을 화면에 출력해 줄 수 있어야 한다. 
