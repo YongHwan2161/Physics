@@ -6,7 +6,7 @@
 
 # node resizing
 - node space를 resize하는 로직이다. 
-- 
+-  node 크기를 resize한 경우에는 반드시 save_free_space 함수를 호출해서 binary file과 동기화 해야 한다. 
 ```c
 uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint* new_size) {
     // Calculate new size (next power of 2)
@@ -45,6 +45,9 @@ uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint
     *(ushort*)new_node = node_size_power;
     // Free old node
     free(node);
+    
+    // Save updated free space information
+    save_free_space();
     return new_node;
 }
 ```
