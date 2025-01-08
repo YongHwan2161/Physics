@@ -35,4 +35,7 @@ Size (bytes)    Offset
 # create and delete axis test
 - axis를 0부터 임의의 수까지 생성했다가 다시 모두 삭제한 뒤에 처음 상태로 정보가 올바르게 전환되는지 테스트하는 코드이다. 
 - 인자로 node, channel index, 생성할 axis의 최대 번호를 받아야 한다. 
+
+# free block offset test
+- free space의 free block이 여러 개 저장되는 경우에도 free block들의 offset은 절대 겹치는 일이 발생해서는 안된다. 동일한 offset을 가지는 free block이 생기는 것은 명백하 오류이다. 이것을 테스트 하는 코드가 필요하다. 
 - 
