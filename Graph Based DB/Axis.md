@@ -22,7 +22,23 @@
 - axis 생성 시 node data를 resize해야 할 경우가 생길 수 있다. 이 경우에는 필요한 size를 먼저 계산한 후 [[Free Space#resize_node_space|resize_node_space]]를 호출해야 한다. 
 - required size는 axis table의 마지막 값이 가리키는 offset + 마지막 axis data size + 6(새로운 axis table 추가) + 2(새로운 axis data offset에서 link count를 나타내는 2바이트(0으로 초기화))가 되어야 한다. 
 - 
-
+## Axis 생성 과정
+- [[Channel 관련 함수#get_channel_offset|get_channel_offset]]을 이용하여 현재 channel_offset을 구한다. 
+	 `uint channel_offset = get_channel_offset(node, channel_index);`
+- 현재 channel의 axis_count를 구한다. 
+	`ushort current_count = *(ushort*)(node + channel_offset);`
+- 이미 생성하려는 axis가 존재하는 경우 error 반환 [[Axis 관련 함수#has_axis|has_axis]] 
+```c
+    if (has_axis(node, channel_offset, axis_number)) {
+        printf("Error: Axis %d already exists\n", axis_number);
+        return AXIS_ERROR;
+    }
+```
+- 새로 필요한 `axis table size` 계산
+```c
+    uint axis_table_size = (current_count + 1) * 6;  // Including new axis entry
+```
+- 
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
