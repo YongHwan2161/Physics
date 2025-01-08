@@ -9,6 +9,7 @@
 - node data에 새로운 공간을 할당하는 경우에는 데이터가 차지하는 공간을 제외한 나머지 공간은 모두 0으로 초기화한다(안 해도 상관은 없지만 나중에 이상한 오류의 원인이 될 수도 있음).
 -  node 크기를 resize한 경우에는 반드시 save_free_space 함수를 호출해서 binary file과 동기화 해야 한다. 
 -  resize한 경우 무조건 `CoreMap[node_index]`가 변경되기 때문에 save_map(node_index)를 호출하여 변경된 사항을 binary file과 동기화 해야 한다. 
+## resize_node_space
 ```c
 uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint* new_size) {
     // Calculate new size (next power of 2)
