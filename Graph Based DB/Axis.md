@@ -38,7 +38,18 @@
 ```c
     uint axis_table_size = (current_count + 1) * 6;  // Including new axis entry
 ```
-- 
+- required size 계산: 현재 channel의 last axis offset을 구한다. 여기서 axis offset은 node offset부터 계산한 것이 아니라, channel offset의 시작 지점을 0으로 하여 상대적으로 계산한 offset이다.  
+```c
+    uint last_axis_offset = 0;
+    uint last_axis_data_size = 0;
+    if (current_count > 0) {
+        // Get last axis's offset and data size
+        uint* last_offset_ptr = (uint*)(node + channel_offset + 2 + ((current_count - 1) * 6) + 2);
+        last_axis_offset = *last_offset_ptr;
+        ushort* last_link_count = (ushort*)(node + channel_offset + last_axis_offset);
+        last_axis_data_size = 2 + (*last_link_count * sizeof(Link));  // 2 for link count
+    }
+```
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
