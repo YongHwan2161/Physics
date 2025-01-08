@@ -64,3 +64,20 @@ FreeBlock* find_free_block(uint size) {
     return NULL;
 }
 ```
+# add free block
+- free space에 free block을 반납하는 작업을 처리하는 함수이다. 
+```c
+void add_free_block(uint size, long offset) {
+    free_space->count++;
+    free_space->blocks = (FreeBlock*)realloc(free_space->blocks,
+                                            free_space->count * sizeof(FreeBlock));
+    free_space->blocks[free_space->count - 1].size = size;
+    free_space->blocks[free_space->count - 1].offset = offset;
+}
+```
+
+# get free block
+- free space에서 free block을 하나 빼내어 new node에게 공간을 할당해 주는 작업을 처리하는 함수이다. 
+```c
+
+```
