@@ -4,14 +4,14 @@
 - free space binary file과 map.bin, 그리고 data.bin 파일은 수정사항이 발생할 때 모두 함께 업데이트 되어야 한다. 어느 하나만 업데이트 되고 나머지는 업데이트되지 않는다면 오류가 발생할 수 있으므로 반드시 세 binary file은 동기화 되어 있어야 한다. 
 - free space는 삭제된 node index의 목록도 관리해야 한다. 삭제된 index는 나중에 재활용해야 하기 때문이다. 
 
-# node resizing
+# resize node space
 - node space를 resize하는 로직이다. 
 - node data에 새로운 공간을 할당하는 경우에는 데이터가 차지하는 공간을 제외한 나머지 공간은 모두 0으로 초기화한다(안 해도 상관은 없지만 나중에 이상한 오류의 원인이 될 수도 있음).
 -  node 크기를 resize한 경우에는 반드시 save_free_space 함수를 호출해서 binary file과 동기화 해야 한다. 
 -  resize한 경우 무조건 `CoreMap[node_index]`가 변경되기 때문에 save_map(node_index)를 호출하여 변경된 사항을 binary file과 동기화 해야 한다. 
-## resize_node_space
+## node space resizing 과정
+- 전달받은 required_size보다 큰 new_size를 구한다(power of 2).
 ```c
-uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint* new_size) {
     // Calculate new size (next power of 2)
     ushort node_size_power = *(ushort*)node;
     uint current_size = 1 << node_size_power;
@@ -20,9 +20,15 @@ uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint
     }
     // Set new size for caller
     *new_size = 1 << node_size_power;
+```
+- new_size에 해당하는 Free Block이 있는지 찾는다. [[Free Space#find free block|find free block]]
+```c
     // Allocate new space
     FreeBlock* free_block = find_free_block(*new_size);
-    uchar* new_node = NULL;
+```
+- 반환된 FreeBlock이 있으면 해당 FreeBlock을 새로운 node pointer에 할당하고, 기존에 사용하던 저장공간은 free space에 반납한다. 
+- free space에서는 새로 재할당한 new_size free block은 free space에서 제거해야 한다. 
+```c
     if (free_block) {
         // Use found free block
         new_node = (uchar*)malloc(*new_size);
@@ -31,34 +37,7 @@ uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint
         CoreMap[node_index].file_offset = free_block->offset;
         // Add old space to free space
         add_free_block(current_size, CoreMap[node_index].file_offset);
-    } else {
-        // No suitable free block found, allocate at end of file
-        new_node = (uchar*)malloc(*new_size);
-        memcpy(new_node, node, current_size);
-        // Add old space to free space
-        add_free_block(current_size, CoreMap[node_index].file_offset);
-        // Update CoreMap with new location
-        FILE* data_file = fopen(DATA_FILE, "ab");
-        if (data_file) {
-            CoreMap[node_index].file_offset = ftell(data_file);
-            fclose(data_file);
-        }
     }
-    // Update node size
-    *(ushort*)new_node = node_size_power;
-    // Free old node
-    free(node);
-    
-    // Save updated free space information
-    save_free_space();
-    
-            // Save updated mapping information
-    if (save_map(node_index) != MAP_SUCCESS)
-    {
-        printf("Warning: Failed to update map.bin\n");
-    }
-    return new_node;
-}
 ```
 # free space가 생기는 경우
 ## node data 삭제:
@@ -72,3 +51,16 @@ uchar* resize_node_space(uchar* node, ushort required_size, int node_index, uint
 
 # Free space 출력
 - free space에 저장된 내용을 화면에 출력해 줄 수 있어야 한다. 
+
+# find free block
+- free_space에서 원하는 size의 free block이 있는지 찾아서 있으면 반환한다. FreeSpace 구조체에 대해서는 [[Variables#`FreeSpace`|FreeSpace]] 참조
+```c
+FreeBlock* find_free_block(uint size) {
+    for (uint i = 0; i < free_space->count; i++) {
+        if (free_space->blocks[i].size == size) {
+            return &free_space->blocks[i];
+        }
+    }
+    return NULL;
+}
+```
