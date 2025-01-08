@@ -107,5 +107,12 @@
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
-- 제거하려는 axis가 마지막 axis가 아니라면 axis를 제거한 뒤에는 제거된 axis보다 뒤에 있는 모든 axis의 offset을 적절하게 수정해야 한다. 
-- 
+- 제거하려는 axis가 마지막 axis가 아니라면 axis를 제거한 뒤에는 제거된 axis보다 뒤에 있는 모든 axis의 offset을 삭제된 바이트 수(deleted axis entry(6 bytes) + 2(link count) + 6*(link count)) 만큼 앞으로 이동해야 한다. 
+- Axis를 삭제할 때에는 node data resize 과정을 수행할 필요가 없다. 어차피 데이터의 크기가 줄어들기 때문에, 굳이 더 작은 공간으로 재할당할 필요는 없다. 
+## Axis 삭제 과정
+### current_axis_count 계산
+```c
+    // Get current axis count
+    ushort* axis_count = (ushort*)(node + channel_offset);
+    ushort current_axis_count = *axis_count;
+```
