@@ -70,6 +70,26 @@
         Core[node_index] = node;
     }
 ```
+### move existing axis data
+- 기존에 있던 axis data를 6바이트 뒤로 이동한다. axis table 크기가 6바이트 커지기 때문에 axis table 뒤에 있는 axis data는 모두 밀려나는 것이다. 
+- 이미 필요한 공간을 재할당 받았기 때문에, 복잡한 계산을 할 필요 없이,  axis data가 시작하는 지점부터 (node size - 6) 바이트 만큼을 그대로 이동시키는 것이 간편하다. 
+```c
+    // Move existing axis data forward
+    if (current_count > 0) {
+        uint data_start = channel_offset + 2 + (current_count * 6);
+        uint data_size = current_node_size - data_start - 6;  // Entire remaining data
+        // Move all axis data forward by 6 bytes
+        memmove(node + data_start + 6,
+                node + data_start,
+                data_size);
+        // Update all existing axis offsets
+        for (int i = 0; i < current_count; i++) {
+            uint* offset_ptr = (uint*)(node + channel_offset + 2 + (i * 6) + 2);
+            *offset_ptr += 6;
+        }
+    }
+```
+
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
