@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Functions/Command 관련 함수.md",
+                "file": "Graph Based DB/Graph Based Database.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Command 관련 함수"
+              "title": "Graph Based Database"
             }
           },
           {
@@ -238,16 +238,16 @@
   },
   "active": "f44668f38e614a0e",
   "lastOpenFiles": [
+    "Graph Based DB/Functions/Command 관련 함수.md",
+    "Graph Based DB/Variables.md",
     "Graph Based DB/binary file/Free Space.md",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/CGDB flow chart.canvas",
     "Graph Based DB/Command Line Interface(CLI).md",
     "Obsidian.md",
-    "Graph Based DB/Variables.md",
     "Graph Based DB/Functions/Functions.md",
     "Graph Based DB/Functions/Axis 관련 함수.md",
     "Graph Based DB/Node.md",
-    "Graph Based DB/Functions/Command 관련 함수.md",
     "Graph Based DB/Functions/초기화 관련 함수.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
     "Graph Based DB/Functions",
