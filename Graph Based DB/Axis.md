@@ -73,6 +73,7 @@
 ### move existing axis data
 - 기존에 있던 axis data를 6바이트 뒤로 이동한다. axis table 크기가 6바이트 커지기 때문에 axis table 뒤에 있는 axis data는 모두 밀려나는 것이다. 
 - 이미 필요한 공간을 재할당 받았기 때문에, 복잡한 계산을 할 필요 없이,  axis data가 시작하는 지점부터 (node size - 6) 바이트 만큼을 그대로 이동시키는 것이 간편하다. 
+- 그리고 기존의 axis table에서 axis_offset도 모두 6바이트 증가시킨다. 
 ```c
     // Move existing axis data forward
     if (current_count > 0) {
