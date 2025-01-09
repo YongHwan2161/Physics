@@ -90,7 +90,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Build.md",
+                "file": "Graph Based DB/Build/Build.md",
                 "mode": "source",
                 "source": false
               },
@@ -265,10 +265,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b66b369d9429b420",
+  "active": "ccf9e35281769f23",
   "lastOpenFiles": [
+    "Graph Based DB/Build/Makefile.md",
+    "Graph Based DB/Build/Build.md",
+    "Graph Based DB/Build",
     "Graph Based DB/Variables.md",
-    "Graph Based DB/Build.md",
     "Graph Based DB/Tests.md",
     "문학/파우스트.md",
     "문학",
@@ -289,7 +291,6 @@
     "Graph Based DB/Functions",
     "Graph Based DB/binary file/free space",
     "Graph Based DB/binary file",
-    "Graph Based DB/Makefile.md",
     "Graph Based DB",
     "Git.md",
     "Untitled 1.canvas",
