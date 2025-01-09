@@ -25,3 +25,7 @@
 - 기존에 생성되어 있던 node를 삭제하고 싶은 경우 node의 데이터를 모두 지우면 되는데, binary file 내에서는 index 순으로 데이터가 저장되어 있기 때문에, 중간 지점의 index에 해당하는 node 데이터를 지운다고 해서, 그 뒤의 모든 데이터를 지운 데이터만큼 앞으로 이동시킬 수도 없고, index 번호를 변경하는 것도 비효율적이다. 따라서 이미 index가 부여된 node를 삭제하는 경우에는, 해당 node의 인덱스는 사라지지 않고, 단지 삭제된 것과 유사한 효과를 부여함으로써 관리해야 한다. 
 - 삭제된 node는 free space를 관리하는 별도의 자료구조에 의해 처리된다. node가 삭제되면 삭제된 node의 인덱스와 node size가 free space에 저장된다. free space에 저장된 저장된 공간들은 추후에 새로 node를 생성할 때 다시 재활용될 수 있다. 
 - free space는 관리의 편리함을 위해서 2의 제곱 단위로 공간을 관리하며 최소 크기는 16 bytes가 될 것이다. 즉, 16, 32, 64, ... bytes 단위로 저장공간이 관리된다.  이를 위해서는 노드를 생성하거나 수정할 때에도 반드시 2의 제곱 단위로 저장공간을 관리해야 한다. 
+# print-node
+- node에 대한 정보를 출력하는 command이다. 
+- 출력해야 하는 정보는 node size, node offset, core position, is loaded.
+- 그리고 정보 출력시 channel count, channel offset, 그리고 각각의 channel에 대한 axis count, axis offset, 그리고 각각의 axis에 대한 link count, link data를 모두 알아보기 쉽게 정리해서 출력해야 한다. 
