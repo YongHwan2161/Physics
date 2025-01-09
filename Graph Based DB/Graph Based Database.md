@@ -50,7 +50,37 @@
     uint last_link_offset = channel_offset + last_axis_offset + 2 + (current_link_count * 6);  // Current end of link data
     uint required_size = last_link_offset + 6;  // Add space for one new link (6 bytes)
 ```
-
+- required_size가 node_size보다 크면 공간 재할당
+```c
+    // Check if we need more space
+    if (required_size > current_node_size) {
+        uint new_size;
+        node = resize_node_space(node, required_size, source_node, &new_size);
+        if (!node) {
+            printf("Error: Failed to resize node\n");
+            return LINK_ERROR;
+        }
+        // Update Core pointer
+        Core[source_node] = node;
+    }
+```
+- link data를 삽입할 위치를 계산한다. 
+```c
+    // Create link data
+    Link link = {
+        .node = dest_node,
+        .channel = dest_ch
+    };
+    // Calculate insert position for new link
+    uint link_insert_offset = channel_offset + axis_offset + 2 + (current_link_count * 6);
+```
+- 현재 axis가 마지막 채널의 마지막 axis가 아닌 경우에는 나머지 데이터들을 모두 6 bytes 앞으로 이동시켜야 한다. 먼저 현재 channel이 마지막 채널인지와 현지 axis가 last axis인지 check한다. 
+```c
+    // Check if this is not the last channel and not the last axis
+    ushort channel_count = *(ushort*)(node + 2);  // Get channel count
+    bool is_last_channel = (source_ch == channel_count - 1);
+    bool is_last_axis = (axis_offset == last_axis_offset);
+```
 
 - link가 존재하지 않던 axis에 새로운 link를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
 ```shell
