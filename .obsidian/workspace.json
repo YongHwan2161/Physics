@@ -63,8 +63,7 @@
               "title": "Makefile"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "df523d78af4f1eda",
@@ -265,11 +264,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "17649d4ff1f01faa",
+  "active": "594785c1ec721c4f",
   "lastOpenFiles": [
+    "Graph Based DB/Node.md",
     "Graph Based DB/Command Line Interface(CLI).md",
     "Graph Based DB/Functions/Command 관련 함수.md",
-    "Graph Based DB/Node.md",
     "Graph Based DB/Tests.md",
     "Graph Based DB/Build/Build.md",
     "Graph Based DB/Build/Makefile.md",

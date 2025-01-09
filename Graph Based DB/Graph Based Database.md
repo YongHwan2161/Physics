@@ -14,9 +14,22 @@
 - node의 channel offset을 이용해서 해당 channel의 데이터 시작점으로 이동하면, axis의 개수에 대한 정보가 저장되어 있다. 그리고 axis의 offset을 이용해서 axis의 정보가 시작하는 위치로 이동하면 link 정보가 저장되어 있다. link는 해당 채널이 가리키는 다른 node, channel 쌍에 대한 정보를 가지고 있다. node를 나타내기 위해 4바이트를, channel을 나타내기 위해 2바이트를 사용한다. 따라서 하나의 link를 나타내기 위해서 총 6바이트가 필요하다.
 - link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. 
-## Link 생성
-- link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 
+## Create Link
+- link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 생성하려는 axis가 존재하지 않으면 먼저 axis를 생성하고 나서 link를 생성한다. 
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. [[Graph Based Database#Axis 생성|Axis 생성]], [[Axis 관련 함수#has_axis|has_axis]]
+```c
+    // Check if axis exists, create if it doesn't
+    if (!has_axis(node, channel_offset, axis_number)) {
+        int result = create_axis(source_node, source_ch, axis_number);
+        if (result != AXIS_SUCCESS) {
+            printf("Error: Failed to create required axis\n");
+            return LINK_ERROR;
+        }
+        // Reload node pointer as it might have changed after axis creation
+        node = Core[source_node];
+    }
+```
+
 - link가 존재하지 않던 axis에 새로운 lnk를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
 ```shell
 Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII
