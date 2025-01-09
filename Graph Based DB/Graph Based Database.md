@@ -51,6 +51,7 @@
     uint required_size = last_link_offset + 6;  // Add space for one new link (6 bytes)
 ```
 - required_size가 node_size보다 크면 공간 재할당
+- 공간을 재할당한 이후에는 **반드시** link_count pointer를 업데이트 해주어야 한다. link_count는 pointer이기 때문에, 공간을 재할당했는데도, 다시 업데이트하지 않으면, 여전히 이전 node를 가리키므로 이후 코드에서 에러가 발생한다. 
 ```c
     // Check if we need more space
     if (required_size > current_node_size) {
@@ -62,6 +63,7 @@
         }
         // Update Core pointer
         Core[source_node] = node;
+        link_count = (ushort*)(node + channel_offset + axis_offset);
     }
 ```
 - link data를 삽입할 위치를 계산한다. 
