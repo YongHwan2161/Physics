@@ -160,3 +160,95 @@ int handle_list_axes(char* args) {
     return CMD_SUCCESS
 }
 ```
+
+# handle_print_node
+- node에 대한 정보를 출력해 주는 함수
+-  node size, Core position(RAM에서의 index), file offset, load status, 그리고 node data를 16진수로 보여준다. 
+```c
+int handle_print_node(char* args) {
+    int node_index;
+    // Parse arguments
+    int parsed = sscanf(args, "%d", &node_index);
+    if (parsed != 1) {
+        print_argument_error("print-node", "<node_index>", false);
+        return CMD_ERROR;
+    }
+    // Validate input
+    if (node_index < 0 || node_index >= 256) {
+        printf("Error: Node index must be between 0 and 255\n");
+        return CMD_ERROR;
+    }
+    // Check if node exists
+    if (!Core[node_index]) {
+        printf("Error: Node %d does not exist\n", node_index);
+        return CMD_ERROR;
+    }
+    // Get node size
+    ushort node_size = 1 << (*(ushort*)Core[node_index]);
+    // Print node information header
+    printf("\nNode %d Information:\n", node_index);
+    printf("Size: %d bytes\n", node_size);
+    printf("Core Position: %d\n", CoreMap[node_index].core_position);
+    printf("File Offset: 0x%08lX\n", CoreMap[node_index].file_offset);
+    printf("Load Status: %s\n", CoreMap[node_index].is_loaded ? "Loaded" : "Not loaded");
+    // Print node data in hexadecimal format
+    printf("\nMemory Contents:\n");
+    printf("Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII\n");
+    printf("--------  -----------------------------------------------    ----------------\n");
+    for (int i = 0; i < node_size; i += 16) {
+        // Print offset
+        printf("%08X  ", i);
+        // Print hex values
+        for (int j = 0; j < 16; j++) {
+            if (i + j < node_size) {
+                printf("%02X ", Core[node_index][i + j]);
+            } else {
+                printf("   ");
+            }
+        }
+        // Print ASCII representation
+        printf("   ");
+        for (int j = 0; j < 16 && i + j < node_size; j++) {
+            char c = Core[node_index][i + j];
+            printf("%c", (c >= 32 && c <= 126) ? c : '.');
+        }
+        printf("\n");
+    }
+    return CMD_SUCCESS;
+}
+```
+# handle_print_free_space
+- free space 정보를 출력해 주는 함수
+```c
+int handle_print_free_space(char* args) {
+    if (args) {
+        print_argument_error("print-free-space", "", false);
+        return CMD_ERROR;
+    }
+    if (!free_space) {
+        printf("Error: Free space manager not initialized\n");
+        return CMD_ERROR;
+    }
+    printf("\nFree Space Information:\n");
+    printf("Total free blocks: %d\n", free_space->count);
+    printf("Free node indices: %d\n", free_space->index_count);
+    if (free_space->count > 0) {
+        printf("\nFree Blocks:\n");
+        printf("Size (bytes)    Offset\n");
+        printf("------------    ------\n");
+        for (uint i = 0; i < free_space->count; i++) {
+            printf("%-14u    0x%08lX\n",
+                   free_space->blocks[i].size,
+                   free_space->blocks[i].offset);
+        }
+    }
+    if (free_space->index_count > 0) {
+        printf("\nFree Node Indices:\n");
+        for (uint i = 0; i < free_space->index_count; i++) {
+            printf("%d ", free_space->free_indices[i]);
+        }
+        printf("\n");
+    }
+    return CMD_SUCCESS;
+}
+```

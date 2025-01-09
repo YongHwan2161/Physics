@@ -7,28 +7,8 @@
 ## channel creation
 - 채널을 새로 생성할 
 
-# Axis
-- 각 채널은 다른 노드의 채널과 link로 연결되는데, 이 때 axis라는 개념이 이용된다. axis는 link의 속성을 구분해 주는 개념이다. 예를 들면 forward link와 backward link는 서로 다른 axis(axis 0와 axis 1)으로 구분된다. forward 및 backward 뿐만 아니라 더 많은 axis를 정의하여 사용할 수 있다. 
-- axis 3를 time axis로 정의하면 각 채널마다 axis 3로 채널이 생성된 시각에 대한 정보(8 bytes)를 저장하는 데이터와 연결시킬 수 있고, 그럼, 채널의 생성 시각, 수정시각 등 시간에 대한 정보를 forward, backward link들과는 독립적으로 관리할 수 있다. 이 데이터는 시각화할 때 별개의 UI를 적용하여 화면에 표시할 수도 있다.
-## Axis data structure
-- Axis data는 channel data 내에 포함되어 있다. 
-- channel offset을 시작으로 하여 첫 2 바이트는 axis의 개수를 나타낸다. 처음 channel이 생성될 때는 이 값은 0으로 초기화된다. 
-- axis 개수가 1 이상인 경우에는 그 다음 (6바이트 * axis 개수)가 axis의 number(2바이트)와 axis offset(4바이트)을 나타낸다. 
-- 각각의 axis offset에서부터 첫 2바이트는 link count, 즉 링크 개수를 나타낸다. axis와 마찬가지로 처음 axis가 생성되면 이 값은 0으로 초기화된다. 링크 개수 다음에는 (6바이트 * 링크 개수)만큼 link data가 저장된다.
-- 
-## Axis 생성
-- Axis를 생성하기 위해서는 생성하려는 node, channel 정보와, 생성하려는 axis의 종류를 함수에게 알려주어야 한다. axis의 종류는 번호로 구분된다. 0은 forward link, 1은 backward link, 이런 식으로 사전에 정의되어 있다. 
-- channel data 내에서 axis에 대한 정보를 저장하는 방식은 다음과 같다.  먼저 axis의 개수를 2바이트로 나타낸다. 그리고 (6 bytes * axis의 개수)만큼 공간을 할당한다. 6 bytes는 axis number를 나타내는 2바이트와 axis data의 시작지점인 offset을 나타내는 4바이트로 이루어진다. offset의 기준점은 channel data의 시작점을 기준으로 한다. 즉, axis가 1개만 있다면, 첫번째 axis data의 offset은 2 + 6 = 8이 된다.  
-- 처음에 생성된 node는 한 개의 channel을 가지지만 axis는 가지지 않는다. 따라서 처음 생성된 node에 link를 추가하는 등의 작업을 하려면 반드시 axis를 추가해 주어야 한다. 
-- 처음 초기화할 때 channel은 1개 생성하지만, axis를 미리 생성하지 않는 이유는 axis는 종류가 있어서, 초기화 할 때 axis의 종류를 미리 지정하는 것은 큰 의미가 없기 때문이다. 
-- axis 생성 함수는  [[Functions#create_axis|create_axis]] 참조.
-- axis를 생성하는 과정에서 공간을 추가로 할당해야 하는 경우가 생길 수 있다. 이 경우에는 free space에 원하는 공간이 존재하는지 먼저 확인한 후, 존재하면 그 공간을 할당받아야 하고, 공간이 없는 경우에는 새로 저장공간을 할당받고 기존의 공간은 free space에 반납해야 한다. free space는 RAM에서의 공간을 관리하는 게 아니라 binary file에 저장되는 데이터 공간을 관리하는 객체이므로 RAM에서는 적절하게 기존 메모리 공간을 해제해야 한다. 
+# [[Axis]]
 
-## Axis 삭제
-- axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
-- axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
-- 제거하려는 axis가 마지막 axis가 아니라면 axis를 제거한 뒤에는 제거된 axis보다 뒤에 있는 모든 axis의 offset을 적절하게 수정해야 한다. 
-- 
 # Link
 - 각각의 node의 channel은 임의의 다른 node의 channel과 연결될 수 있다. 이를 link라는 개념으로 설명한다. 
 - node의 channel offset을 이용해서 해당 channel의 데이터 시작점으로 이동하면, axis의 개수에 대한 정보가 저장되어 있다. 그리고 axis의 offset을 이용해서 axis의 정보가 시작하는 위치로 이동하면 link 정보가 저장되어 있다. link는 해당 채널이 가리키는 다른 node, channel 쌍에 대한 정보를 가지고 있다. node를 나타내기 위해 4바이트를, channel을 나타내기 위해 2바이트를 사용한다. 따라서 하나의 link를 나타내기 위해서 총 6바이트가 필요하다.
@@ -45,6 +25,7 @@ Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII
 00000010  01 00 00 00 00 00 00 00 A0 70 C5 C4 54 56 00 00    .........p..TV..
 ```
 - 여기에 link를 생성하면, 0x12부터 6 bytes씩 link data가 추가되어야 한다. 그리고 업데이트된 정보는 data.bin과 동기화되어야 한다. 
+- link를 생성하는 과정에서 node data가 증가하여 저장공간을 재할당 받은 경우에는 CoreMap이 함께 업데이트 되는데 이 경우에는 반드시 map.bin도 동기화해야 한다. 그렇지 않으면 다음에 다시 프로그램을 실행 할 때, 업데이트 된 node offset이 아니라 이전 node offset을 가리키고 있으므로, 심각한 오류가 발생할 수 있다. 
 - 
 
 # Free Space
