@@ -168,7 +168,21 @@
 
 # Initialization
 - binary-data folder가 있는지 확인하고 없으면 생성한다. 
-- 
+- 다음, data.bin과 map.bin file이 있는지 확인한다. 둘 중 하나라도 없으면 database를 새로 생성하고 저장한다(이 때 map.bin도 같이 저장되어야 함)
+```c
+    // Check if map.bin exists
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    FILE* data_file = fopen(DATA_FILE, "rb");
+    
+        if (!map_file || !data_file) {
+        // Need to create new database
+        if (map_file) fclose(map_file);
+        if (data_file) fclose(data_file);
+        create_DB();
+        save_DB();
+        return DB_NEW;
+    }
+```
 - 프로그램이 실행되면 먼저 데이터가 저장된 binary file들이 있는지, 있다면, RAM에 올려야 하는 데이터들을 읽어서 RAM에 올리는 등 초기화 작업을 진행해야 한다. 참조 : [[Functions#`init_system`|init_system]]
 - 먼저 binary-data folder가 있는지 확인하여 없으면 생성한다. 
 - map.bin file이 있는지 확인하고, 없으면 생성한다. map.bin file이 있으면 CoreMap에 mapping information을 올린다. 
