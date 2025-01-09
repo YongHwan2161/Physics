@@ -39,6 +39,7 @@ x_3'=\lambda_{31}x_1+\lambda_{32}x_2+\lambda_{33}x_3
  &=\lambda_{11}x_1'+\lambda_{21}x_2'+\lambda_{31}x_3'
  \end{align}$$
  or, in general, 
+ ###### Eq. 1.8 
  $$x_i=\sum_{j=1}^{3}\lambda_{ji}x'_j, (i=1, 2, 3)$$
  The quantity $\lambda_{ij}$ is called th **direction cosine** of the $x'_i$-axis relative to the $x_j$-axis. It is convenient to arrange the $\lambda_{ij}$ into a square array called a **matrix**. The boldface symbol $\pmb{\lambda}$ denotes the totality of the individual elements $\lambda_{ij}$ when arranged as follows:
  $$\pmb{\lambda}=
@@ -94,10 +95,10 @@ where $\delta_{ik}$ is the **Kronecker delta symbol**
    \end{cases}$$
    The validity of [[Rotation Matrix#^1-13|Equation 1-13]] depends on the coordinate axes in each of the systems being mutually perpendicular. Such systems are said to be **orthogonal**, and [[Rotation Matrix#^1-13|Equation 1-13]] is the **orthogonality condition**. The transformation matrix $\pmb{\lambda}$ specifying the rotation of any orthogonal coordinate system must then obey [[Rotation Matrix#^1-13|Equation 1-13]].
  If we were to consider the $x_i$-axes as lines in the $x_i'$ coordinate system and perform a calculation analogous to our preceding calculations, we would find the relation
+ ###### Eq 1.15
  $$\bbox[border:1px solid white]{\sum_{i}\lambda_{ij}\lambda_{ik}=\delta_{jk}}$$
- ^1-15
  
-  The two orthogonality relations we have derived ([[Rotation Matrix#^1-13|1.13]] and [[Rotation Matrix#^1-15|1.15]]) appear to different. Thus, it seems that we have an overdetermined system: twelve equations in nine unknowns.
+  The two orthogonality relations we have derived ([[Rotation Matrix#^1-13|1.13]] and [[Rotation Matrix#Eq 1.15|1.15]]) appear to different. Thus, it seems that we have an overdetermined system: twelve equations in nine unknowns.
   
  ## multiplication of a matrix
  The multiplication of a matrix $\mathbf{A}$ and a matrix $\mathbf{B}$ is defined only if the number of *columns* of $\mathbf{A}$ is equal to the number of *rows* of $\mathbf{B}$. (The number of rows of $\mathbf{A}$ and the number of columns of $\mathbf{B}$ are each arbitrary.) Therfore, the product $\mathbf{AB}$ is given by
@@ -106,6 +107,19 @@ where $\delta_{ik}$ is the **Kronecker delta symbol**
 \mathbf{C}&=\mathbf{AB}\\
 C_{ij}&=[\mathbf{AB}]_{ij}=\sum_kA_{ik}B_{kj}
  \end{align}$$
+  ## not-commutative of matrix multiplication
   It should be evident from [[Rotation Matrix#Equation 1.19|Equation 1.19]] that matrix multiplication is not commutative. Thus, if $\mathbf{A}$ and $\mathbf{B}$ are both square matrices, then the sums
   $$\sum_kA_{ik}B_{kj}\text{ and }\sum_kB_{ik}A_{kj}$$
   are both defined, but, in general, they will not be equal.
+# 1.6 Further Definitions
+## transposed matrix
+ A **transposed matrix** is a matrix derived from an original matrix by interchange of rows and columns. We denote the **transpose** of a matrix $\mathbf{A}$ by $\mathbf{A}^t$. Acoording to definition, we habe
+ ###### Eq. 1.22
+ $$\lambda_{ij}^t=\lambda_{ji}$$
+ Evidently, 
+ ###### Eq. 1.23
+ $$(\lambda^t)^t=\lambda$$
+ [[Rotation Matrix#Eq. 1.8|Equatio 1.8]] may therefore be written as any of the following equivalent expressions:
+ ###### Eq. 1.24b
+ $$x_i=\sum_j\lambda_{ij}^tx_j'$$
+ 
