@@ -29,8 +29,28 @@
         node = Core[source_node];
     }
 ```
+- 현재 aixs의 current link count를 계산한다. channel_offset + axis_offset에서 ushort를 읽으면 current_link_count가 된다. 
+```c
+    // Get axis offset - this points to the link count
+    int axis_offset = get_axis_offset(node, source_ch, axis_number);
+    if (axis_offset < 0) {
+        printf("Error: Failed to get axis offset\n");
+        return LINK_ERROR;
+    }
+    // Get current link count
+    ushort* link_count = (ushort*)(node + channel_offset + axis_offset);
+    ushort current_link_count = *link_count;
+```
+- link를 추가하는데 필요한 node size를 계산한다. 부족하면 공간을 재할당 받아야 한다. 
+- link 하나를 추가하는 데에는 6바이트가 더 필요하므로, 현재 사용중인 공간에 6바이트의 여유공간이 있는지만 계산하면 된다. 이를 위해서는 마지막 channel의 마지막 axis의 offset에서 2를 더하고(link count) 다시 (6 * current_link_count)를 더하면 된다. 이 size에 6을 더한 값이 node_size보다 크다면 공간을 재할당 받아야 한다. 
+```c
+    // Calculate required space for new link
+    uint current_node_size = 1 << (*(ushort*)node);
+    uint link_data_offset = channel_offset + axis_offset + 2 + (current_link_count * 6);  // Skip link count and existing links
+    ushort required_size = link_data_offset + sizeof(Link);
+```
 
-- link가 존재하지 않던 axis에 새로운 lnk를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
+- link가 존재하지 않던 axis에 새로운 link를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
 ```shell
 Offset    00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F    ASCII
 --------  -----------------------------------------------    ----------------
