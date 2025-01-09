@@ -99,4 +99,13 @@ where $\delta_{ik}$ is the **Kronecker delta symbol**
  
   The two orthogonality relations we have derived ([[Rotation Matrix#^1-13|1.13]] and [[Rotation Matrix#^1-15|1.15]]) appear to different. Thus, it seems that we have an overdetermined system: twelve equations in nine unknowns.
   
- 
+ ## multiplication of a matrix
+ The multiplication of a matrix $\mathbf{A}$ and a matrix $\mathbf{B}$ is defined only if the number of *columns* of $\mathbf{A}$ is equal to the number of *rows* of $\mathbf{B}$. (The number of rows of $\mathbf{A}$ and the number of columns of $\mathbf{B}$ are each arbitrary.) Therfore, the product $\mathbf{AB}$ is given by
+ ###### Equation 1.19
+ $$\begin{align}
+\mathbf{C}&=\mathbf{AB}\\
+C_{ij}&=[\mathbf{AB}]_{ij}=\sum_kA_{ik}B_{kj}
+ \end{align}$$
+  It should be evident from [[Rotation Matrix#Equation 1.19|Equation 1.19]] that matrix multiplication is not commutative. Thus, if $\mathbf{A}$ and $\mathbf{B}$ are both square matrices, then the sums
+  $$\sum_kA_{ik}B_{kj}\text{ and }\sum_kB_{ik}A_{kj}$$
+  are both defined, but, in general, they will not be equal.
