@@ -29,3 +29,9 @@
 - node에 대한 정보를 출력하는 command이다. 
 - 출력해야 하는 정보는 node size, node offset, core position, is loaded.
 - 그리고 정보 출력시 channel count, channel offset, 그리고 각각의 channel에 대한 axis count, axis offset, 그리고 각각의 axis에 대한 link count, link data를 모두 알아보기 쉽게 정리해서 출력해야 한다. 
+
+# allocated node data 
+- node data는 power of 2 값으로 할당이 된다. 따라서 할당된 공간 중 일부는 유효한 값이 기록되지 않은 영역이 있을 수 있다. 할당된 공간 중 유효한 공간의 크기를 node data size를 기록한 2바이트 뒤에 4바이트를 할당하여 저장할 필요성이 있을까?
+- 장점은 channel, axis, link 등을 추가할 때 새로 삽입된 데이터의 뒷부분 데이터들을 모두 이동시켜야 하는데, 이 경우 이동시켜야 할 size를 한번에 알아낼 수 있다. 
+- 단점은 저장공간의 크기가 커진다. 모든 node마다 4바이트를 추가해야 하므로(별로 큰 손해는 아닌 것 같기도 함). 그리고 node data의 유효한 크기가 변경될 때마다 이 값을 함께 업데이트해야 하므로, 코드가 복잡해 질 수 있다(그러나 유효한 공간의 크기를 계산하는 코드가 더 복잡함... 마지막 channel의 offset에서 마지막 axis의 offset을 구하고, 마지막 axis의 link count를 구한 다음 최종 offset을 구해야 한다.) 유효한 size를 변경하는 코드는 한 줄이면 됨.
+- 유효한 공간의 크기를 매번 계산하는 복잡함을 줄이는 대신 저장공간을 node마다 4바이트 추가하는 게 더 이득인 것 같기도 함.
