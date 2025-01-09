@@ -46,9 +46,11 @@
 ```c
     // Calculate required space for new link
     uint current_node_size = 1 << (*(ushort*)node);
-    uint link_data_offset = channel_offset + axis_offset + 2 + (current_link_count * 6);  // Skip link count and existing links
-    ushort required_size = link_data_offset + sizeof(Link);
+    uint last_axis_offset = get_last_axis_offset(node, source_ch);  // Get offset of last axis
+    uint last_link_offset = channel_offset + last_axis_offset + 2 + (current_link_count * 6);  // Current end of link data
+    uint required_size = last_link_offset + 6;  // Add space for one new link (6 bytes)
 ```
+
 
 - link가 존재하지 않던 axis에 새로운 link를 추가한다고 해보자. node 0, ch 0, axis 0에 link를 추가할 것이다(node 1, ch 0를 향한 link). link를 추가하기 전 node data는 다음과 같을 것이다. axis 개수는 1개이고, axis number는 0이며, axis offset은 0x10(=16)이다. 그리고 link count는 0이다. 
 ```shell
