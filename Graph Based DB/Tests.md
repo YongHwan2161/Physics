@@ -38,4 +38,7 @@ Size (bytes)    Offset
 
 # free block offset test
 - free space의 free block이 여러 개 저장되는 경우에도 free block들의 offset은 절대 겹치는 일이 발생해서는 안된다. 동일한 offset을 가지는 free block이 생기는 것은 명백하 오류이다. 이것을 테스트 하는 코드가 필요하다. 
-- 
+
+# create link test
+- 특정 node, channel, axis에서 다른 node, channel로  link를 100개 임의로 생성하며, 올바르게 link가 생성되는지 확인한다. 
+- link를 생성하면서 확인해야 하는 항목은 link를 생성할 때마다 link count가 적절하게 증가하는지, link data가 올바르게 저장이 되는지이다. 

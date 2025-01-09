@@ -38,8 +38,7 @@
         return LINK_ERROR;
     }
     // Get current link count
-    ushort* link_count = (ushort*)(node + channel_offset + axis_offset);
-    ushort current_link_count = *link_count;
+    ushort current_link_count = *(ushort*)(node + channel_offset + axis_offset);
 ```
 - link를 추가하는데 필요한 node size를 계산한다. 부족하면 공간을 재할당 받아야 한다. 
 - link 하나를 추가하는 데에는 6바이트가 더 필요하므로, 현재 사용중인 공간에 6바이트의 여유공간이 있는지만 계산하면 된다. 이를 위해서는 마지막 channel의 마지막 axis의 offset에서 2를 더하고(link count) 다시 (6 * current_link_count)를 더하면 된다. 이 size에 6을 더한 값이 node_size보다 크다면 공간을 재할당 받아야 한다. 
@@ -63,7 +62,6 @@
         }
         // Update Core pointer
         Core[source_node] = node;
-        link_count = (ushort*)(node + channel_offset + axis_offset);
     }
 ```
 - link data를 삽입할 위치를 계산한다. 
@@ -120,7 +118,7 @@
     // Write link data at insert position
     memcpy(node + link_insert_offset, &link, sizeof(Link));
     // Update link count
-    (*link_count)++;
+    (*(ushort*)(node + channel_offset + axis_offset))++;
     // Save changes to data.bin
     FILE* data_file = fopen(DATA_FILE, "r+b");
     if (data_file) {
