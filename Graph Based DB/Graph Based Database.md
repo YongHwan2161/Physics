@@ -168,7 +168,7 @@
 
 # Initialization
 - binary-data folder가 있는지 확인하고 없으면 생성한다. 
-- 다음, data.bin과 map.bin file이 있는지 확인한다. 둘 중 하나라도 없으면 database를 새로 생성하고 저장한다(이 때 map.bin도 같이 저장되어야 함)
+- 다음, data.bin과 map.bin file이 있는지 확인한다. 둘 중 하나라도 없으면 database를 새로 생성하고 저장한다(이 때 map.bin도 같이 저장되어야 함) database를 새로 생성할 때에는 반드시 CoreMap도 함께 생성해야 한다. 
 ```c
     // Check if map.bin exists
     FILE* map_file = fopen(MAP_FILE, "rb");
@@ -183,8 +183,22 @@
         return DB_NEW;
     }
 ```
+- create_DB 함수는 다음과 같이 작성한다.  이때 offset도 적절하게 setting해 주어야 한다. init_core_mapping 함수에서 모든 offset을 0으로 초기화해버리기 때문이다. 
+```c
+void create_DB() {
+    printf("Creating new database...\n");
+    Core = (uchar**)malloc(MaxCoreSize * sizeof(uchar*));
+    init_core_mapping();
+    for (int i = 0; i < 256; ++i) {
+        create_new_node(i);
+        CoreMap[i].core_position = i;
+        CoreMap[i].is_loaded = 1;
+        CoreSize++;
+    }
+}
+```
+
 - 프로그램이 실행되면 먼저 데이터가 저장된 binary file들이 있는지, 있다면, RAM에 올려야 하는 데이터들을 읽어서 RAM에 올리는 등 초기화 작업을 진행해야 한다. 참조 : [[Functions#`init_system`|init_system]]
-- 먼저 binary-data folder가 있는지 확인하여 없으면 생성한다. 
 - map.bin file이 있는지 확인하고, 없으면 생성한다. map.bin file이 있으면 CoreMap에 mapping information을 올린다. 
 - data.bin file이 있는지 확인하고, 없으면 database를 새로 생성한다(참조: [[Functions#`create_DB`|create_DB]]). 데이터베이스를 새로 생성하는 경우에는 data.bin 파일로 저장을 해 두어야 한다. data.bin file이 있는 경우에는 map.bin file을 참조하여 index 0부터 255까지 Core variable에 올린다. 
 - free-space.bin file이 있는지 확인하고, 없으면 생성한다. 없는 경우에는 FreeSpace를 초기화한 뒤에 binary file을 저장해 놓는다. 
