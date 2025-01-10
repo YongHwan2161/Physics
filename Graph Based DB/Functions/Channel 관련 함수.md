@@ -1,10 +1,10 @@
 
 # get_channel_count
 - channel 개수를 반환하는 함수.
-- node data size를 나타내는 2바이트 다음의 2바이트가 채널 개수를 가리키므로 node + 2를 가리키는 지점에서 2바이트를 읽어 ushort로 변환하고 반환한다. 
+- node data size를 나타내는 2바이트 다음의 4바이트가 actual node size를 나타내고 그 다음 2바이트가 채널 개수를 가리키므로 node + 6를 가리키는 지점에서 2바이트를 읽어 ushort로 변환하고 반환한다. 
 ```c
 ushort get_channel_count(uchar* node) {
-    return *(ushort*)(node + 2);  // Skip 2 bytes of size
+    return *(ushort*)(node + 6);  // Skip size power (2) and actual size (4)
 }
 ```
 
@@ -19,7 +19,7 @@ uint get_channel_offset(uchar* node, int channel_index) {
                channel_index, channel_count - 1);
         exit(1);  // Fatal error: invalid memory access
     }
-    return *(uint*)(node + 4 + (channel_index * 4));  // 4: size(2) + channels(2)
+    return *(uint*)(node + 8 + (channel_index * 4));  // 8: size_power(2) + actual_size(4) + channels(2)
 }
 ```
 
