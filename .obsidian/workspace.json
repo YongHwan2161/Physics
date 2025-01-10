@@ -77,7 +77,8 @@
               "title": "Makefile"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       },
       {
         "id": "df523d78af4f1eda",
@@ -278,14 +279,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "594785c1ec721c4f",
+  "active": "d81986f44ba0aa12",
   "lastOpenFiles": [
-    "Graph Based DB/Axis.md",
     "Graph Based DB/Node.md",
+    "Graph Based DB/Functions/Functions.md",
+    "Graph Based DB/Axis.md",
     "Graph Based DB/Variables.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
     "Graph Based DB/Functions/초기화 관련 함수.md",
-    "Graph Based DB/Functions/Functions.md",
     "Graph Based DB/Graph Based Database.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Images",
