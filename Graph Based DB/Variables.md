@@ -12,7 +12,7 @@ static uchar initValues[16] = {
     4,  0,     // allocated size power (2^4 = 16 bytes)
     14, 0, 0, 0,  // actual used size (14 bytes initially, includes size fields)
     1,  0,     // number of channels (1)
-    8,  0, 0, 0,   // offset for channel 0 (starts at byte 12)
+    12,  0, 0, 0,   // offset for channel 0 (starts at byte 12)
     0,  0,     // number of axes (0)
     0,  0      // remaining bytes initialized to 0
 };
