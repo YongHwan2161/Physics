@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Node.md",
+                "file": "Graph Based DB/Functions/Functions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Node"
+              "title": "Functions"
             }
           },
           {
@@ -280,8 +280,9 @@
   },
   "active": "594785c1ec721c4f",
   "lastOpenFiles": [
-    "Graph Based DB/Variables.md",
+    "Graph Based DB/Axis.md",
     "Graph Based DB/Node.md",
+    "Graph Based DB/Variables.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
     "Graph Based DB/Functions/초기화 관련 함수.md",
     "Graph Based DB/Functions/Functions.md",
@@ -302,7 +303,6 @@
     "철학/데카르트.md",
     "Graph Based DB/binary file/Free Space.md",
     "Graph Based DB/Tests",
-    "Graph Based DB/Axis.md",
     "Graph Based DB/CGDB flow chart.canvas",
     "Obsidian.md",
     "Graph Based DB/Functions/Axis 관련 함수.md",
