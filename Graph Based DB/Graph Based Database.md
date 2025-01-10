@@ -183,7 +183,7 @@
         return DB_NEW;
     }
 ```
-- create_DB 함수는 다음과 같이 작성한다.  이때 offset도 적절하게 setting해 주어야 한다. init_core_mapping 함수에서 모든 offset을 0으로 초기화해버리기 때문이다. 
+- create_DB 함수는 다음과 같이 작성한다.  이때 offset도 적절하게 setting해 주어야 한다. init_core_mapping 함수에서 모든 offset을 0으로 초기화해 버리기 때문이다.
 ```c
 void create_DB() {
     printf("Creating new database...\n");
@@ -193,6 +193,7 @@ void create_DB() {
         create_new_node(i);
         CoreMap[i].core_position = i;
         CoreMap[i].is_loaded = 1;
+        CoreMap[i].file_offset = 4 + (16 * i);  // Each node starts with 16 bytes, plus 4 bytes header
         CoreSize++;
     }
 }
