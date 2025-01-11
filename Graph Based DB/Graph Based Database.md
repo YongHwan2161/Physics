@@ -66,7 +66,7 @@
     // Calculate insert position for new link
     uint link_insert_offset = channel_offset + axis_offset + 2 + (current_link_count * 6);
 ```
-- 현재 axis가 마지막 채널의 마지막 axis가 아닌 경우에는 나머지 데이터들을 모두 6 bytes 앞으로 이동시켜야 한다. 먼저 현재 channel이 마지막 채널인지와 현지 axis가 last axis인지 check한다. 
+- 현재 axis가 마지막 채널의 마지막 axis가 아닌 경우에는 나머지 데이터들을 모두 6 bytes 앞으로 이동시켜야 한다. link_insert_offset이 actual data size보다 작다면 link_insert_offset부터 actual data size까지의 data를 6바이트 뒤로 이동시켜야 한다.  
 ```c
     // Check if this is not the last channel and not the last axis
     ushort channel_count = *(ushort*)(node + 2);  // Get channel count
