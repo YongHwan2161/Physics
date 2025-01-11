@@ -105,12 +105,13 @@
         }
     }
 ```
-- 이후에는 link data를 삽입하고 link count를 1 증가시킨 다음, data.bin을 저장하면 된다. 
+- 이후에는 link data를 삽입하고 link count를 1 증가시킨 다음, actual size를 required_size로 update하고, data.bin을 저장하면 된다. 
 ```c
     // Write link data at insert position
     memcpy(node + link_insert_offset, &link, sizeof(Link));
     // Update link count
     (*(ushort*)(node + channel_offset + axis_offset))++;
+    *(uint*)(node + 2) = required_size;
     // Save changes to data.bin
     FILE* data_file = fopen(DATA_FILE, "r+b");
     if (data_file) {
