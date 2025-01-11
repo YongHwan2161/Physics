@@ -42,3 +42,5 @@ Size (bytes)    Offset
 # create link test
 - 특정 node, channel, axis에서 다른 node, channel로  link를 100개 임의로 생성하며, 올바르게 link가 생성되는지 확인한다. 
 - link를 생성하면서 확인해야 하는 항목은 link를 생성할 때마다 link count가 적절하게 증가하는지, link data가 올바르게 저장이 되는지이다. 
+# create and delete link test
+- 특정 node, channel, axis에서 다른 node, channel로  link를 100개 순차적으로 생성하고, 생성한 link를 다시 모두 제거한 다음 처음 상태로 올바르게 돌아오는지 확인한다. 
