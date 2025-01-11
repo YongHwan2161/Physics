@@ -39,20 +39,11 @@
     uint axis_table_size = (current_count + 1) * 6;  // Including new axis entry
 ```
 ### required size 계산
-- required size 계산: 현재 channel의 last axis offset을 구한다. 여기서 axis offset은 node offset부터 계산한 것이 아니라, channel offset의 시작 지점을 0으로 하여 상대적으로 계산한 offset이다. 
-- `current_count`가 0인 경우에는 required_size는 channel_offset + axis_table_size + 4로 설정하면 된다. +4인 이유는 axis
-- count가 2바이트 차지하고, link count가 2바이트 차지하기 때문이다. 
+- current_actual_size에서 8을 더한 값을 required size로 설정한다. 6바이트는 추가되는 axis entry size이고, 2바이트는 axis data에서 link count 2 bytes를 표시하기 위해 필요하다.  
 ```c
-    uint required_size;
-    if (current_count == 0) {
-        required_size = channel_offset + axis_table_size + 4;  // +2 for axis count, +2 for link count
-    } else {
-        // Get last axis's offset and data size
-        uint* last_offset_ptr = (uint*)(node + channel_offset + 2 + ((current_count - 1) * 6) + 2);
-        uint last_axis_offset = *last_offset_ptr;
-        ushort* last_link_count = (ushort*)(node + channel_offset + last_axis_offset);
-        uint last_axis_data_size = 2 + (*last_link_count * sizeof(Link));
-        required_size = channel_offset + last_axis_offset + last_axis_data_size + 6 + 2;
+    // Get current actual size and calculate new required size
+    uint current_actual_size = *(uint*)(node + 2);
+    uint required_size = current_actual_size + 8;  // Add 6 bytes for new axis entry
     }
 ```
 ### node resize
