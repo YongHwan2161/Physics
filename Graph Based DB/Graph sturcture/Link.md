@@ -5,19 +5,7 @@
 - link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. 
 # Create Link
 - link를 생성하기 위해서는 적어도 하나의 axis가 존재해야 한다. 생성하려는 axis가 존재하지 않으면 먼저 axis를 생성하고 나서 link를 생성한다. 
-- link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는 확인하고, 없다면 새로 axis를 만들어야 한다. [[Graph Based Database#Axis 생성|Axis 생성]], [[Axis 관련 함수#has_axis|has_axis]]
-```c
-    // Check if axis exists, create if it doesn't
-    if (!has_axis(node, channel_offset, axis_number)) {
-        int result = create_axis(source_node, source_ch, axis_number);
-        if (result != AXIS_SUCCESS) {
-            printf("Error: Failed to create required axis\n");
-            return LINK_ERROR;
-        }
-        // Reload node pointer as it might have changed after axis creation
-        node = Core[source_node];
-    }
-```
+- link를 생성하는 함수는 인자로 source_node, source_ch, dest_node, dest_ch, num_axis를 받아야 한다. 그리고 인자로 받아온 axis 번호가 현재 node, ch data에 생성되어 있는지 확인하고, 없다면 새로 axis를 만들어야 한다. 함수의 복잡도를 줄이기 위해 create_link를 호출하기 전에 axis를 만들어 놓고 create_link를 호출하기 때문에, create_axis는 이 부분에 대해서는 신경쓰지 않아도 된다.  [[Graph Based Database#Axis 생성|Axis 생성]], [[Axis 관련 함수#has_axis|has_axis]]
 - 현재 aixs의 current link count를 계산한다. channel_offset + axis_offset에서 ushort를 읽으면 current_link_count가 된다. 
 ```c
     // Get axis offset - this points to the link count

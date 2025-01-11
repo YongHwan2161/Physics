@@ -15,74 +15,35 @@ bool has_axis(uchar* node, uint channel_offset, int axis_number) {
 ```
 
 # create_axis
-- 새로운 axis를 생성하는 함수이다. 
+- 인자로 `node_index`, `channel_index`, `axis_number`를 받는다. 
+- Core에 해당 `node_index`가 존재하지 않으면 `AXIS_ERROR`를 반환한다. 
+- create_axis 함수에서는 인자로 받은 axis_number가 현재 node,channel data에 존재하는지 확인한 후 존재하면 새로 axis를 생성할 필요가 없고, 존재하지 않는 경우에만 새로 axis를 생성해야 한다. 
+- `channel_index`의 offset을 구하고 offset이 0보다 작으면 역시 error를 반환한다. 채널의 offset을 구하는 함수는 [[Channel 관련 함수#get_channel_offset|get_channel_offset]] 참조.
+- 주어진 node, ch에 대해 해당 axis가 이미 존재하는지 확인해 주는 함수는 [[Axis 관련 함수#has_axis|has_axis]] 참조.
+- required_size를 구할 때, node data의 offset 2에 저장된 actual size를 직접 이용하여 빠르게 계산한다. 
 ```c
-int create_axis(int node_index, int channel_index, int axis_number) {
-    if (!Core[node_index]) {
-        printf("Error: Invalid node index\n");
-        return AXIS_ERROR;
-    }
-    uchar* node = Core[node_index];
-    uint channel_offset = get_channel_offset(node, channel_index);
-    // Check if axis already exists
-    if (has_axis(node, channel_offset, axis_number)) {
-        printf("Warning: Axis %d already exists in node %d, channel %d\n",
-               axis_number, node_index, channel_index);
-        return AXIS_SUCCESS;  // Not an error, but no new axis created
-    }
-    // Get current axis count
-    ushort* axis_count = (ushort*)(node + channel_offset);
-    ushort current_axis_count = *axis_count;
-    // Calculate new sizes
-    ushort old_channel_size = get_channel_size(node, channel_index);
-    ushort new_channel_size = old_channel_size + 6;  // Add 6 bytes for new axis
+    // Get current actual size and calculate new required size
+    uint current_actual_size = *(uint*)(node + 2);
+    uint required_size = current_actual_size + 6;  // Add 6 bytes for new axis entry
+```
+- required_size와 current_node_size를 비교하여 부족하면  새로 공간을 할당받는다. 
+```c
     // Check if we need to resize the node
     ushort node_size_power = *(ushort*)node;
     uint current_node_size = 1 << node_size_power;
-    uint required_size = channel_offset + new_channel_size;
     if (required_size > current_node_size) {
-        // Calculate new size (next power of 2)
-        uint new_size = current_node_size;
-        while (new_size < required_size) {
-            new_size *= 2;
-            node_size_power++;
+        uint new_size;
+        node = resize_node_space(node, required_size, node_index, &new_size);
+        if (!node) {
+            printf("Error: Failed to resize node\n");
+            return AXIS_ERROR;
         }
-        // Try to find free space first
-        FreeBlock* free_block = find_free_block(new_size);
-        if (free_block) {
-            // Copy node data to free block location
-            uchar* new_node = (uchar*)malloc(new_size);
-            memcpy(new_node, node, current_node_size);
-            // Update CoreMap with new location
-            CoreMap[node_index].file_offset = free_block->offset;
-            // Add old space to free space
-            add_free_block(current_node_size, CoreMap[node_index].file_offset);
-            // Update node in Core
-            free(node);
-            node = new_node;
-            Core[node_index] = new_node;
-            // Update node size
-            *(ushort*)node = node_size_power;
-        } else {
-            // No suitable free block found, allocate new space
-            uchar* new_node = (uchar*)malloc(new_size);
-            memcpy(new_node, node, current_node_size);
-            // Add old space to free space
-            add_free_block(current_node_size, CoreMap[node_index].file_offset);
-            // Update CoreMap with new location (will be at end of file)
-            FILE* data_file = fopen(DATA_FILE, "ab");
-            if (data_file) {
-                CoreMap[node_index].file_offset = ftell(data_file);
-                fclose(data_file);
-            }
-            // Update node in Core
-            free(node);
-            node = new_node;
-            Core[node_index] = new_node;
-            // Update node size
-            *(ushort*)node = node_size_power;
-        }
+        Core[node_index] = node;
+        // channel_offset remains the same, no need to recalculate
     }
+```
+
+```c
     // Update axis count
     (*axis_count)++;
     // Calculate offset for new axis data
@@ -90,19 +51,9 @@ int create_axis(int node_index, int channel_index, int axis_number) {
     // Write axis number and its data offset
     *(ushort*)(node + axis_data_offset) = (ushort)axis_number;
     *(uint*)(node + axis_data_offset + 2) = axis_data_offset + 6;  // Points to after itself
-    // Save changes to data.bin
-    FILE* data_file = fopen(DATA_FILE, "r+b");
-    if (data_file) {
-        fseek(data_file, CoreMap[node_index].file_offset, SEEK_SET);
-        fwrite(node, 1, 1 << node_size_power, data_file);
-        fclose(data_file);
-    }
-    // Save updated free space information
-    save_free_space();
     printf("Created axis %d in node %d, channel %d\n",
            axis_number, node_index, channel_index);
-    return AXIS_SUCCESS
-
+    return AXIS_SUCCESS;
 }
 ```
 
