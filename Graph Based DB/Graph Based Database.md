@@ -32,25 +32,17 @@
 - 현재 aixs의 current link count를 계산한다. channel_offset + axis_offset에서 ushort를 읽으면 current_link_count가 된다. 
 ```c
     // Get axis offset - this points to the link count
-    int axis_offset = get_axis_offset(node, source_ch, axis_number);
-    if (axis_offset < 0) {
-        printf("Error: Failed to get axis offset\n");
-        return LINK_ERROR;
-    }
-    // Get current link count
-    ushort current_link_count = *(ushort*)(node + channel_offset + axis_offset);
-```
+    uint axis_offset = get_axis_offset(node, source_ch, axis_number);
+    // Get current link count and calculate new size
+    ushort* current_link_count = (ushort*)(node + channel_offset + axis_offset);```
 - link를 추가하는데 필요한 node size를 계산한다. 부족하면 공간을 재할당 받아야 한다. 
-- link 하나를 추가하는 데에는 6바이트가 더 필요하므로, 현재 사용중인 공간에 6바이트의 여유공간이 있는지만 계산하면 된다. 이를 위해서는 마지막 channel의 마지막 axis의 offset에서 2를 더하고(link count) 다시 (6 * current_link_count)를 더하면 된다. 이 size에 6을 더한 값이 node_size보다 크다면 공간을 재할당 받아야 한다. 
+- link 하나를 추가하는 데에는 6바이트가 더 필요하므로, 현재 사용중인 공간에 6바이트의 여유공간이 있는지만 계산하면 된다. 이를 위해서는 node data의 actual size를 읽어서 6바이트를 더하여 required_size를 구하면 된다. 
 ```c
-    // Calculate required space for new link
-    uint current_node_size = 1 << (*(ushort*)node);
-    uint last_axis_offset = get_last_axis_offset(node, source_ch);  // Get offset of last axis
-    uint last_link_offset = channel_offset + last_axis_offset + 2 + (current_link_count * 6);  // Current end of link data
-    uint required_size = last_link_offset + 6;  // Add space for one new link (6 bytes)
+    uint current_actual_size = *(uint*)(node + 2);
+    uint required_size = current_actual_size + 6;  // Add 6 bytes for new link
 ```
 - required_size가 node_size보다 크면 공간 재할당
-- 공간을 재할당한 이후에는 **반드시** link_count pointer를 업데이트 해주어야 한다. link_count는 pointer이기 때문에, 공간을 재할당했는데도, 다시 업데이트하지 않으면, 여전히 이전 node를 가리키므로 이후 코드에서 에러가 발생한다. 
+- 공간을 재할당한 이후에는 **반드시** link_count pointer를 업데이트 해주어야 한다. link_count는 pointer이기 때문에, 공간을 재할당 했는데도, 다시 업데이트하지 않으면, 여전히 이전 node를 가리키므로 이후 코드에서 에러가 발생한다. 
 ```c
     // Check if we need more space
     if (required_size > current_node_size) {
@@ -60,8 +52,8 @@
             printf("Error: Failed to resize node\n");
             return LINK_ERROR;
         }
-        // Update Core pointer
         Core[source_node] = node;
+        current_link_count = (ushort*)(node + channel_offset + axis_offset);
     }
 ```
 - link data를 삽입할 위치를 계산한다. 
