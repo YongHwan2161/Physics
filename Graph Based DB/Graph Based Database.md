@@ -8,7 +8,34 @@
 - channel 0은 node가 생성될 때 기본적으로 생성된다. 
 - channel은 항상 순차적으로 생성된다(axis와 다른 점). 
 - channel을 생성할 때에는 node index만 전달하면 된다. create channel 함수는 전달된 node의 channel count를 1 증가시키고, channel entry 4 bytes를 추가하고, channel offset을 적절하게 계산한 다음, channel data에 2 bytes를 추가하여 axis count를 0으로 초기화하여 대입하면 된다. 
-- 
+### 채널 생성 과정
+- 먼저 channel_count를 구한다. 
+```c
+    uchar* node = Core[node_index];
+    ushort* channel_count = (ushort*)(node + 6);  // Skip size power(2) and actual size(4)
+```
+- required size를 구한다. actual size에 6을 더하면 된다(channel entry 4 + axis count 2)
+```c
+    // Get current actual size and calculate required size
+    uint current_actual_size = *(uint*)(node + 2);
+    uint required_size = current_actual_size + 6;  // channel entry(4) + axis count(2)
+```
+- required size가 node size보다 크면 공간 재할당
+```c
+    if (required_size > current_node_size) {
+        uint new_size;
+        node = resize_node_space(node, required_size, node_index, &new_size);
+        if (!node) {
+            printf("Error: Failed to resize node\n");
+            return CHANNEL_ERROR;
+        }
+        Core[node_index] = node;
+    }
+```
+- channel entry 4 bytes를 추가하기 위해 나머지 data를 4 바이트 뒤로 이동
+```c
+
+```
 # delete channel
 - 생성된 channel을 삭제해도, 실제로 channel이 삭제되지는 않는다. 다만, channel 내의 모든 data가 초기화될 뿐이다(axis 개수가 0으로 변경됨). 그 이유는 channel을 삭제하려면 더 높은 번호의 channel들의 channel 번호를 변경해야 하는데, link 정보에 node와 channel이 들어가기 때문에, channel 번호는 절대 변경되어서는 안 된다. 변경된 channel 번호를 참조하는 모든 link들을 업데이트하는 것은 비효율적이다. 어차피 삭제된 channel은 나중에 재활용될 수 있기 때문에, 그대로 두고 channel data만 초기화하는 것이 효율적이다. 
 - 
