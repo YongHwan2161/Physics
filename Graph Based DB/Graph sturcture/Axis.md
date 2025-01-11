@@ -118,6 +118,7 @@
 ```
 ### 삭제하려는 axis의 index 계산
 - axis number는 channel과 달리 정렬되어 있지 않기 때문에, 삭제하려는 axis가 axis entry의 몇 번째에 위치하는지 찾아야 한다. 찾아서 axis_index에 저장한다. 
+- 이 때 삭제하려는 axis_index를 제외한 모든 axis_entry에서 offset을 -6만큼 감소시킨다. 
 ```c
     // Find the axis to delete
     int axis_index = -1;
@@ -131,9 +132,30 @@
             if (i < *axis_count - 1) {
                 next_axis_offset = *(uint*)(node + channel_offset + 2 + ((i + 1) * 6) + 2);
             }
-            break;
+        }
+        else {
+            *(uint*)(node + channel_offset + 2 + (i * 6) + 2) -= 6;
         }
     }
 ```
-- axis data를 삭제할 때 두 영역을 제거해야 한다. axis entry 6 bytes와 axis data를 제거해야 하는데, axis data를 먼저 제거하고 이후 data들을 앞으로 이동시킨 다음, axis entry 6 bytes를 제거하고 다시 나머지 data를 6바이트 앞으로 이동시킨다. 
-- 
+- axis data를 삭제할 때 두 영역을 제거해야 한다. axis entry 6 bytes와 axis data를 제거해야 하는데, axis data를 먼저 제거하고 나머지 data들을 제거한 size만큼 앞으로 이동시킨 다음, axis entry 6 bytes를 제거하고 다시 나머지 data를 6바이트 앞으로 이동시킨다. 
+- 먼저 axis data를 삭제하는 과정을 본다. 삭제하려는 'axis_index'를 이용하여 계산한 'axis_offset'부터 (2 + (6 * link_count))만큼 제거하면 된다. 제거하는 과정은 따로 없고 그냥 뒤에 있는 data를 memmove를 이용하여 (2 + (6 * link_count))만큼 앞으로 이동시키면 된다. 이동시켜야 하는 data의 size는 `current_actual_size - (channel_offset + data_offset + (2 + 6 * link_count))`이다. 
+```c
+    uint current_actual_size = *(uint*)(node + 2);
+    ushort link_count = *(ushort*)(node + channel_offset + axis_offset);
+    uint move_start = channel_offset + axis_offset + 2 + (link_count * 6);
+    uint move_size = current_actual_size - move_start;
+    memmove(node + channel_offset + axis_offset,
+            node + move_start,
+            move_size);
+```
+- 그 다음 `axis_entry` 6 bytes를 제거한다. 역시 `memmove`를 이용해서 6바이트를 앞으로 당기는데, `move_start`는 `channel_offset + 2 + (6 * (axis_index + 1))`이고, `move_end`는 `channel_offset + 2 + (6 * axis_index)`가 된다. `move_size`는 `current_actual_size - move_start`가 된다. 
+```c
+    move_start = channel_offset + 2 + ((axis_index + 1) * 6);
+    uint move_dest = channel_offset + 2 + (*axis_count * 6);
+    move_size = current_actual_size - move_dest;
+    memmove(node + move_dest,
+            node + move_start,
+            move_size);
+```
+### 
