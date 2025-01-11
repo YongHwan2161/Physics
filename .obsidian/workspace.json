@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Graph sturcture/Link.md",
+                "file": "Graph Based DB/Tests.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Link"
+              "title": "Tests"
             }
           },
           {
@@ -280,6 +280,7 @@
   },
   "active": "594785c1ec721c4f",
   "lastOpenFiles": [
+    "Graph Based DB/Graph sturcture/Link.md",
     "Graph Based DB/Functions/Axis 관련 함수.md",
     "Graph Based DB/Functions/Functions.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
@@ -292,7 +293,6 @@
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Graph sturcture",
     "Graph Based DB/Command Line Interface(CLI).md",
-    "Graph Based DB/Graph sturcture/Link.md",
     "Graph Based DB/Graph sturcture/Node.md",
     "Graph Based DB/Variables.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",

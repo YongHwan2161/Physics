@@ -53,8 +53,7 @@
     {
         for (ushort ch = source_ch + 1; ch < channel_count; ch++)
         {
-            uint *channel_offset_ptr = (uint *)(node + 6 + (ch * 4));
-            *channel_offset_ptr += 6;
+            *(uint *)(node + 8 + (ch * 4)) += 6;
         }
     }
 ```
