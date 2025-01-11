@@ -116,3 +116,22 @@
     ushort* axis_count = (ushort*)(node + channel_offset);
     ushort current_axis_count = *axis_count;
 ```
+### 삭제하려는 axis의 index 계산
+- axis number는 channel과 달리 정렬되어 있지 않기 때문에, 삭제하려는 axis가 axis entry의 몇 번째에 위치하는지 찾아야 한다. 찾아서 axis_index에 저장한다. 
+```c
+    // Find the axis to delete
+    int axis_index = -1;
+    uint axis_offset = 0;
+    uint next_axis_offset = 0;
+    for (int i = 0; i < *axis_count; i++) {
+        ushort current_axis = *(ushort*)(node + channel_offset + 2 + (i * 6));
+        if (current_axis == axis_number) {
+            axis_index = i;
+            axis_offset = *(uint*)(node + channel_offset + 2 + (i * 6) + 2);
+            if (i < *axis_count - 1) {
+                next_axis_offset = *(uint*)(node + channel_offset + 2 + ((i + 1) * 6) + 2);
+            }
+            break;
+        }
+    }
+```
