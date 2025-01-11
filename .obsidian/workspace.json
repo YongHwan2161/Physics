@@ -36,6 +36,20 @@
             }
           },
           {
+            "id": "36d86844035c36c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Graph Based DB/Memory.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Memory"
+            }
+          },
+          {
             "id": "8df8782f8e6625f1",
             "type": "leaf",
             "state": {
@@ -78,7 +92,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
         "id": "df523d78af4f1eda",
@@ -279,10 +293,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d81986f44ba0aa12",
+  "active": "36d86844035c36c0",
   "lastOpenFiles": [
-    "Graph Based DB/Tests.md",
     "Graph Based DB/Graph sturcture/Axis.md",
+    "Graph Based DB/Memory.md",
+    "Graph Based DB/Tests.md",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Graph sturcture",
     "Graph Based DB/Command Line Interface(CLI).md",
