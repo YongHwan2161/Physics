@@ -34,7 +34,28 @@
 ```
 - channel entry 4 bytes를 추가하기 위해 나머지 data를 4 바이트 뒤로 이동
 ```c
-
+    uint current_offset = 8 + ((uint)*channel_count * 4);  // Header + existing channel offsets
+    uint channel_data_offset = current_actual_size + 4;  // New channel data goes at the end
+    // Move existing data 4 bytes forward to make space for new channel entry
+        memmove(node + current_offset + 4,          // destination (4 bytes forward)
+                node + current_offset,               // source
+                current_actual_size - current_offset // size of data to move
+        );
+```
+- 기존 channel offset을 4 증가하고, 새로운 channel offset을 추가하고, axis count를 0으로 초기화하고, actual size와 channel_count를 update한다. 
+```c
+    //update the channel offset
+    for (ushort i = 0; i < *channel_count; i++) {
+        *(uint*)(node + 8 + (i * 4)) += 4;
+    }
+    // Add new channel offset
+    *(uint*)(node + current_offset) = channel_data_offset;
+    // Initialize axis count to 0 at the end
+    *(ushort*)(node + channel_data_offset) = 0;
+    // Update actual size
+    *(uint*)(node + 2) = required_size;
+    // Increment channel count
+    (*channel_count)++;
 ```
 # delete channel
 - 생성된 channel을 삭제해도, 실제로 channel이 삭제되지는 않는다. 다만, channel 내의 모든 data가 초기화될 뿐이다(axis 개수가 0으로 변경됨). 그 이유는 channel을 삭제하려면 더 높은 번호의 channel들의 channel 번호를 변경해야 하는데, link 정보에 node와 channel이 들어가기 때문에, channel 번호는 절대 변경되어서는 안 된다. 변경된 channel 번호를 참조하는 모든 link들을 업데이트하는 것은 비효율적이다. 어차피 삭제된 channel은 나중에 재활용될 수 있기 때문에, 그대로 두고 channel data만 초기화하는 것이 효율적이다. 
