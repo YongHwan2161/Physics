@@ -95,6 +95,15 @@
         new_axis_offset = required_size - channel_offset - 2;  // -2 for new link count
     }
 ```
+### channel offset update
+- 만약 channel count가 2 이상인 경우, 그리고 현재 axis가 속한 channel 보다 더 큰 index의 channel이 존재하는 경우, 이후의 모든 channel offset을 6씩 증가시켜야 한다. 
+```c
+    //update channel offset
+    ushort channel_count = *(ushort*)(node + 6);
+    for (ushort i = channel_index + 1; i < channel_count; i++) {
+        *(uint*)(node + 8 + (i * 4)) += 6;
+    }
+```
 # Axis 삭제
 - axis를 삭제하기 위해서는 먼저 해당 axis가 지정된 node, ch에 존재해야 한다. 존재하지 않으면 에러를 반환한다. 
 - axis가 존재하면 해당 axis에 저장된 모든 link를 제거하고, axis number를 channel data에서 없애고, axis count를 1 감소시킨다. 
