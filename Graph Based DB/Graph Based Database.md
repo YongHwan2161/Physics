@@ -5,7 +5,13 @@
 - 각 노드는 적어도 하나의 채널을 가진다. 
 
 ## channel creation
-- 채널을 새로 생성할 
+- channel 0은 node가 생성될 때 기본적으로 생성된다. 
+- channel은 항상 순차적으로 생성된다(axis와 다른 점). 
+- channel을 생성할 때에는 node index만 전달하면 된다. create channel 함수는 전달된 node의 channel count를 1 증가시키고, channel entry 4 bytes를 추가하고, channel offset을 적절하게 계산한 다음, channel data에 2 bytes를 추가하여 axis count를 0으로 초기화하여 대입하면 된다. 
+- 
+# delete channel
+- 생성된 channel을 삭제해도, 실제로 channel이 삭제되지는 않는다. 다만, channel 내의 모든 data가 초기화될 뿐이다(axis 개수가 0으로 변경됨). 그 이유는 channel을 삭제하려면 더 높은 번호의 channel들의 channel 번호를 변경해야 하는데, link 정보에 node와 channel이 들어가기 때문에, channel 번호는 절대 변경되어서는 안 된다. 변경된 channel 번호를 참조하는 모든 link들을 업데이트하는 것은 비효율적이다. 어차피 삭제된 channel은 나중에 재활용될 수 있기 때문에, 그대로 두고 channel data만 초기화하는 것이 효율적이다. 
+- 
 
 # [[Axis]]
 
