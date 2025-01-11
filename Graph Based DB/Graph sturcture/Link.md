@@ -33,57 +33,39 @@
     uint move_size = current_actual_size - link_insert_offset;  // Move all remaining data
     insert_link(node, link_insert_offset, dest_node, dest_ch, move_size);
 ```
-- link_insert_offset이 current_actual_size보다 작으면 이동시켜야 할 데이터가 반드시 있다. 
-- 먼저 link data를 삽입할 위치를 찾고, 앞에서 계산한 required_size - move_start 만큼의 데이터를 6바이트 앞으로 이동시켜서 link data 6bytes가 들어가 공간을 만든다. 
-- 그 다음 현재 채널의 현재 axis보다 뒤에 저장된 axis들의 offset을 모두 6바이트 증가시켜야 하는데, axis는 정렬되지 않은 상태로 저장될 수 있기 때문에 axis_count만큼 loop를 돌 수밖에 없다. axis를 순서대로 정렬시키지 않는 이유는 axis 번호는 channel과 달리 axis마다 고유한 성질을 부여할 수 있기 때문(모든 axis가 순서대로 생성되는 게 아님)
+- 그 다음 현재 채널의 현재 axis보다 뒤에 저장된 axis들의 offset을 모두 6바이트 증가시켜야 하는데, axis는 정렬되지 않은 상태로 저장될 수 있기 때문에 axis_count만큼 loop를 돌 수밖에 없다. axis를 순서대로 정렬시키지 않는 이유는 axis 번호는 channel과 달리 axis마다 고유한 성질을 부여할 수 있기 때문(모든 axis가 순서대로 생성되는 게 아님)(axis를 번호순으로 정렬하는 것이 더 효율적인지는 고민해 보아야 할 문제!!)
+```c
+    uint axis_entry_offset = channel_offset + 2;
+    ushort axis_count = get_axis_count(node, source_ch);
+    for (ushort i = 0; i < axis_count; i++)
+    {
+        uint current_axis_offset = *(uint *)(node + axis_entry_offset + (i * 6) + 2);
+        if (current_axis_offset > axis_offset)
+        {
+            *(uint *)(node + axis_entry_offset + (i * 6) + 2) += 6;
+        }
+    }
+```
 - 현재 channel 이후의 모든 채널의 offset도 6 증가시켜야 한다(channel은 반드시 0부터 증가하면서 저장되기 때문에, 현재 채널보다 큰 채널만 다루면 됨)
 ```c
-    // Move data forward if this is not the last position
-    if (link_insert_offset < current_actual_size) {
-        // Calculate amount of data to move
-        uint move_start = link_insert_offset;
-        uint move_size = required_size - move_start;  // Move all remaining data
-        // Move existing data forward by 6 bytes
-        memmove(node + move_start + 6,
-                node + move_start,
-                move_size);
-        // Update offsets in current channel
-        uint axis_data_offset = channel_offset + 2;
-        ushort axis_count = *(ushort*)(node + channel_offset);
-        for (int i = 0; i < axis_count; i++) {
-            uint current_axis_offset = *(uint*)(node + axis_data_offset + (i * 6) + 2);
-            if (current_axis_offset > axis_offset) {
-                *(uint*)(node + axis_data_offset + (i * 6) + 2) += 6;
-            }
-        }
-        // Update only channel offsets for subsequent channels
-        if (!is_last_channel) {
-            for (int ch = source_ch + 1; ch < channel_count; ch++) {
-                uint* channel_offset_ptr = (uint*)(node + 4 + (ch * 4));
-                *channel_offset_ptr += 6;
-            }
+    // Update only channel offsets for subsequent channels
+    if (source_ch < channel_count - 1)
+    {
+        for (ushort ch = source_ch + 1; ch < channel_count; ch++)
+        {
+            uint *channel_offset_ptr = (uint *)(node + 6 + (ch * 4));
+            *channel_offset_ptr += 6;
         }
     }
 ```
 - 이후에는 link data를 삽입하고 link count를 1 증가시킨 다음, actual size를 required_size로 update하고, data.bin을 저장하면 된다. 
 ```c
-    // Write link data at insert position
-    memcpy(node + link_insert_offset, &link, sizeof(Link));
-    // Update link count
-    (*(ushort*)(node + channel_offset + axis_offset))++;
+    (*current_link_count)++;
     *(uint*)(node + 2) = required_size;
-    // Save changes to data.bin
-    FILE* data_file = fopen(DATA_FILE, "r+b");
-    if (data_file) {
-        fseek(data_file, CoreMap[source_node].file_offset, SEEK_SET);
-        fwrite(node, 1, 1 << (*(ushort*)node), data_file);
-        fclose(data_file);
+    if (!save_node_to_file(source_node)) {
+        printf("Error: Failed to update data.bin\n");
+        return LINK_ERROR;
     }
-    // Save updated free space information
-    save_free_space();
-    printf("Created link from node %d channel %d to node %d channel %d using axis %d\n",
-           source_node, source_ch, dest_node, dest_ch, axis_number);
-    return LINK_SUCCESS;
 ```
 - 
 
