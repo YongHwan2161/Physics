@@ -40,4 +40,5 @@
 - channel offset을 모두 4바이트 증가시켜야 한다. 이에 따라 [[Channel 관련 함수#get_channel_count|get_channel_count]]와 [[Channel 관련 함수#get_channel_offset|get_channel_offset]]를 수정해야 한다. 
 - axis offset은 수정할 필요가 없다. axis offset은 channel offset을 기준으로 하여 상대적으로 결정되기 때문이다. 
 - 
-- 
+# Validate Node
+- node index가 유효한 범위 내에 있는지, node data가 Core에 존재하는지 확인하는 함수이다. 특정 함수를 호출하기 전에 먼저 node의 유효성을 확인한 다음 함수를 호출해야 한다. 호출한 함수에게 유효성 확인을 떠넘기지 말아야 한다. 예를 들면 create_axis 함수를 호출한다고 할 때, 함수를 호출하기 전에 먼저 node, channel, axis등의 유효성을 확인한 후 문제가 없는 경우에만 create_axis 함수를 호출해야 한다. 그렇지 않고, create_axis 함수 안에서 유효성을 모두 확인하라고 떠넘기면 create_axis 함수의 코드가 불필요하게 길어지게 되고 비효율적이다. 다른 함수를 호출할 때에도 마찬가지이다. 전달하는 인자에 대한 유효성을 먼저 확인한 후 문제가 없는 경우에만 함수를 호출하는 방식을 취해야 한다.
