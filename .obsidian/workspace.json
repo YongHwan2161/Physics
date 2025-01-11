@@ -78,7 +78,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       },
       {
         "id": "df523d78af4f1eda",
@@ -279,12 +279,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "17649d4ff1f01faa",
+  "active": "d81986f44ba0aa12",
   "lastOpenFiles": [
+    "Graph Based DB/Node.md",
     "Graph Based DB/Link.md",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Variables.md",
-    "Graph Based DB/Node.md",
     "Graph Based DB/Functions/Functions.md",
     "Graph Based DB/Axis.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
