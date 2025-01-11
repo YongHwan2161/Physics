@@ -123,15 +123,11 @@
     // Find the axis to delete
     int axis_index = -1;
     uint axis_offset = 0;
-    uint next_axis_offset = 0;
     for (int i = 0; i < *axis_count; i++) {
         ushort current_axis = *(ushort*)(node + channel_offset + 2 + (i * 6));
         if (current_axis == axis_number) {
             axis_index = i;
             axis_offset = *(uint*)(node + channel_offset + 2 + (i * 6) + 2);
-            if (i < *axis_count - 1) {
-                next_axis_offset = *(uint*)(node + channel_offset + 2 + ((i + 1) * 6) + 2);
-            }
         }
         else {
             *(uint*)(node + channel_offset + 2 + (i * 6) + 2) -= 6;
@@ -152,10 +148,30 @@
 - 그 다음 `axis_entry` 6 bytes를 제거한다. 역시 `memmove`를 이용해서 6바이트를 앞으로 당기는데, `move_start`는 `channel_offset + 2 + (6 * (axis_index + 1))`이고, `move_end`는 `channel_offset + 2 + (6 * axis_index)`가 된다. `move_size`는 `current_actual_size - move_start`가 된다. 
 ```c
     move_start = channel_offset + 2 + ((axis_index + 1) * 6);
-    uint move_dest = channel_offset + 2 + (*axis_count * 6);
+    uint move_dest = move_start - 6;
     move_size = current_actual_size - move_dest;
     memmove(node + move_dest,
             node + move_start,
             move_size);
 ```
-### 
+### channel_offset 수정
+- `current_channel`보다 큰 channel이 있으면 `channel_entry`에서 offset을 `6 + 2 + (link_count * 6)`만큼 감소시키면 된다. `current_channel`보다 작은 channel들은 변경할 필요가 없다. 
+```c
+    ushort channel_count = *(ushort*)(node + 6);
+    for (ushort i = channel_index + 1; i < channel_count; i++) {
+        *(uint*)(node + 8 + (i * 4)) -= 6 + 2 + (link_count * 6);
+    }
+```
+- `actual_size`와 `axis_count`를 적절하게 변경한다. 그리고 변경된 node data는 binary file과 동기화한다. 
+```c
+    uint new_actual_size = current_actual_size - size_reduction;
+    // Update axis count and actual size
+    (*axis_count)--;
+    *(uint*)(node + 2) = new_actual_size;  // -6 for removed axis entry
+    // Save changes to data.bin
+    if (!save_node_to_file(node_index)) {
+        printf("Error: Failed to save node\n");
+        return AXIS_ERROR;
+    }
+    return AXIS_SUCCESS;
+```
