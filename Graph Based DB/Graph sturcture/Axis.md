@@ -135,4 +135,5 @@
         }
     }
 ```
-- axis data를 삭제할 때에는 나머지 data를 앞으로 이동시키지 않고, link count만 0으로 변경한다. 일일이 나머지 데이터를 이동시키는 것보다 코드가 훨씬 간결하며 추후에 다시 
+- axis data를 삭제할 때 두 영역을 제거해야 한다. axis entry 6 bytes와 axis data를 제거해야 하는데, axis data를 먼저 제거하고 이후 data들을 앞으로 이동시킨 다음, axis entry 6 bytes를 제거하고 다시 나머지 data를 6바이트 앞으로 이동시킨다. 
+- 
