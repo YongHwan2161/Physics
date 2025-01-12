@@ -104,38 +104,20 @@
     }
 ```
 - target_link가 포함된 axis보다 index가 큰 axis들은 모두 offset을 6 감소시켜야 한다. 
-- 
 ```c
-    // Search for the link
-    bool found = false;
-    int link_position = -1;
-    for (int i = 0; i < *current_link_count; i++) {
-        Link* current_link = (Link*)(node + link_data_offset + (i * sizeof(Link)));
-        if (current_link->node == dest_node && current_link->channel == dest_ch) {
-            found = true;
-            link_position = i;
-            break;
+    uint current_axis_count = get_axis_count(node, source_ch);
+    uint axis_entry_offset = channel_offset + 2;
+    for (ushort i = axis_index; i < current_axis_count; i++) {
+        uint current_axis_offset = *(uint *)(node + axis_entry_offset + (i * 6) + 2);
+        if (current_axis_offset > axis_offset) {
+            *(uint *)(node + axis_entry_offset + (i * 6) + 2) -= 6;
         }
     }
-    if (!found) {
-        printf("Error: Link not found\n");
-        return LINK_ERROR;
-    }
 ```
-- target_link_offset이 actual_size - 6보다 작으면 메모리 이동이 필요하므로 이후의 메모리들을 6바이트만큼 앞으로 이동시킨다. 
+- 현재 channel보다 큰 channel들의 offset도 모두 6 감소시켜야 한다. 
 ```c
-    uint target_link_offset = link_data_offset + (link_position * sizeof(Link));
-    uint actual_size = *(uint*)(node + 2);
-    // Shift remaining links to fill the gap
-    if (target_link_offset < actual_size - sizeof(Link)) {
-        memmove(node + target_link_offset,
-                node + target_link_offset + sizeof(Link),
-                actual_size - target_link_offset - sizeof(Link));
+    ushort channel_count = get_channel_count(node);
+    for (ushort ch = source_ch + 1; ch < channel_count; ch++) {
+        *(uint *)(node + 8 + (ch * 4)) -= 6;
     }
-```
-- link_count와 actual_size를 update
-```c
-    // Update link count and actual size
-    (*current_link_count)--;
-    *(uint*)(node + 2) = actual_size - sizeof(Link);
 ```
