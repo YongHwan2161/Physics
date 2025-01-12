@@ -44,7 +44,17 @@
     }
 ```
 - node를 추가할 때에는  [[Variables#`initValues`|initValues]]를 사용하여 새로운 node data를 생성한 후, `Core[CurrentNodeCount + 1]`에 node data의 포인터를 저장하고, `CoreSize`와 `CurrentNodeCount`를 1 증가시킨 후, CoreMap을 업데이트해야 한다. 
-- 
+```c
+void create_new_node() {
+    uchar* newNode = (uchar*)malloc(16 * sizeof(uchar));  // Always allocate 16 bytes initially
+    for (int i = 0; i < 16; ++i) {
+        newNode[i] = initValues[i];
+    }
+    Core[CurrentNodeCount + 1] = newNode;
+    CurrentNodeCount++;
+}
+```
+
 # Node 삭제
 - 기존에 생성되어 있던 node를 삭제하고 싶은 경우 node의 데이터를 모두 지우면 되는데, binary file 내에서는 index 순으로 데이터가 저장되어 있기 때문에, 중간 지점의 index에 해당하는 node 데이터를 지운다고 해서, 그 뒤의 모든 데이터를 지운 데이터만큼 앞으로 이동시킬 수도 없고, index 번호를 변경하는 것도 비효율적이다. 따라서 이미 index가 부여된 node를 삭제하는 경우에는, 해당 node의 인덱스는 사라지지 않고, 단지 삭제된 것과 유사한 효과를 부여함으로써 관리해야 한다. 
 - 삭제된 node는 free space를 관리하는 별도의 자료구조에 의해 처리된다. node가 삭제되면 삭제된 node의 인덱스와 node size가 free space에 저장된다. free space에 저장된 저장된 공간들은 추후에 새로 node를 생성할 때 다시 재활용될 수 있다. 
