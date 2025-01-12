@@ -69,7 +69,42 @@
 - 
 
 # Delete Link
-- link가 존재하는지 찾고 없으면 return error
+## calculate current link count
+- 현재 link count를 계산한다. 
+```c
+    uchar* node = Core[source_node];
+    uint channel_offset = get_channel_offset(node, source_ch);
+    // Get axis offset and link count
+    uint axis_offset = get_axis_offset(node, source_ch, axis_number);
+    ushort* current_link_count = (ushort*)(node + channel_offset + axis_offset);
+    uint link_data_offset = channel_offset + axis_offset + 2;  // Skip link count
+```
+- link_count만큼 loop를 돌면서 삭제하려는 link가 위치하는 index를 찾는다. link를 찾으면 found = true가 된다. 
+```c
+    bool found = false;
+    int link_position = -1;
+    for (int i = 0; i < *current_link_count; i++) {
+        Link* current_link = (Link*)(node + link_data_offset + (i * 6));
+        if (current_link->node == dest_node && current_link->channel == dest_ch) {
+            found = true;
+            link_position = i;
+            break;
+        }
+    }
+ ```
+- target_link 보다 뒤에 있는 data를 6바이트만큼 앞으로 이동시킨다. 
+```c
+    uint target_link_offset = link_data_offset + (link_position * 6);
+    uint actual_size = *(uint*)(node + 2);
+    // Shift remaining links to fill the gap
+    if (target_link_offset < actual_size - 6) {
+        memmove(node + target_link_offset,
+                node + target_link_offset + 6,
+                actual_size - target_link_offset - 6);
+    }
+```
+- target_link가 포함된 axis보다 index가 큰 axis들은 모두 offset을 6 감소시켜야 한다. 
+- 
 ```c
     // Search for the link
     bool found = false;
