@@ -19,4 +19,15 @@
 ```
 # node data from file
 - node data를 해제한 뒤에 다시 load하고 나서 print-node 명령을 입력하면 segmentation fault error 발생.
-- 
+- 원인: node data를 load하는 과정에서 Core[]의 index를 돌면서 null pointer를 찾아서 null pointer에 data를 load하도록 수정해야 한다. 
+```c
+    for (int i = 0; i < MaxCoreSize; i++) {
+        if (Core[i] == NULL) {
+            CoreMap[node_index].core_position = i;
+            CoreMap[node_index].is_loaded = 1;
+            load_node_from_file(data_file, offset, node_index);
+            CoreSize++;
+            break;
+        }
+    }
+```
