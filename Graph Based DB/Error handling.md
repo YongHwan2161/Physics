@@ -31,3 +31,13 @@
         }
     }
 ```
+- Core array를 초기화할 때, 먼저 모두 null로 초기화하고 data를 load해야 한다. 
+```c
+    // Load initial set of nodes
+    Core = (uchar**)malloc(MaxCoreSize * sizeof(uchar*));
+  
+    for (int i = 0; i < MaxCoreSize && i < 256; i++) {
+        Core[i] = NULL;
+        load_node_to_core(i);
+    }
+```
