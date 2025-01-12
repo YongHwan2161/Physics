@@ -17,4 +17,6 @@
 ```c
     uint delete_size = channel_end_offset - channel_offset - 2;
 ```
-# node data
+# node data from file
+- node data를 해제한 뒤에 다시 load하고 나서 print-node 명령을 입력하면 segmentation fault error 발생.
+- 
