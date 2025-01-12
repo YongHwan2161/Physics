@@ -10,6 +10,9 @@
 - channel 개수 다음에는 각 채널의 offset을 가리키는 4 bytes * (채널 개수) 만큼의 데이터가 기록된다. 
 - 채널 데이터에 접근하기 위해서는 채널 수 정보 다음부터 원하는 채널번호의 offset을 찾아서 해당 offset으로 이동하면 된다. offset은 node data의 시작점을 기준으로 계산한다. 
 
+# Specialized Nodes
+## node 0 ~ 255
+- node 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 node_index 자체가 1바이트의 데이터를 표현한다. 
 # Node data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
 - node data를 찾을 때는 먼저 Core 변수에 node data가 저장되어 있는지 확인해야 한다. 확인후 이미 RAM에 올라와 있는 경우에는 Core에 있는 데이터를 그대로 가져오면 되고, 없는 경우에는 binary file에서 데이터를 불러와야 한다. 
@@ -45,20 +48,29 @@
 ```
 - node를 추가할 때에는  [[Variables#`initValues`|initValues]]를 사용하여 새로운 node data를 생성한 후, `Core[CurrentNodeCount + 1]`에 node data의 포인터를 저장하고, `CoreSize`와 `CurrentNodeCount`를 1 증가시킨 후, CoreMap을 업데이트해야 한다. 
 ```c
-void create_new_node() {
     uchar* newNode = (uchar*)malloc(16 * sizeof(uchar));  // Always allocate 16 bytes initially
+    printf("Creating new node at index %d\n", CurrentNodeCount);
     for (int i = 0; i < 16; ++i) {
         newNode[i] = initValues[i];
     }
-    Core[CurrentNodeCount + 1] = newNode;
     CurrentNodeCount++;
-}
+    Core[CurrentNodeCount - 1] = newNode;
+    CoreSize++;
+    CoreMap[CurrentNodeCount - 1].core_position = CurrentNodeCount - 1;
+    CoreMap[CurrentNodeCount - 1].is_loaded = 1;
+    uint last_node_size = 1 << (*(ushort*)Core[CurrentNodeCount - 1]);
+    printf("Last node size: %d\n", last_node_size);
+    uint file_offset = CoreMap[CurrentNodeCount - 1].file_offset + last_node_size;
+    CoreMap[CurrentNodeCount - 1].file_offset = file_offset;
+    save_node_to_file(CurrentNodeCount - 1);
+    printf("Node created at index %d\n", CurrentNodeCount - 1);
 ```
 
 # Node 삭제
 - 기존에 생성되어 있던 node를 삭제하고 싶은 경우 node의 데이터를 모두 지우면 되는데, binary file 내에서는 index 순으로 데이터가 저장되어 있기 때문에, 중간 지점의 index에 해당하는 node 데이터를 지운다고 해서, 그 뒤의 모든 데이터를 지운 데이터만큼 앞으로 이동시킬 수도 없고, index 번호를 변경하는 것도 비효율적이다. 따라서 이미 index가 부여된 node를 삭제하는 경우에는, 해당 node의 인덱스는 사라지지 않고, 단지 삭제된 것과 유사한 효과를 부여함으로써 관리해야 한다. 
-- 삭제된 node는 free space를 관리하는 별도의 자료구조에 의해 처리된다. node가 삭제되면 삭제된 node의 인덱스와 node size가 free space에 저장된다. free space에 저장된 저장된 공간들은 추후에 새로 node를 생성할 때 다시 재활용될 수 있다. 
-- free space는 관리의 편리함을 위해서 2의 제곱 단위로 공간을 관리하며 최소 크기는 16 bytes가 될 것이다. 즉, 16, 32, 64, ... bytes 단위로 저장공간이 관리된다.  이를 위해서는 노드를 생성하거나 수정할 때에도 반드시 2의 제곱 단위로 저장공간을 관리해야 한다. 
+- 삭제된 node는 garbage node에 따로 저장된다. garbage node는 256번 index를 부여받고, database 생성시 초기에 미리 생성되어 있다. 삭제된 node들은 garbage node와 link되는데, garbage node의 ch 0, axis 0이 삭제된 node_index, ch 0을 가리키도록 link가 생성되고, 삭제된 node들의 linked list의 마지막 node의 ch 0은 다시 garbage node의 ch0과 link되어 cycle을 형성하게 된다. 참조: [[Graphs and Their Representation#Cycle|Cycle]]
+- 삭제된 node를 재활용하고 싶을 때는 garbage node의  ch 0이 가리키는 node가 있는지만 찾아서 가져오면 된다. 그리고 그 다음 node를 다시 garbage node와 연결시켜서 cycle을 다시 만들어 주면 된다. 
+- garbage node의 ch 0부터 시작되는 cycle은 항상 다시 자신의 ch 0으로 돌아와야 하므로, 처음 garbage node를 초기화할 때에는 ch 0 axis 0이 자기 자신의 ch 0을 가리키도록 loop를 만들어 주어야 한다.  
 # print-node
 - node에 대한 정보를 출력하는 command이다. 
 - 출력해야 하는 정보는 node size, node offset, core position, is loaded.
