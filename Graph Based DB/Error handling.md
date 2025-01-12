@@ -13,4 +13,7 @@
 
 # clear channel error
 - ch 0과 ch 1을 생성 후, ch 0에 link를 하나 생성한 상태에서, ch 0을 clear하면, ch 1의 offset이 잘못 변경됨.
-- 
+- 오류 원인 delete_size를 계산해서 channel offset을 변경하는데, 2를 빼야 하는데 더했음. 여기서 2는 axis count를 표현하기 위한 공간임.
+```c
+    uint delete_size = channel_end_offset - channel_offset - 2;
+```
