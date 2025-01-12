@@ -22,6 +22,7 @@
 - 초기값은 전역변수로 `initValues`에 저장해 놓고 이를 참조하여 메모리를 초기화한다. 참조: [[Variables#`initValues`|initValues]]
 - node를 생성하는 함수는 [[Functions#`create_new_node`|create_new_node]] 참조.
 ## node 생성 과정
+- node는 순차적으로 생성된다. 재활용할 수 있는 node가 있는지 먼저 탐색하고, 없다면 새로운 node를 생성해야 한다. 
 - 
 # Node 삭제
 - 기존에 생성되어 있던 node를 삭제하고 싶은 경우 node의 데이터를 모두 지우면 되는데, binary file 내에서는 index 순으로 데이터가 저장되어 있기 때문에, 중간 지점의 index에 해당하는 node 데이터를 지운다고 해서, 그 뒤의 모든 데이터를 지운 데이터만큼 앞으로 이동시킬 수도 없고, index 번호를 변경하는 것도 비효율적이다. 따라서 이미 index가 부여된 node를 삭제하는 경우에는, 해당 node의 인덱스는 사라지지 않고, 단지 삭제된 것과 유사한 효과를 부여함으로써 관리해야 한다. 
