@@ -23,6 +23,27 @@
 - node를 생성하는 함수는 [[Functions#`create_new_node`|create_new_node]] 참조.
 ## node 생성 과정
 - node는 순차적으로 생성된다. 재활용할 수 있는 node가 있는지 먼저 탐색하고, 없다면 새로운 node를 생성해야 한다. 
+- 새로 생성되는 node에 index를 부여하기 위해서는 현재 존재하는 node index 중 가장 큰 값을 알아야 한다. 전체 node index 개수를 관리하는 전역변수를 하나 선언해야 한다. node index의 개수는 map.bin file의 가장 처음 4바이트에 기록되어 있기 때문에 처음 map.bin을 로드할 때 전역변수에 이 값을 저장해 두었다가 필요할 때 사용 및 업데이트하고 map.bin file과 동기화해 주면 된다. 
+```c
+    extern unsigned int CurrentNodeCount;
+```
+- CoreMap 초기화 할 때 CurrentNodeCount를 업데이트한다. 
+```c
+    FILE* map_file = fopen(MAP_FILE, "rb");
+    if (map_file) {
+        // Skip number of nodes
+        fread(&CurrentNodeCount, sizeof(uint), 1, map_file);
+        fseek(map_file, sizeof(uint), SEEK_SET);
+        // Read all offsets
+        for (int i = 0; i < CurrentNodeCount; i++) {
+            fread(&CoreMap[i].file_offset, sizeof(long), 1, map_file);
+        }
+        fclose(map_file);
+    } else {
+        printf("Error: Failed to open map.bin\n");
+    }
+```
+- node를 추가할 때에는  [[Variables#`initValues`|initValues]]를 사용하여 새로운 node data를 생성한 후, `Core[CurrentNodeCount + 1]`에 node data의 포인터를 저장하고, `CoreSize`와 `CurrentNodeCount`를 1 증가시킨 후, CoreMap을 업데이트해야 한다. 
 - 
 # Node 삭제
 - 기존에 생성되어 있던 node를 삭제하고 싶은 경우 node의 데이터를 모두 지우면 되는데, binary file 내에서는 index 순으로 데이터가 저장되어 있기 때문에, 중간 지점의 index에 해당하는 node 데이터를 지운다고 해서, 그 뒤의 모든 데이터를 지운 데이터만큼 앞으로 이동시킬 수도 없고, index 번호를 변경하는 것도 비효율적이다. 따라서 이미 index가 부여된 node를 삭제하는 경우에는, 해당 node의 인덱스는 사라지지 않고, 단지 삭제된 것과 유사한 효과를 부여함으로써 관리해야 한다. 
