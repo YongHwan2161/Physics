@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Memory.md",
+                "file": "Graph Based DB/Error handling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Memory"
+              "title": "Error handling"
             }
           },
           {
@@ -323,6 +323,7 @@
   },
   "active": "556860fd6d39ac82",
   "lastOpenFiles": [
+    "Graph Based DB/Memory.md",
     "Graph Based DB/Graph sturcture/Node.md",
     "Graph Based DB/Error handling.md",
     "LaTex.md",
@@ -338,7 +339,6 @@
     "Images/Pasted image 20250111210724.jpg",
     "Images/Pasted image 20250111210600.jpg",
     "Graph Based DB/Graph sturcture/Axis.md",
-    "Graph Based DB/Memory.md",
     "Graph Based DB/Graph sturcture",
     "Graph Based DB/Command Line Interface(CLI).md",
     "Graph Based DB/Variables.md",
