@@ -13,6 +13,8 @@
 # Specialized Nodes
 ## node 0 ~ 255
 - node 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 node_index 자체가 1바이트의 데이터를 표현한다. 
+## node 256: Garbage Node
+- 삭제된 node들이 저장되는 휴지통이다. 삭제된 node들은 나중에 node를 새로 생성할 때 재활용될 수 있다. 
 # Node data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
 - node data를 찾을 때는 먼저 Core 변수에 node data가 저장되어 있는지 확인해야 한다. 확인후 이미 RAM에 올라와 있는 경우에는 Core에 있는 데이터를 그대로 가져오면 되고, 없는 경우에는 binary file에서 데이터를 불러와야 한다. 
@@ -72,7 +74,9 @@
 - 삭제된 node를 재활용하고 싶을 때는 garbage node의  ch 0이 가리키는 node가 있는지만 찾아서 가져오면 된다. 그리고 그 다음 node를 다시 garbage node와 연결시켜서 cycle을 다시 만들어 주면 된다. 
 - garbage node의 ch 0부터 시작되는 cycle은 항상 다시 자신의 ch 0으로 돌아와야 하므로, 처음 garbage node를 초기화할 때에는 ch 0 axis 0이 자기 자신의 ch 0을 가리키도록 loop를 만들어 주어야 한다.  
 ## Node 삭제 과정
-- Node 삭제 시 
+- Node 삭제 시 삭제하려는 node의 앞 부분 16 bytes를 [[Variables#`initValues`|initValues]]로 초기화하고, Garbage node의 ch 0에서 삭제하려는 node의 ch 0으로 axis 0을 link하고, 원래 gargage node의 ch 0이 가리키던 node의 ch 0으로 삭제하려는 node의 ch 0을 link하면 된다. 
+- 삭제한 node는 Core에서 unload한다. 
+- 
 # print-node
 - node에 대한 정보를 출력하는 command이다. 
 - 출력해야 하는 정보는 node size, node offset, core position, is loaded.
