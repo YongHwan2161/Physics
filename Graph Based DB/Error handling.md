@@ -54,4 +54,5 @@
 - free_space를 확인해 보면 제대로 free_space에 16바이트가 정확한 offset으로 저장되어 있음.
 - create_axis 내에서 재할당이 이루어지므로, 문제의 원인은 create_axis 내에 있을 확률이 높음.
 - 근데 프로그램 실행 이후에 command handler를 이용해서 axis 또는 link를 생성할 때는 멀쩡히 작동함.
+- 원인: create_DB 이후 save_DB 함수를 호출하는데, 사실 node를 생성할 때마다 자동으로 파일에 저장이 되기 때문에 save_DB 함수가 필요없음. 게다가 save_DB 함수 내부의 코드가 옛날에 작성되어서 오류가 있었음. 불필요한 함수 및 코드 제거해서 문제 해결
 - 
