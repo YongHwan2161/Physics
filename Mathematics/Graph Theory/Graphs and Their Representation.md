@@ -74,4 +74,4 @@ $$d(v)\equiv\left\{
 ## Proposition 1.3
 - Let $G[X, Y]$ be a bipartite graph without isolated vertices such that $d(x)\ge d(y)$ for all $xy\in E$, where $x\in X$ and $y\in Y$. Then $|X|\le |Y|$, with equality if and only if $d(x)=d(y)$ for all $xy\in E$.
 ## Proof
-- 
+- The first assertion follows if we can find a matrix with $|X|$ rows and $|Y|$ columns in which each row sum is one and 
