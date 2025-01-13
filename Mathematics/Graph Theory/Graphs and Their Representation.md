@@ -56,3 +56,15 @@
 $$\sum_{v\in V}d(v)=2m$$
 ### Proof 
 - Consider the incidence matrix $\mathbf{M}$ of $G$. The sum of the entries in the row corresponding to vertex $v$ is precisely $d(v)$. Therefore $\sum_{v\in V}d(v)$ is just the sum of all the entries in $\mathbf{M}$. But this sum is also $2m$, because each of the $m$ column sums of $\mathbf{M}$ is 2, each edge having two ends.
+## Corollary 1.2
+- In any graph, the number of vertices of odd degree is even.
+### Proof 
+- Consider [[Mathematics/Graph Theory/Graphs and Their Representation#Equation 1.1|Equation 1.1]] modulo 2. We have
+$$d(v)\equiv\left\{
+\begin{array}{2}
+1(\text{mod 2})& \text{if }d(v)\text{ is odd}\\
+0(\text{mod 2})& \text{if }d(v)\text{ is even.}
+\end{array}\right.$$
+- Thus, modulo 2, the left-hand side is congruent to the number of vertices of odd degree, and the right-hand side is zero. The number of vertices of odd degree is therefore congruent to zero modulo 2.
+
+- 
