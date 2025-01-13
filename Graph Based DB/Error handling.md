@@ -49,4 +49,9 @@
 - initialize_database 함수 내에 Garbage node에 loop를 생성하는 코드가 추가되어 있어서 프로그램 실행할 때마다 loop를 새로 생성하려고 시도하는 것 같음.
 - create_loop 함수를 create_DB 함수 안에만 넣어서 database를 생성할 때 한 번만 동작하도록 수정해서 해결.
 ## Garbage node 생성 오류
+- database 생성시 , create_loop 함수를 이용해서 garbage node에 loop를 만드는데, 이때, node 256인 garbage node에서 공간 재할당이 일어나므로, 원래 offset인 0x1000의 16 bytes는 free space에 반납하고, 0x1010부터 32바이트를 새로 할당받으므로, data.bin의 offset 0x1010부터 32바이트가 추가로 기록되어야 하는데, 0x1000부터 32바이트가 기록됨. 
+- 근데, 데이터 초기화 완료 후 직접 command handler를 이용해서 loop를 생성하면 정상적으로 동작함. create_DB 함수 안에서 loop를 생성할 때만 저장되는 offset에 오류 발생.
+- free_space를 확인해 보면 제대로 free_space에 16바이트가 정확한 offset으로 저장되어 있음.
+- create_axis 내에서 재할당이 이루어지므로, 문제의 원인은 create_axis 내에 있을 확률이 높음.
+- 근데 프로그램 실행 이후에 command handler를 이용해서 axis 또는 link를 생성할 때는 멀쩡히 작동함.
 - 
