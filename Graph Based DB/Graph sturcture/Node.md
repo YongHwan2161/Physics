@@ -86,6 +86,7 @@ void delete_node(unsigned int node_index) {
     uint channel_offset = get_channel_offset(Core[GarbageNodeIndex], 0, 0);
     uint axis_offset = get_axis_offset(Core[GarbageNodeIndex], 0, 0);
     uint first_garbage_node = *(uint*)(Core[GarbageNodeIndex] + channel_offset + axis_offset);
+    delete_link(GarbageNodeIndex, 0, first_garbage_node, 0, 0);
     create_link(GarbageNodeIndex, 0, node_index, 0, 0);
     create_link(node_index, 0, first_garbage_node, 0, 0);
   
