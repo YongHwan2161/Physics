@@ -26,6 +26,7 @@
 - A graph is *simple* if it has no loops or parallel edges. The graph $H$ in [[Graphs and Their Representation#Figure 1.1.|fig. 1.1]] is simple, whereas the graph $G$ in [[Graphs and Their Representation#Figure 1.1.|fig. 1.1]] is not. Much of graph theory is concerned with the study of simple graphs.
 - A set $V$, together with a set $E$ of two-element subsets of V, defines a simple graph $(V, E)$, where the ends of an edge $uv$ are precisely the vertices $u$ and $v$. Indeed, in any simple graph we may dispense with the incidence function $\psi$ by renaming each edge as the unordered pair of its ends. In a diagram of such a graph, the labels of the edges may then be omitted.
 # Special Families of Graphs
+## complete graph
 - Certain types of graphs play prominent roles in graph theory. A ==*complete== graph* is a simple graph in which any two vertices are adjacent, an *empty graph* one in which no two vertices are adjacent (that is, one whose edge set is empty). A graph is *bipartite* if its vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one end in $X$ and one end in $Y$; such a partition $(X, Y)$ is call ==*bipartition*== of the graph, and $X$ and $Y$ its *parts*. We denote a bipartite graph $G$ with bipartition $(X, Y)$ by $G[X, Y]$. If $G[X, Y]$ is simple and every vertex in $X$ is joined to every vertex in $Y$, then $G$ is called a *complete bipartite graph*. A *star* is a complete bipartite graph $G[X, Y]$ with $|X|=1$ or $|Y|=1$. [[Graphs and Their Representation#Figure 1.2|figure 1.2]] shows diagrams of a complete graph, a complete bipartite graph, and a star.
 ###### Figure 1.2
 ![[Pasted image 20250110211649.jpg]]
@@ -55,7 +56,7 @@
 ###### Equation 1.1
 $$\sum_{v\in V}d(v)=2m$$
 ### Proof 
-- Consider the incidence matrix $\mathbf{M}$ of $G$. The sum of the entries in the row corresponding to vertex $v$ is precisely $d(v)$. Therefore $\sum_{v\in V}d(v)$ is just the sum of all the entries in $\mathbf{M}$. But this sum is also $2m$, because each of the $m$ column sums of $\mathbf{M}$ is 2, each edge having two ends.
+- Consider the incidence matrix $\mathbf{M}$ of $G$. The sum of the entries in the row corresponding to vertex $v$ is precisely $d(v)$. Therefore $\sum_{v\in V}d(v)$ is just the sum of all the entries in $\mathbf{M}$. But this sum is also $2m$, because each of the $m$ column sums of $\mathbf{M}$ is 2, each edge having two ends.$$\tag*{$\Box$}$$
 ## Corollary 1.2
 - In any graph, the number of vertices of odd degree is even.
 ### Proof 
@@ -65,6 +66,12 @@ $$d(v)\equiv\left\{
 1(\text{mod 2})& \text{if }d(v)\text{ is odd}\\
 0(\text{mod 2})& \text{if }d(v)\text{ is even.}
 \end{array}\right.$$
-- Thus, modulo 2, the left-hand side is congruent to the number of vertices of odd degree, and the right-hand side is zero. The number of vertices of odd degree is therefore congruent to zero modulo 2.
-
+- Thus, modulo 2, the left-hand side is congruent to the number of vertices of odd degree, and the right-hand side is zero. The number of vertices of odd degree is therefore congruent to zero modulo 2.$$\tag*{$\Box$}$$
+- A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
+# Proof Technique: Counting in Two Ways
+- in proving [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], we used a common proof technique in combinatorics, known as *counting in two ways*. It consists of considering a suitable matrix and computing the sum of its entries in two different ways: firstly as the sum of its row sums, and secondly as the sum of its column sums. Equating these two quantities results in an identity. In the case of [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], the matrix we considered was the incidence matrix of $G$. In order to prove the identity of Exercise 1.1.9a, the appropriate matrix to consider is the bipartite adjacency matrix of the bipartite graph $G[X, Y]$. In both these cases, the choice of the appropriate matrix is fairly obvious. However, in some cases, making the right choice requires ingenuity.
+- Note that an upper bound on the sum of the column sums of a matrix is clearly also an upper bound on the sum of its row sums (and vice versa). The method of counting in two ways may therefore be adapted to establish inequalities. The proof of the following proposition illustrates this idea.
+## Proposition 1.3
+- Let $G[X, Y]$ be a bipartite graph without isolated vertices such that $d(x)\ge d(y)$ for all $xy\in E$, where $x\in X$ and $y\in Y$. Then $|X|\le |Y|$, with equality if and only if $d(x)=d(y)$ for all $xy\in E$.
+## Proof
 - 

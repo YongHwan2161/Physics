@@ -29,7 +29,9 @@
 - `\degree`: $100\degree$
 - `overbrace`: $\overbrace{abcdefg}_{dididid}^{dkdkdk}$
 - `underbracd`: $\underbrace{abcdefg}_{dkdkdkd}^{dkdkdkdkkd}$
-- 
+- `\Box`: $\Box$증명 완료 시 사용 가능
+- `$$\tag*{$\Box$}$$`
+$$\tag*{$\Box$}$$
 ## Fonts
 - blackboard bold: \mathbb{} or \Bbb{}
   - $\mathbb{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}$, $\Bbb{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}$
