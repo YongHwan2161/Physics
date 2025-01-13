@@ -71,6 +71,8 @@
 - 삭제된 node는 garbage node에 따로 저장된다. garbage node는 256번 index를 부여받고, database 생성시 초기에 미리 생성되어 있다. 삭제된 node들은 garbage node와 link되는데, garbage node의 ch 0, axis 0이 삭제된 node_index, ch 0을 가리키도록 link가 생성되고, 삭제된 node들의 linked list의 마지막 node의 ch 0은 다시 garbage node의 ch0과 link되어 cycle을 형성하게 된다. 참조: [[Graphs and Their Representation#Cycle|Cycle]]
 - 삭제된 node를 재활용하고 싶을 때는 garbage node의  ch 0이 가리키는 node가 있는지만 찾아서 가져오면 된다. 그리고 그 다음 node를 다시 garbage node와 연결시켜서 cycle을 다시 만들어 주면 된다. 
 - garbage node의 ch 0부터 시작되는 cycle은 항상 다시 자신의 ch 0으로 돌아와야 하므로, 처음 garbage node를 초기화할 때에는 ch 0 axis 0이 자기 자신의 ch 0을 가리키도록 loop를 만들어 주어야 한다.  
+## Node 삭제 과정
+- Node 삭제 시 
 # print-node
 - node에 대한 정보를 출력하는 command이다. 
 - 출력해야 하는 정보는 node size, node offset, core position, is loaded.
@@ -88,3 +90,7 @@
 - 
 # Validate Node
 - node index가 유효한 범위 내에 있는지, node data가 Core에 존재하는지 확인하는 함수이다. 특정 함수를 호출하기 전에 먼저 node의 유효성을 확인한 다음 함수를 호출해야 한다. 호출한 함수에게 유효성 확인을 떠넘기지 말아야 한다. 예를 들면 create_axis 함수를 호출한다고 할 때, 함수를 호출하기 전에 먼저 node, channel, axis등의 유효성을 확인한 후 문제가 없는 경우에만 create_axis 함수를 호출해야 한다. 그렇지 않고, create_axis 함수 안에서 유효성을 모두 확인하라고 떠넘기면 create_axis 함수의 코드가 불필요하게 길어지게 되고 비효율적이다. 다른 함수를 호출할 때에도 마찬가지이다. 전달하는 인자에 대한 유효성을 먼저 확인한 후 문제가 없는 경우에만 함수를 호출하는 방식을 취해야 한다.
+
+# Error Log
+- [[Error handling#Garbage Node error|Garbage Node error]]
+- [[Error handling#node data from file|node data from file]]

@@ -41,3 +41,9 @@
         load_node_to_core(i);
     }
 ```
+# Garbage Node error
+- 프로그램을 종료했다가 재시작할 때마다 ch 0의 axis count가 1씩 증가함..
+- 프로그램 시작 시 initialize_system 함수에서 axis_count를 증가시킨 다음 다시 저장하는 코드가 있는 부분을 찾아야 함.
+- init_core_mapping 함수에서는 data를 읽어들이기만 하고 다시 저장하는 코드는 없음.
+- initialize_database 함수 내에 Garbage node에 loop를 생성하는 코드가 추가되어 있어서 프로그램 실행할 때마다 loop를 새로 생성하려고 시도하는 것 같음.
+- create_loop 함수를 create_DB 함수 안에만 넣어서 database를 생성할 때 한 번만 동작하도록 수정해서 해결.
