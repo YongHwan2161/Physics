@@ -82,3 +82,6 @@ $$|X|=\sum_{x\in X}\sum_{\substack{y\in Y \\xy\in E}}{\frac{1}{d(x)}}=\sum_{\sub
 ## Exercises
 ### 1.1.1 
 - Let $G$ be a simple graph. Show that $m\le \binom{n}{2}$, and determine when equality holds.
+#### solution
+- 참조: [[Binomial]]
+- 
