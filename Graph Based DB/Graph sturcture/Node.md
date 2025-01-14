@@ -82,14 +82,9 @@
 - 원래 garbage node의 ch 0이 가리키던 node는 garbage node의 ch 0 data에서 axis 0 data의 첫번째 link 위치에서 uint를 읽어들이면 된다. 
 - 삭제한 node는 Core에서 unload한다. 
 ```c
-void delete_node(unsigned int node_index) {
-    uint node_position = CoreMap[node_index].core_position;
-    for (uint i = 0; i < 16; i++) {
-        Core[node_position][i] = initValues[i];
-    }
     uint channel_offset = get_channel_offset(Core[GarbageNodeIndex], 0, 0);
     uint axis_offset = get_axis_offset(Core[GarbageNodeIndex], 0, 0);
-    uint first_garbage_node = *(uint*)(Core[GarbageNodeIndex] + channel_offset + axis_offset);
+    uint first_garbage_node = *(uint*)(Core[GarbageNodeIndex] + channel_offset + axis_offset + 2);
     delete_link(GarbageNodeIndex, 0, first_garbage_node, 0, 0);
     create_link(GarbageNodeIndex, 0, node_index, 0, 0);
     create_link(node_index, 0, first_garbage_node, 0, 0);
