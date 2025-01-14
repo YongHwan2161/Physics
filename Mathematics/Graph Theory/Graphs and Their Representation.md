@@ -74,4 +74,11 @@ $$d(v)\equiv\left\{
 ## Proposition 1.3
 - Let $G[X, Y]$ be a bipartite graph without isolated vertices such that $d(x)\ge d(y)$ for all $xy\in E$, where $x\in X$ and $y\in Y$. Then $|X|\le |Y|$, with equality if and only if $d(x)=d(y)$ for all $xy\in E$.
 ## Proof
-- The first assertion follows if we can find a matrix with $|X|$ rows and $|Y|$ columns in which each row sum is one and 
+- The first assertion follows if we can find a matrix with $|X|$ rows and $|Y|$ columns in which each row sum is one and each column sum is at most one. Such a matrix can be obtained from the bipartite adjacency matrix $\mathbf{B}$ of $G[X, Y]$ by dividing the row corresponding to vertex $x$ by $d(x)$, for each $x\in X$. (This is possible to since $d(x)\neq 0$.) Because the sum of the etries of $\mathbf{B}$ in the row corresponding to $x$ is $d(x)$, all row sums of the resulting matrix $\widetilde{\mathbf{B}}$ are equal to one. On the other hand, the sum of the entries in the column of $\widetilde{B}$ corresponding to vertex $y$ is $\sum 1/d(x)$, the sum being taken over all edges $xy$ incident to $y$, and this sum is at most one because $1/d(x)\le 1/d(y)$ for each edge $xy$, by hypothesis, and because there are $d(y)$ edges incident to $y$. The above arument may be expressed more concisely as follows.
+$$|X|=\sum_{x\in X}\sum_{\substack{y\in Y \\xy\in E}}{\frac{1}{d(x)}}=\sum_{\substack{x\in X\\y\in Y}}\sum_{xy\in E}{\frac{1}{d(x)}}\le\sum_{\substack{x\in X\\y\in Y}}\sum_{xy\in E}{\frac{1}{d(y)}}=\sum_{y\in Y}\sum_{\substack{x\in X\\xy\in E}}{\frac{1}{d(y)}}=|Y|$$
+- Furthermore, if $|X|=|Y|$, the middle inequality must be an equality, implying that $d(x)=d(y)$ for all $xy\in E$.$$\tag*{$\Box$}$$
+- An application of this proof technique to a problem in set theory about geometric configurations is described in Exercise 1.3.15.
+
+## Exercises
+### 1.1.1 
+- Let $G$ be a simple graph. Show that $m\le \binom{n}{2}$, and determine when equality holds.

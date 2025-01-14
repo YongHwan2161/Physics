@@ -19,6 +19,7 @@
 - `\underline`: $\underline{B}, \underline{BBB}$
 - `\hat{}`: $\hat{x}$
 - `\tilde{}`: $\tilde{x}$
+- `\widetilde{}`: $\widetilde{ABC}$
 - `\dot \ddot \dddot`: $\dot{x}, \ddot{x}, \dddot{x}$ 
 - `\cdot`: $F\cdot x$
 - `\cdots`: $\cdots$
@@ -76,10 +77,12 @@ $$\lim_{x\rightarrow 0}\frac{x}{2}$$
   - `\left\{ \right\}`: $\left\{\frac{1}{2}+3 \right\}$
 
 - 정의: `\equiv`: $L\equiv T-U$
-
-- 합: \sum_{}^{} 
+## Binomial
+- `\binom{}{}`: $\binom{n}{2}$
+## 합: \sum_{}^{} 
    - inline: $\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$
    - $$\sum_{i=0}^n i^2 = \frac{(n^2+n)(2n+1)}{6}$$
+   - `\substack{}`: $$\sum_{\substack{y\in Y \\xy\in E}}$$
 - integral: `\int_{}^{}{}`: $\int_{0}^{\infty}{x^2dx}$
 $$\int_{0}^{\infty}{x^2dx}$$
 - `\left` and`\right` apply to all the following sorts of parentheses: `(` and `)` (x)(x), `[` and `]` [x][x], `\{` and `\}` {x}{x}, `|` |x||x|, `\vert` |x||x|, `\Vert` ∥x∥‖x‖, `\langle` and `\rangle` ⟨x⟩⟨x⟩, `\lceil` and `\rceil` ⌈x⌉⌈x⌉, and `\lfloor` and `\rfloor` ⌊x⌋⌊x⌋. `\middle` can be used to add additional dividers. There are also invisible parentheses, denoted by `.`: use `\left.x^2\right\rvert_3^5 = 5^2-3^2` to get
