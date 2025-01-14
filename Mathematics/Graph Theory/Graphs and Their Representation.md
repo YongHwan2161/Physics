@@ -23,7 +23,10 @@
 - An edge with identical ends is called a *loop*, and an edge with distinct ends a *link*. Two or more links with the same pair of ends are said to be *parallel edges*.In the graph $G$ of [[Graphs and Their Representation#Figure 1.1.|Figure 1.1]], the edge $b$ is a *loop*, and all other edges are links; the edges $d$ and $f$ are parallel edges.
 - Throughout the book, the letter $G$ denotes a graph. Moreover, when there is no scope for ambiguity, we omit the letter $G$ from graph-theoretic symbols and write, for example, $V$ and $E$ instead of $V(G)$ and $E(G)$. In such instances, we denote the numbers of vertices and edges of $G$ by $n$ and $m$, respectively.
 - A graph is *finite* if both its vertex and edge set are finite. In this book, we mainly study finite graphs, and the term 'graph' always means 'finite graph'. The graph with no vertices (and hence no edges) is the *null graph*. Any graph with just one vertex is referred to as *trivial*. All other graphs are *nontrivial*. We admit the null graph solely for mathematical convenience. Thus, unless otherwise specified, all graphs under discussion should be taken to be nonnull.
+## Simple Graph
 - A graph is *simple* if it has no loops or parallel edges. The graph $H$ in [[Graphs and Their Representation#Figure 1.1.|fig. 1.1]] is simple, whereas the graph $G$ in [[Graphs and Their Representation#Figure 1.1.|fig. 1.1]] is not. Much of graph theory is concerned with the study of simple graphs.
+- The maximum number of edges in a simple graph on $n$ vertices occurs when every pair of distinct vertices is joined by exactly one edge.
+- Such a graph, in which every pair of distinct vertices is adjacent, is called the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices, denoted $\mathbf{K}_n$.
 - A set $V$, together with a set $E$ of two-element subsets of V, defines a simple graph $(V, E)$, where the ends of an edge $uv$ are precisely the vertices $u$ and $v$. Indeed, in any simple graph we may dispense with the incidence function $\psi$ by renaming each edge as the unordered pair of its ends. In a diagram of such a graph, the labels of the edges may then be omitted.
 # Special Families of Graphs
 ## complete graph
@@ -81,7 +84,9 @@ $$|X|=\sum_{x\in X}\sum_{\substack{y\in Y \\xy\in E}}{\frac{1}{d(x)}}=\sum_{\sub
 
 ## Exercises
 ### 1.1.1 
-- Let $G$ be a simple graph. Show that $m\le \binom{n}{2}$, and determine when equality holds.
+- Let $G$ be a [[Graphs and Their Representation#Simple Graph|simple graph]]. Show that $m\le \binom{n}{2}$, and determine when equality holds.
 #### solution
-- 참조: [[Binomial]]
+- 참조: [[Binomial#Binomial expression|Binomial expression]]
+$$\binom{n}{2}=\frac{n!}{2!(n-2)!}=\frac{n(n-1)}{2}$$
+- In a simple graph on $n$ vertices, we can choose at most one edge between any two distinct vertices.
 - 

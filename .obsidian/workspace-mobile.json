@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Binomial.md",
+                "file": "Mathematics/Graph Theory/Graphs and Their Representation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Binomial"
+              "title": "Graphs and Their Representation"
             }
           }
         ],
@@ -172,8 +172,8 @@
   },
   "active": "6379cc839d4a1fea",
   "lastOpenFiles": [
-    "Mathematics/Example 1.1.md",
     "Mathematics/Binomial.md",
+    "Mathematics/Example 1.1.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Graph Based DB/Functions/Node 관련 함수.md",
     "/Graph Based DB/Graph sturcture/Node.md",
