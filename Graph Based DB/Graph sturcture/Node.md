@@ -74,7 +74,11 @@
 - 삭제된 node를 재활용하고 싶을 때는 garbage node의  ch 0이 가리키는 node가 있는지만 찾아서 가져오면 된다. 그리고 그 다음 node를 다시 garbage node와 연결시켜서 cycle을 다시 만들어 주면 된다. 
 - garbage node의 ch 0부터 시작되는 cycle은 항상 다시 자신의 ch 0으로 돌아와야 하므로, 처음 garbage node를 초기화할 때에는 ch 0 axis 0이 자기 자신의 ch 0을 가리키도록 loop를 만들어 주어야 한다.  
 ## Node 삭제 과정
-- Node 삭제 시 삭제하려는 node의 앞 부분 16 bytes를 [[Variables#`initValues`|initValues]]로 초기화하고, Garbage node의 ch 0에서 삭제하려는 node의 ch 0으로 axis 0을 link하고, 원래 gargage node의 ch 0이 가리키던 node의 ch 0으로 삭제하려는 node의 ch 0을 link하면 된다. 
+- Node 삭제 시 삭제하려는 node의 앞 부분 16 bytes를 [[Variables#`initValues`|initValues]]로 초기화한다. 참조: [[Node 관련 함수#initialize_node|initialize_node]]
+```c
+    uint node_position = CoreMap[node_index].core_position;        initialize_node(&Core[node_position]);
+```
+- Garbage node의 ch 0에서 삭제하려는 node의 ch 0으로 axis 0을 link하고, 원래 gargage node의 ch 0이 가리키던 node의 ch 0으로 삭제하려는 node의 ch 0을 link하면 된다. 
 - 원래 garbage node의 ch 0이 가리키던 node는 garbage node의 ch 0 data에서 axis 0 data의 첫번째 link 위치에서 uint를 읽어들이면 된다. 
 - 삭제한 node는 Core에서 unload한다. 
 ```c
