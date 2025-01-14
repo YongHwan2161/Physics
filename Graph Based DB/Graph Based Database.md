@@ -1,12 +1,11 @@
-# Node
-- [[Node]]
+# [[Node]]
 # [[Channel]]
 
 # [[Axis]]
 
 # [[Link]]
-# Free Space
-- [[Free Space]]
+# [[Free Space]]
+
 # DB가 존재하는지 확인 및 load
 - 처음 프로그램이 실행되면 현재 directory에 binary file이 존재하는지 먼저 확인한다. 만약 이미 binary file이 존재한다면 그 파일을 그대로 사용하고, 존재하지 않는다면, 새로 database를 생성해야 한다. database 파일이 이미 있는지 확인하는 함수는 [[Functions#`check_and_init_DB`|check_and_init_DB]] 참조 
 - 데이터베이스가 이미 존재하는 경우에는 데이터베이스에 존재하는 binary file을 메모리로 로드하여 사용할 수 있다. 참조: [[Functions#`load_DB`|load_DB]], [[Functions#`load_node_from_file`|load_node_from_file]]
@@ -81,3 +80,8 @@ void create_DB() {
 - data.bin file에서 node index와 node offset을 mapping해 주는 data structure이다. 
 - free space에서 node space resize할 때마다 반드시 CoreMap을 update해 주어야 한다. 그래야 프로그램 재시작 시 node offset을 정확하게 찾아서 읽을 수 있다. 
 - CoreMap의 정보를 확인하는 command: 
+
+# Data 입력
+## Data 입력 과정
+- 2 bytes data가 input으로 주어진다고 가정한다. 먼저, 처음 byte에 해당하는 vertex_index를 찾는다. 예를 들어, input data가 `250 251`이라고 하면, 처음에는 vertex 250으로 찾아간다. 
+- 그다음 vertex 250의 ch 0, axis 0의 link data를 순회하면서 vertex 251이 존재하는지 확인한다. 존재하지 않으면, 
