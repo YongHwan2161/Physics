@@ -89,4 +89,13 @@ $$|X|=\sum_{x\in X}\sum_{\substack{y\in Y \\xy\in E}}{\frac{1}{d(x)}}=\sum_{\sub
 - 참조: [[Binomial#Binomial expression|Binomial expression]]
 $$\binom{n}{2}=\frac{n!}{2!(n-2)!}=\frac{n(n-1)}{2}$$
 - In a simple graph on $n$ vertices, we can choose at most one edge between any two distinct vertices.
+- The totoal number of distinct unordered pairs of vertices in an $n$-vertex set is precisely $$\binom{n}{2}=\frac{n(n-1)}{2}$$.
+- Because each of these $\binom{n}{2}$ possible pairs can contribute at most one edge in a simple graph, it follows that $$m=e(G)\le \binom{n}{2}$$
+###### When does equality hold?
+- The equality holds if and only if every pair of distinct vertices is and edge in $G$. In other words, this happens exectly when $G$ in the [[Graphs and Their Representation#complete graph|complete graph]] $K_n$. 
+### 1.1.2
+- Let $G[X, Y]$ be a simple bipartite graph, where $|X|=r$ and $|Y|=s$. 
+a) Show that $m\le rs$.
 - 
+b) Deduce that $m\le n^2/4$.
+c) Describe the simple bipartite graphs $G$ for which equality holds in (b).
