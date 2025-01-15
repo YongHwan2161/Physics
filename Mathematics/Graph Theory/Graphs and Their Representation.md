@@ -81,6 +81,23 @@ $$d(v)\equiv\left\{
 - Thus, modulo 2, the left-hand side is congruent to the number of vertices of odd degree, and the right-hand side is zero. The number of vertices of odd degree is therefore congruent to zero modulo 2.$$\tag*{$\Box$}$$
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
+- For $k=0, 1, 2$, characterize the $k$-regular graphs.
+- Case 1: $k=0$
+  - A 0-regulat graph is one in which every vertex has degree 0.
+  - This implies there are no edges in the graph.
+  - The graph consists of isolated vertices, with no connections between them.
+  - For $|V|=n$, the graph is simply a set of $n$ isolated points.
+- Case 2: $k=1$
+  - A 1-regulat graph is one in which every vertex has degree 1.
+  - This means each vertex is connected to exactly one other vertex.
+  - A 1-regular graph is a collection of disjoint edges.
+  - For $|V|=n$, the graph consists of $n/2$ edges if $n$ is even.(if $n$ is odd, there is no 1-regular graph ?)
+- Case 3: $k=3$
+  - A 2-regular graph is one in which every vertex has degree 2.
+  - This implies each vertex is part of exactly two edges.
+  - A 2-regular graph is a collection of disjoint cycles.
+  - The graph may consist of one cycle (if it is connected) or multiple cycles (if disconnected).
+  - 
 # Proof Technique: Counting in Two Ways
 - in proving [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], we used a common proof technique in combinatorics, known as *counting in two ways*. It consists of considering a suitable matrix and computing the sum of its entries in two different ways: firstly as the sum of its row sums, and secondly as the sum of its column sums. Equating these two quantities results in an identity. In the case of [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], the matrix we considered was the incidence matrix of $G$. In order to prove the identity of Exercise 1.1.9a, the appropriate matrix to consider is the bipartite adjacency matrix of the bipartite graph $G[X, Y]$. In both these cases, the choice of the appropriate matrix is fairly obvious. However, in some cases, making the right choice requires ingenuity.
 - Note that an upper bound on the sum of the column sums of a matrix is clearly also an upper bound on the sum of its row sums (and vice versa). The method of counting in two ways may therefore be adapted to establish inequalities. The proof of the following proposition illustrates this idea.
@@ -137,6 +154,14 @@ b) a cycle is bipartite if and only if it its length is even.
 - Show that, for any graph $G$, $\delta(G)\le d(G)\le \Delta(G)$.
 - 참고: [[#Average Degree]]
 -  $d(G)=\frac 1n \sum_{v\in V}d(v)$
-### 1.1.5
-- For $k=0, 1, 2$, characterize the $k$-regular graphs.
-- 
+### 1.1.6
+- a) Show that, in any group of two or more people, there are always two who have exactly the same number of friends within the group.
+  - Since the graph is simple, no person can have more than $n-1$ friends.
+  - **Pigoenhole principle** states that if $m$ items are placed into $n$ containers, and $m>n$, then at least one container must hold more than one item.
+  - Assumption: Each vertex in the graph $G$ has a unique degree. This means the degrees of vertices must include all integers from 0 to $n-1$ without repetition.
+  - **Contradiction**: If one vertex has degree 0(no friends), then no vertex can have degree $n-1$ because the vertex with degree $n-1$ would need to be connected to all other $n-1$ vertices, which includes the vertex with degree 0, a contradiction.
+  - Therefore, not all $n$ degrees from 0 to $n-1$ can be assigned uniquely to the $n$ vertices.
+  - By the pigenhole principle, at least two vertices must have the same degree.
+- b) Describe a group of five people, any two of whom have exactly one friend in common. Can you find a group of four people with this same property?
+  - For every pair of vertices $u, v$, there is exactly one vertex $w$ that is adjacent to both $u$ and $v$.
+  - 
