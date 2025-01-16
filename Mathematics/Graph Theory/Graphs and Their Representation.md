@@ -169,4 +169,20 @@ b) a cycle is bipartite if and only if it its length is even.
   - Form another triangle on vertices $\{A,D,E\}$.
   - This 5-vertex graph is sometimes called the "windmill graph" with 2 "blades"(two triangles) sharing one vertex. It is a special case of the ore general **Friendship Theorem** in graph theory(which states that if a finite graph has the property that every two vertices share exactly one common neighbor, then that graph must be a "windmill" or triangles all meeting in a single common vertex).
   2. The (Non)Existence of Such a 4-Person Group
-   
+   - If we try the complete graph $K_4$, each pair of vertices has two common neighbors.
+   - If we try a cycle $C_4$(a square), adjacent vertices share 0 common neighbors, and opposite vertices share 0.
+   - If we try a star $K_{1,3}$(one center and three leaves), any leaf-leaf pair shares exactly the center as a neighbor (good), but center-leaf pairs share no other neighbor in common.
+   - One can check all other 4-vertex graphs (threre are not many) and see none of them gives "exactly one common friend" for every pair of vertices.
+### 1.1.7 $n$-Cube
+- The $n$-cube $Q_n(n\ge 1)$ is the graph whose vertex set is the set of all $n$-tuples of 0s and 1s, where two $n$-tuples are adjacent if they differ in precisely one coordinate.
+#### a) Draw $Q_1, Q_2, Q_3$, and $Q_4$.
+  1. $Q_1$
+     - The vertices are all 1-tuples of 0s and 1s, namely: $(0), (1)$
+     - These two vertices differ in exactly one coordinate (since there is only one coordinate), so there is one edge connecting them: $Q_1: (0)-(1)$
+     - Is is simply a line(or an edge with two endpoints)
+2. $Q_2$
+   - The vertices are all 2-tupes of 0s and 1s: (0, 0), (0, 1), (1, 0), (1, 1).
+   - This set naturaly forms the corners of a square
+3. $Q_3$
+   - The vertices are all 3-tuples of 0s and 1s. Thee are $2^3=8$ such vertices:$(0,0,0),(0,0,1),(0,1,0),(0,1,1),(1,0,0),(1,0,1),(1,1,0),(1,1,1)$
+   - They form the corners of a cube in 3D.
