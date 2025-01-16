@@ -163,4 +163,10 @@ b) a cycle is bipartite if and only if it its length is even.
   - Therefore, not all $n$ degrees from 0 to $n-1$ can be assigned uniquely to the $n$ vertices.
   - By the pigenhole principle, at least two vertices must have the same degree.
 - b) Describe a group of five people, any two of whom have exactly one friend in common. Can you find a group of four people with this same property?
-  
+  1. We seek a simple graph on five vertics, say $A, B, C, D, E$, in which any two vertices share exactly one common neighbor. A classical example is the "**windmill**"(or "friendship") construction made by **two triangles** sharing a single common vertex.
+  - Pick one vertex to be "universal", call it $A$.
+  - Form one triangle on vertices $\{A, B, C\}$.
+  - Form another triangle on vertices $\{A,D,E\}$.
+  - This 5-vertex graph is sometimes called the "windmill graph" with 2 "blades"(two triangles) sharing one vertex. It is a special case of the ore general **Friendship Theorem** in graph theory(which states that if a finite graph has the property that every two vertices share exactly one common neighbor, then that graph must be a "windmill" or triangles all meeting in a single common vertex).
+  2. The (Non)Existence of Such a 4-Person Group
+   
