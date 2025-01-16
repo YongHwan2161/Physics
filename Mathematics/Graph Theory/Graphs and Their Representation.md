@@ -164,4 +164,12 @@ b) a cycle is bipartite if and only if it its length is even.
   - By the pigenhole principle, at least two vertices must have the same degree.
 - b) Describe a group of five people, any two of whom have exactly one friend in common. Can you find a group of four people with this same property?
   - For every pair of vertices $u, v$, there is exactly one vertex $w$ that is adjacent to both $u$ and $v$.
-  - 
+  - Such a graph is known as the **complement of the Petersen graph**.
+  - Labe the vertices $V=\{a,b,c,d,e\}$.
+  - Define adjacency such that each vertex is connected to three others:
+   - $a$ is adjacent to $b,c,d$,
+   - $b$ is adjacent to $c,d,e$,
+   - $c$ is adjacent to $d,e,a$,
+   - $d$ is adjacent to $e,a,b$,
+   - $e$ is adjacent to $a,b,c$
+   - 
