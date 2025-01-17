@@ -10,11 +10,16 @@
 - channel 개수 다음에는 각 채널의 offset을 가리키는 4 bytes * (채널 개수) 만큼의 데이터가 기록된다. 
 - 채널 데이터에 접근하기 위해서는 채널 수 정보 다음부터 원하는 채널번호의 offset을 찾아서 해당 offset으로 이동하면 된다. offset은 node data의 시작점을 기준으로 계산한다. 
 
-# Specialized Nodes
-## node 0 ~ 255
-- node 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 node_index 자체가 1바이트의 데이터를 표현한다. 
-## node 256: Garbage Node
-- 삭제된 node들이 저장되는 휴지통이다. 삭제된 node들은 나중에 node를 새로 생성할 때 재활용될 수 있다. 
+# Specialized Vertices
+## vertex 0 ~ 255
+- vertex 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 vertex_index 자체가 1바이트의 데이터를 표현한다. 
+## vertex 256: Garbage Vertex
+- 삭제된 vertex들이 저장되는 휴지통이다. 삭제된 vertex들은 나중에 vertex를 새로 생성할 때 재활용될 수 있다. 
+## get Token vertex data
+- Token vertex는 데이터가 저장되는 최소 단위이다. 각각의 Token vertex들은 고유한 데이터를 저장하고 있다. 
+- Token vertex에 저장된 데이터를 읽어들이는 방법: 해당 token vertex index의 ch 0에서 axis 2에 있는 2개의 link 는 각각 해당 Token vertex의 데이터를 두 부분으로 나누어서 구성된 두 개의 token vertex index와 ch 0을 가리키고 있다. 이 두 개의 제 1 자식 token vertex의 데이터를 하나로 합치면 부모 vertex의 data가 된다. 두 개의 제1자식 token vertex의 데이터는 각각 두 개씩 총 4개의 제2 자식 token vertex를 axis 2로 가리키고 있고, 이 4개의 제2 자식 token vertex의 data를 연결하면 부모 vertex의 data가 되는 식이다.
+- 위와 같은 방식으로 탐색을 하다가 vertex index 0에서 255 중 하나의 vertex index가 나타나면 그 때는 탐색이 종료된다. 그리고 해당 제 n 자식 노드는 vertex index 0에서 255 중 하나이고, data는 vertex index와 같은 0에서 255 중 하나로 결정된다. 즉, vertex 0~255까지는 실제 data를 1바이트 저장하고 있는 vertex들이라고 볼 수 있고, 이 방식을 사용하면 어떠한 token vertex에 대해서도 저장된 data를 읽어올 수 있다.
+- 탐색 방법은 stack structure의 pop과 push를 사용하여 아주 효율적으로 구현이 가능하다. 
 # Node data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
 - node data를 찾을 때는 먼저 Core 변수에 node data가 저장되어 있는지 확인해야 한다. 확인후 이미 RAM에 올라와 있는 경우에는 Core에 있는 데이터를 그대로 가져오면 되고, 없는 경우에는 binary file에서 데이터를 불러와야 한다. 

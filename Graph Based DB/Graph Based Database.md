@@ -1,4 +1,4 @@
-# [[Node]]
+# [[Vertex]]
 # [[Channel]]
 
 # [[Axis]]
@@ -93,4 +93,4 @@ void create_DB() {
 - tokenize 함수는 들어온 데이터를 token node의 순서로 표현하는 방법을 찾고, 각각의 token node의 ch 1부터 다음에 올 token node를 가리키는데, axis는 2로 연결한다. axis 2는 데이터를 표현하는 token들을 이어주는 line을 형성하는데 사용되는 axis로 설정한다. 
 - 문제는 새로운 데이터를 저장할 때, 기존의 토큰들을 연결하여 데이터를 표현할 수 있는데, 데이터가 저장되었음을 나타내는 node를 새로 하나 추가할 것인지이다. 기존의 방식에서는 새로운 data가 추가될 때마다 node를 하나씩 새로 할당하였다. 그리고 새로 할당받은 node의 ch 0에서부터 token cycle이 axis 2로 연결되고, 해당 node의 데이터를 불러올 때에는  ch 0의 axis 2를 순회하면 되는 방식이었다. 이 방식을 그대로 사용하기로 한다. 
 ## Tokenize 순서
-- 
+- 들어온 data의 첫 번재 byte에 해당하는 node_index와 ch 0을 저장한다. 

@@ -91,7 +91,8 @@
             break;
         }
     }
- ```
+
+```
 - target_link 보다 뒤에 있는 data를 6바이트만큼 앞으로 이동시킨다. 
 ```c
     uint target_link_offset = link_data_offset + (link_position * 6);
@@ -121,3 +122,7 @@
         *(uint *)(node + 8 + (ch * 4)) -= 6;
     }
 ```
+
+# find Link index
+- input으로 source vertex index, source channel index, source axis number, dest node, dest channel이 주어지면, source vertex, ch, axis에 존재하는 link들 중에, dest node, channel이 존재하는지 찾아서, 존재한다면 몇 번째 link에 있는지 반환하는 함수이다. 존재하지 않거나 link count가 0이면 -1을 반환한다.
+- 
