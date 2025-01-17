@@ -83,5 +83,12 @@ void create_DB() {
 
 # Data 입력
 ## Data 입력 과정
+- 임의의 길이를 가진 data가 input으로 주어진다고 가정하자. 데이터는 [[Graph Based Database#Tokenization|토큰화]]되어 저장되고, 각각의 토큰은 연결되어서 cycle을 이루고, 데이터를 불러올 때는 이 cycle을 순회하면서 읽어들인 token들을 연결하여 원래의 데이터를 복원할 수 있다. 
+- 
 - 2 bytes data가 input으로 주어진다고 가정한다. 먼저, 처음 byte에 해당하는 vertex_index를 찾는다. 예를 들어, input data가 `250 251`이라고 하면, 처음에는 vertex 250으로 찾아간다. 
 - 그다음 vertex 250의 ch 0, axis 0의 link data를 순회하면서 vertex 251이 존재하는지 확인한다. 존재하지 않으면, 
+# Tokenization
+- tokenize는 주어진 char 배열을 기존에 저장된 token node들로 쪼개서 표현하는 방법을 찾는 과정으로 진행된다. 
+- 데이터베이스가 처음 생성되면 node 0~255까지가 token_node로 지정된다. 각각의 token_node들은 node_index와 같은 데이터를 표현하는 token이다. 
+- tokenize 함수는 들어온 데이터를 token node의 순서로 표현하는 방법을 찾고, 각각의 token node의 ch 1부터 다음에 올 token node를 가리키는데, axis는 2로 연결한다. axis 2는 데이터를 표현하는 token들을 이어주는 line을 형성하는데 사용되는 axis로 설정한다. 
+- 
