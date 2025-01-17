@@ -204,4 +204,28 @@ X&:=\text{\{all bit-strings of length $n$ with an even numbers of 1s\}},\\
 Y&:=\text{\{all bit-strings of length $n$ with an odd numbers of 1s\}}
 \end{align}$$
 - Take any edge {$u, v$}. By definition of $Q_n$, $u$ and $v$ differ in exactly one bit.
+- Changing exactly one bit in a bit-string switches the parity of the number of 1s.
+- If $u$ has an even number of 1s, then $v$ has an odd number of 1s, and vice versa.
+### 1.1.8 
+The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of all subsets of $\{1,2,\cdots,n\}$, where two subsets $X$ and $Y$ are adjacent if their symmetric difference has precisely one element.
+#### a) Draw $BL_1, BL_2, BL_3$, and $BL_4$
+- Edges: two subsets $X$ and $Y$ are adjacent if their symmetric difference $X\Delta Y$ has exactly one element.$$X\Delta Y=(X\backslash Y)\cup (X\backslash X)$$
+- Equivalently, $X$ and $Y$ differ by exactly one element from its neighbors, $BL_n$ is **isomorphic to $n$-cube $Q_n$**. One can think of each subset as an $n$-bit string (indicator vector) and "differing by exactly one element" corresponds to "differing in exactly one bit."
+1. $BL_1$
+   - Subsets of {1}: $\emptyset$ and {1}
+   - These two differ by one element, so there is oe edge. This matches $Q_1$.
+2. $BL_2$
+   - Subsets of {1, 2}: $\emptyset$, {1}, {2}, {1,2}
+   - Graphically, it forms a square, just like $Q_2$.
+3. $BL_3$
+4. ...
+
+#### b) Determine $v(BL_n)$ and $e(BL_n)$.
+- refer to [[Graphs and Their Representation#1.1.7 $n$-Cube|1.1.7]]
+- 
+#### c) Show that $BL_n$ is bipartite for all $n\ge 1$.
+- refer to [[Graphs and Their Representation#1.1.7 $n$-Cube|1.1.7]] 
+### 1.1.9
+- Let $G[X,Y]$ be a bipartite graph.
+#### a) Show that $\sum_{v\in X}d(v)=\sum_{v\in Y}d(V)$.
 - 

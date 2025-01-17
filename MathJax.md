@@ -25,6 +25,7 @@
 - `\cdots`: $\cdots$
 - `\vdots`: $\vdots$
 - `\ddots`: $\ddots$
+- `\backslash, \setminus`: $\backslash, \setminus$
 - 
 - `\mathring{}`: $\mathring{A}$
 - `\degree`: $100\degree$
