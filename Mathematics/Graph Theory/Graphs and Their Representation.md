@@ -65,8 +65,8 @@
 - and by $d(G)$ their *average degree*, $\frac 1n \sum_{v\in V}d(v)$. The following theorem established a fundamental identity relating the degrees of the vertices of a graph and the number of its edges.
 ## Theorem 1.1 
 - For *any graph* $G$, 
-###### Equation 1.1
-$$\sum_{v\in V}d(v)=2m$$
+###### Equation 1.1 Handshaking Lemma
+$$\sum_{v\in V}d(v)=2m=2e(G)$$
 ### Proof 
 - Consider the incidence matrix $\mathbf{M}$ of $G$. The sum of the entries in the row corresponding to vertex $v$ is precisely $d(v)$. Therefore $\sum_{v\in V}d(v)$ is just the sum of all the entries in $\mathbf{M}$. But this sum is also $2m$, because each of the $m$ column sums of $\mathbf{M}$ is 2, each edge having two ends.$$\tag*{$\Box$}$$
 ## Corollary 1.2
@@ -186,3 +186,22 @@ b) a cycle is bipartite if and only if it its length is even.
 3. $Q_3$
    - The vertices are all 3-tuples of 0s and 1s. Thee are $2^3=8$ such vertices:$(0,0,0),(0,0,1),(0,1,0),(0,1,1),(1,0,0),(1,0,1),(1,1,0),(1,1,1)$
    - They form the corners of a cube in 3D.
+4. $Q_4$
+   - The vertices are all 4-tuples of 0s ad 1s. There are $2^4=16$ such vertices:$(0,0,0,0),(0,0,0,1),(0,0,1,0),(0,0,1,1),(0,1,0,0),(0,1,0,1),(0,1,1,0),(0,1,1,1),(1,0,0,0),(1,0,0,1),(1,0,1,0),(1,0,1,1),(1,1,0,0),(1,1,0,1),(1,1,1,0),(1,1,1,1)$
+   - Geometrically, $Q_4$ is a **4D hypercube**. A common 2D depiction shows a "cube within a cube", with corresponding vertices connected.
+#### b) Determine $v(Q_n)$ andn $e(Q_n)$.
+- $v(Q_n)=2^n$
+- $e(Q_n):$ $n=1$이면 $e(Q_1)=1$, $e(Q_2)=4=2\times 2, e(Q_3)=12=3\times 4, e(Q_4)=4\times 2^3$ 
+- [[Graphs and Their Representation#Equation 1.1|Handshaking Lemma]]
+- Because each vertex is an $n$-tuple of bits, changing exactly one coordinate yields exactly $n$ neighbors. So each vertex has degree $n$.
+- There are $2^n$ vertices, each of degree $n$. Thus $$\sum_{n\in V}d(v)=2^n\times n=2e(Q_n)$$
+- $$e(Q_n)=n2^{n-1}$$
+#### c) Show that $Q_n$ is bipartite for all $n\ge 1$.
+- $Q_n$ has vertices corresponding to all $n$-bit ninary strings.
+- Two vertices (bit-strings) are adjacent if and only if they differ in exactly one coordinate.
+- Let $$\begin{align}
+X&:=\text{\{all bit-strings of length $n$ with an even numbers of 1s\}},\\
+Y&:=\text{\{all bit-strings of length $n$ with an odd numbers of 1s\}}
+\end{align}$$
+- Take any edge {$u, v$}. By definition of $Q_n$, $u$ and $v$ differ in exactly one bit.
+- 
