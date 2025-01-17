@@ -228,4 +228,5 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
 ### 1.1.9
 - Let $G[X,Y]$ be a bipartite graph.
 #### a) Show that $\sum_{v\in X}d(v)=\sum_{v\in Y}d(V)$.
+- every edge of $G[X,Y]$, $e(G)$ has one vertex $x_i\in X$ and $y_i\in Y$.
 - 
