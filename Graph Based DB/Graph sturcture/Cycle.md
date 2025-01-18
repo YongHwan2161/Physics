@@ -18,4 +18,6 @@
 - 
 # Insert Path Into Cycle
 - 이미 존재하는 Cycle을 구성하는 특정 vertex, ch을 기준으로 일정 길이의 (vertex, ch)로 이루어진 Path data를 삽입하여 더 긴 새로운 Cycle을 생성하는 함수이다. 
-- 
+# Delete Path from Cycle
+- 이미 존재하는 Cycle을 구성하는 특정 vertex, ch을 기준으로 특정 개수의 (vertex, ch) 들을 Cycle로부터 제거하고 다시 Cycle을 이어붙여서 길이가 줄어든 새로운 Cycle을 생성하는 함수이다. 
+- 제거된 Path를 구성하는 (vertex, ch)들은 서로에 대한 연결도 모두 끊고, axis_count를 0으로 초기화해야 한다.  이는 clear_channel 함수를 이용하면 된다. 
