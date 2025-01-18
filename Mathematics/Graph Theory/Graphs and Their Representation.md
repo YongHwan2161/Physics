@@ -234,4 +234,10 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
 - Similarly, for each $y\in Y$, summing column $y$ of $\mathbf{B}$ counts the edges incident to $y$. $$\sum_{y\in Y}d(y)=\sum_{\text{all column sums}}=\text{sum of all entries of B}$$
 - $$\sum_{x\in X}d(x)=\sum_{y\in Y}d(y)\tag*{$\Box$}$$
 #### b) Deduce that if $G$ is $k$-[[Graphs and Their Representation#Regular graph|regular]], with $k\ge1$, then $|X|=|Y|$.
+- $$\sum_{x\in X}d(x)=k|X|, \sum_{y\in Y}d(y)=k|Y|$$
+- $$|X|=|Y|\tag*{$\Box$}$$
+### 1.1.10 $k$-Partite Graph
+- A $k$-partite graph is one whose vertex set can be partitioned into $k$ subsets, or parts, in such a way that no edge has both ends in the same part. (Equivalently, one may think of the vertices as being colourable by $k$ colours so that no edge joins two vertices of the same colour.) Let $G$ be a simple $k$-partite graph with parts of sizes $a_1, a_2, \cdots, a_k$. Show that $m\le \frac 12 \sum_{i=1}^k a_i(n-a_i)$.($n\equiv v(G)$)
+#### soluion
+- $max\left\{\sum_{v\in a_i}d(v)\right\}=a_i(n-a_i)$
 - 
