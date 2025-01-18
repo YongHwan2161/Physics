@@ -3,6 +3,8 @@
 # Sentence
 - 문장(sentence)은 하나의 cycle로 이루어진다. sentence는 token의 연결로 이루어지므로, sentence data를 읽는 방식은 sentence cycle을 구성하는 vertex의 token data들을 읽어서 연결하는 과정으로 설명할 수 있다. 
 ## Create Sentence
+### Handle create sentence
+- 먼저 token
 - sentence를 생성하기 위해서는 먼저 주어진 data를 tokenize 해야 한다. 이를 위해서 search_token 함수를 사용한다([[Vertex#Search Token|Search Token]]). 
 ### create new token vertex
 - search_token 함수를 이용해서 token vertex를 받아온 뒤에 remaining data가 있다면 받아온 token vertex의 ch 1부터 channel_count만큼 loop를 돈다. loop를 돌면서 각각의 ch의 axis 2에 연결된 다음 vertex들의 token data가 remaining data의 앞부분과 일치하는지 비교하여, 일치하는 ch이 발견되면 이 때 새로운 token vertex를 생성해야 한다. 그 이유는 두 token을 합쳐서 새로운 token을 생성하지 않으면 두 token의 나열된 순서가 동일한 두 개의 sentence cycle이 생성될텐데, 이 경우에는 두 개의 token을 합쳐서 하나의 token으로 만들면 sentence를 구성하는 token의 개수를 줄일 수 있고, 데이터를 더욱 적은 용량으로 저장할 수 있기 때문이다. 

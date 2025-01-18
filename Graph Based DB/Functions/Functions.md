@@ -6,6 +6,7 @@
 
 # [[Command 관련 함수]]
 # [[Node 관련 함수]]
+# [[Cycle 관련 함수]]
 
 # `create_DB`
 - 새로운 database를 생성하는 함수이다. [[Functions#`create_new_node`|create_new_node]] 함수를 참조한다. 
