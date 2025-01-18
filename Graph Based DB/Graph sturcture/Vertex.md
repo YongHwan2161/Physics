@@ -27,6 +27,9 @@
 - 새로운 token vertex를 생성해야 하므로, create vertex를 이용해서 새로운 vertex를 생성한다(new vertex라고 하자). 기존의 vertex들은 각각 first vertex, second vertex 라고 하자. 
 - first vertex의 ch 0, axis 0을 이용해서 new vertex와 연결한다. axis 0은 기존에 존재하는 token을 탐색하기 위한 axis이다. 0xAA의 token이 존재하면, 0xAABB, 0xAACC 등 0xAA로 시작하는 모든 토큰들은 0xAA의 ch 0, axis 0에 link로 추가되어 있다고 볼 수 있다. 즉 axis 0으로 연결된 token이 있다면 그 token의 data는 무조건 그 전의 token data를 포함하여 더 많은 데이터를 저장하는 token이 된다. 이런 방식으로 data의 입력이 많아질 때, 공통되는 data를 하나의 token에 추상화하여 저장할 수 있고, 더 긴 data를 저장하는 token이 많아질 수록 database의 저장공간 효율이 증가하게 된다.
 - 그다음 new vertex의 ch 0, axsi 1를 이용해서 first vertex와 second vertex를 연결한다. axis 1은 token data를 읽어들이기 위해 사용하는 axis이다.
+## Create Token Logic
+- token 생성은 사용자가 직접 조작할 일이 없어야 한다(테스트용을 제외하고). 즉, sentence를 생성할 때, token 생성이 필요하다면 자동으로 token이 생성되어야 한다. 그러기 위해서는 기존의 token 두 개를 합쳐서 새로운 token을 생성하는 조건을 지정해야 한다. 
+- 새로운 token이 생성되는 조건은 특정 token vertex의 ch 1부터 ch을 증가시키면서 axis 2(sentence axis)를 탐색하다가, 해당 ch의 axis 2에 연결된 다음 token의 정보
 ## Search Token
 - 일정 길이의 char* array를 input으로 받으면 data의 앞에서부터 시작하여 일치하는 token이 존재하는지 찾는 함수이다. 
 - 맨 앞의 data가 0xAABBCCDD로 시작한다고 가정하면 먼저 vertex 0xAA의 ch 0, axis 0(token search axis)에 있는 link들을 탐색한다.  
