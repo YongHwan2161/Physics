@@ -14,6 +14,22 @@
 ### Case 2: sentence data = token data
 - 새로 생성하려는 sentence data가 기존에 있는 token data와 동일한 경우의 처리가 문제된다. 
 - 이 경우에는 기존에 있는 token vertex에 ch을 추가하여 추가한 ch의 axis 2로 loop를 생성하면 된다. 
+```c
+        TokenSearchResult* result = search_token(current_pos, remaining_len);
+        if (!result) break;
+        if (result->matched_length == remaining_len) {
+            if (create_channel(result->vertex_index) != CHANNEL_SUCCESS) {
+                printf("Error: Failed to create channel for vertex %u\n", result->vertex_index);
+                return ERROR;
+            }
+            ushort channel_index = get_channel_count(Core[get_vertex_position(result->vertex_index)]) - 1;
+            if (create_loop(result->vertex_index, channel_index, 2) != LINK_SUCCESS) {
+                printf("Error: Failed to create loop for vertex %u\n", result->vertex_index);
+                return ERROR;
+            }
+            return SUCCESS;
+        }
+```
 ## Get Sentence
 - sentence data를 읽기 위해서는 sentence의 시작 vertex index와 channel index를 input으로 주어야 한다. 
 - input으로 받은 vertex, ch의 axis 2(sentence axis)에 cycle이 존재하는지 확인하고 존재한다면 순차적으로 cycle을 돌면서 각각의 cycle을 구성하는 vertex에 대해 get token을 이용해 token data를 읽어서 cycle을 모두 돌 때까지 읽어들이면서 data를 이어주면 sentence data가 완성된다. 
