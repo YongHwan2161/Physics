@@ -15,6 +15,7 @@
 - vertex 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 vertex_index 자체가 1바이트의 데이터를 표현한다. 
 ## vertex 256: Garbage Vertex
 - 삭제된 vertex들이 저장되는 휴지통이다. 삭제된 vertex들은 나중에 vertex를 새로 생성할 때 재활용될 수 있다. 
+# Token
 ## get Token vertex data
 - Token vertex는 데이터가 저장되는 최소 단위이다. 각각의 Token vertex들은 고유한 데이터를 저장하고 있다. 
 - Token vertex에 저장된 데이터를 읽어들이는 방법: 해당 token vertex index의 ch 0에서 axis 2에 있는 2개의 link 는 각각 해당 Token vertex의 데이터를 두 부분으로 나누어서 구성된 두 개의 token vertex index와 ch 0을 가리키고 있다. 이 두 개의 제 1 자식 token vertex의 데이터를 하나로 합치면 부모 vertex의 data가 된다. 두 개의 제1자식 token vertex의 데이터는 각각 두 개씩 총 4개의 제2 자식 token vertex를 axis 2로 가리키고 있고, 이 4개의 제2 자식 token vertex의 data를 연결하면 부모 vertex의 data가 되는 식이다.
@@ -26,6 +27,11 @@
 - 새로운 token vertex를 생성해야 하므로, create vertex를 이용해서 새로운 vertex를 생성한다(new vertex라고 하자). 기존의 vertex들은 각각 first vertex, second vertex 라고 하자. 
 - first vertex의 ch 0, axis 0을 이용해서 new vertex와 연결한다. axis 0은 기존에 존재하는 token을 탐색하기 위한 axis이다. 0xAA의 token이 존재하면, 0xAABB, 0xAACC 등 0xAA로 시작하는 모든 토큰들은 0xAA의 ch 0, axis 0에 link로 추가되어 있다고 볼 수 있다. 즉 axis 0으로 연결된 token이 있다면 그 token의 data는 무조건 그 전의 token data를 포함하여 더 많은 데이터를 저장하는 token이 된다. 이런 방식으로 data의 입력이 많아질 때, 공통되는 data를 하나의 token에 추상화하여 저장할 수 있고, 더 긴 data를 저장하는 token이 많아질 수록 database의 저장공간 효율이 증가하게 된다.
 - 그다음 new vertex의 ch 0, axsi 1를 이용해서 first vertex와 second vertex를 연결한다. axis 1은 token data를 읽어들이기 위해 사용하는 axis이다.
+## Search Token
+- 일정 길이의 char* array를 input으로 받으면 data의 앞에서부터 시작하여 일치하는 token이 존재하는지 찾는 함수이다. 
+- 맨 앞의 data가 0xAABBCCDD로 시작한다고 가정하면 먼저 vertex 0xAA의 ch 0, axis 0(token search axis)에 있는 link들을 탐색한다.  
+- 각각의 link들이 가리키는 다음 vertex index들의 token data를 조사해서 0xBB로 시작하며 input data와 일치하는 token data가 있는지 조사해서 없으면 현재 token data와 vertex index를 반환하고, 일치하는 token data를 가진 vertex가 있으면 한 단계 더 들어가서 그 다음 다시 일치하는 token data를 가진 vertex를 찾는 과정을 더이상 일치하는 token data를 가진 vertex를 찾을 수 없을 때까지 탐색한 다음 결과를 반환한다. 
+- 위 과정을 거치면 sentence를 구성하는 token의 개수를 char* array 의 size만큼이 아니라 훨씬 더 줄일 수 있고 database의 저장공간을 훨씬 줄이면서 데이터의 원본을 그대로 저장할 수 있게 된다. 
 - 
 # Vertex data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
