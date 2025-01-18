@@ -229,4 +229,9 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
 - Let $G[X,Y]$ be a bipartite graph.
 #### a) Show that $\sum_{v\in X}d(v)=\sum_{v\in Y}d(V)$.
 - every edge of $G[X,Y]$, $e(G)$ has one vertex $x_i\in X$ and $y_i\in Y$.
-- Represent $G[X,Y]$ by its bipartite adjacency matrix $\mathbf{B}$. Rows correspond to vertices in $X$. Columns correspond to vertices in $Y$.  
+- Represent $G[X,Y]$ by its bipartite adjacency matrix $\mathbf{B}$. Rows correspond to vertices in $X$. Columns correspond to vertices in $Y$.  An entry $b_{xy}$ is the number of edges between $x\in X$ and $y\in Y$.
+- For each $x\in X$, summing row $x$ of $\mathbf{B}$ counts exactly the edges incident to $x$. Thus the row sum is $d(x)$. Hence $$\sum_{x\in X}d(x)=\sum_{\text{all row sums}}=\text{sum of all entries of B}$$
+- Similarly, for each $y\in Y$, summing column $y$ of $\mathbf{B}$ counts the edges incident to $y$. $$\sum_{y\in Y}d(y)=\sum_{\text{all column sums}}=\text{sum of all entries of B}$$
+- $$\sum_{x\in X}d(x)=\sum_{y\in Y}d(y)\tag*{$\Box$}$$
+#### b) Deduce that if $G$ is $k$-[[Graphs and Their Representation#Regular graph|regular]], with $k\ge1$, then $|X|=|Y|$.
+- 
