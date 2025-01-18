@@ -7,6 +7,10 @@
 - axis 개수가 1 이상인 경우에는 그 다음 (6바이트 * axis 개수)가 axis의 number(2바이트)와 axis offset(4바이트)을 나타낸다. 
 - 각각의 axis offset에서부터 첫 2바이트는 link count, 즉 링크 개수를 나타낸다. axis와 마찬가지로 처음 axis가 생성되면 이 값은 0으로 초기화된다. 링크 개수 다음에는 (6바이트 * 링크 개수)만큼 link data가 저장된다.
 - 
+# Axis 종류
+- Axis 0: Token Data Axis: token data를 얻을 때 탐색하는 axis이다. 각 axis는 반드시 2개의 link entry를 가지고 있어서 2진 트리 구조를 탐색하여 token data를 읽어온다.
+- Axis 1: Token Search Axis: data가 저장된 배열을 token으로 분리하기 위해서 이미 존재하는 token을 탐색할 때 이용되는 axis이다.
+- 
 # Axis 생성
 - Axis를 생성하기 위해서는 생성하려는 node, channel 정보와, 생성하려는 axis의 종류를 함수에게 알려주어야 한다. axis의 종류는 번호로 구분된다. 0은 forward link, 1은 backward link, 이런 식으로 사전에 정의되어 있다. 
 - channel data 내에서 axis에 대한 정보를 저장하는 방식은 다음과 같다.  먼저 axis의 개수를 2바이트로 나타낸다. 그리고 (6 bytes * axis의 개수)만큼 공간을 할당한다. 6 bytes는 axis number를 나타내는 2바이트와 axis data의 시작지점인 offset을 나타내는 4바이트로 이루어진다. offset의 기준점은 channel data의 시작점을 기준으로 한다. 즉, axis가 1개만 있다면, 첫번째 axis data의 offset은 2 + 6 = 8이 된다.  
