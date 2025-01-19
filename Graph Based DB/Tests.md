@@ -53,4 +53,9 @@ Size (bytes)    Offset
 # Channel Test
 ## create channel test
 - 특정 node에 channel을 순차적으로 100개 생성하면서 오류가 없는지 확인한다. 
+# Create Sentence test
+## token integration test
+- 하나의 문자를 추가하면서 순차적으로 문자열을 생성하며 token 제대로 생성되는지 확인한다. 
+- 먼저 "AB"문자열을 생성하고, 이후 "ABC", "ABCD", "ABCDE", "ABCDEF", ... 순으로 생성한다. 각각의 생성 과정에서 모든 문자열은 token 2개로 표현된다. 앞에서 생성된 token과 새로 추가된 문자열의 data 때문에 새로운 token이 계속 생성되기 때문이다. 
+- 생성 과정에서 error가 발생하지 않아야 한다. 
 - 
