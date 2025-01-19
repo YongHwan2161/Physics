@@ -73,7 +73,8 @@ Size (bytes)    Offset
             channels[count] = recycle_or_create_channel(result->vertex_index);
         }
 ```
-
+- 위와 같이 (65,1)-(65,2)-(65,1) cycle이 있는 상태에서 다시 AA 문자열을 input으로 주면 어떻게 되어야 할까? AA token data를 갖는 새로운 vertex를 생성하고, ch 1과 ch 2 모두 자기 자신을 가리키는 loop가 형성되어야 한다. 
+- 
 ## repeating sentence test
 - 문자열 내에 반복되는 문자열이 포함된 경우를 테스트한다. 
 - 예: "ABCABCABC"와 같은 문자열을 생성할 때 에러가 발생하지 않는지 테스트한다. 
