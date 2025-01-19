@@ -21,7 +21,7 @@
 - Token vertex에 저장된 데이터를 읽어들이는 방법: 해당 token vertex index의 ch 0에서 axis 2에 있는 2개의 link 는 각각 해당 Token vertex의 데이터를 두 부분으로 나누어서 구성된 두 개의 token vertex index와 ch 0을 가리키고 있다. 이 두 개의 제 1 자식 token vertex의 데이터를 하나로 합치면 부모 vertex의 data가 된다. 두 개의 제1자식 token vertex의 데이터는 각각 두 개씩 총 4개의 제2 자식 token vertex를 axis 2로 가리키고 있고, 이 4개의 제2 자식 token vertex의 data를 연결하면 부모 vertex의 data가 되는 식이다.
 - 위와 같은 방식으로 탐색을 하다가 vertex index 0에서 255 중 하나의 vertex index가 나타나면 그 때는 탐색이 종료된다. 그리고 해당 제 n 자식 노드는 vertex index 0에서 255 중 하나이고, data는 vertex index와 같은 0에서 255 중 하나로 결정된다. 즉, vertex 0~255까지는 실제 data를 1바이트 저장하고 있는 vertex들이라고 볼 수 있고, 이 방식을 사용하면 어떠한 token vertex에 대해서도 저장된 data를 읽어올 수 있다.
 - 탐색 방법은 stack structure의 pop과 push를 사용하여 아주 효율적으로 구현이 가능하다. 
-# create token 
+## create token 
 - 새로운 token이 생성되기 위해서는 반드시 기존의 token data 두개를 연결해서 생성할 수 있는 token만 생성 가능하다. 기존의 token data가 '0xAA'와 0xBB이면, 0xAABB의 data를 저장하는 token은 생성 가능하지만, 0xAABBCC 와 같은 token은 생성하지 못한다. 0xAABBCC data를 저장하는 token을 생성하기 위해서는 0xAABB와 0xCC token이 기존에 존재해야만 가능하다(다른 조합도 가능하다, 0xAA와 0xBBCC 등).
 - 새로운 token을 생성하는 함수는 input으로 기존에 존재하는 두 개의 token vertex index을 받아야 한다. 두 vertex의 순서가 중요하다. 순서가 바뀌면 새로 생성되는 token의 data가 변하기 때문이다.
 - 새로운 token vertex를 생성해야 하므로, create vertex를 이용해서 새로운 vertex를 생성한다(new vertex라고 하자). 기존의 vertex들은 각각 first vertex, second vertex 라고 하자. 
@@ -95,7 +95,7 @@
 - 삭제된 node를 재활용하고 싶을 때는 garbage node의  ch 0이 가리키는 node가 있는지만 찾아서 가져오면 된다. 그리고 그 다음 node를 다시 garbage node와 연결시켜서 cycle을 다시 만들어 주면 된다. 
 - garbage node의 ch 0부터 시작되는 cycle은 항상 다시 자신의 ch 0으로 돌아와야 하므로, 처음 garbage node를 초기화할 때에는 ch 0 axis 0이 자기 자신의 ch 0을 가리키도록 loop를 만들어 주어야 한다.  
 ## Node 삭제 과정
-- Node 삭제 시 삭제하려는 node의 앞 부분 16 bytes를 [[Variables#`initValues`|initValues]]로 초기화한다. 참조: [[Node 관련 함수#initialize_node|initialize_node]]
+- Node 삭제 시 삭제하려는 node의 앞 부분 16 bytes를 [[Variables#`initValues`|initValues]]로 초기화한다. 참조: [[Vertex 관련 함수#initialize_node|initialize_node]]
 ```c
     uint node_position = CoreMap[node_index].core_position;        initialize_node(&Core[node_position]);
 ```
@@ -117,6 +117,7 @@
     CoreSize--;
 }
 ```
+
 # print-vertex
 - vertex에 대한 정보를 출력하는 command이다. 
 - 출력해야 하는 정보는 vertex size, vertex offset, core position, is loaded.

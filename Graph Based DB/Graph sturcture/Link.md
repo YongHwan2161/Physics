@@ -125,4 +125,5 @@
 
 # find Link index
 - input으로 source vertex index, source channel index, source axis number, dest node, dest channel이 주어지면, source vertex, ch, axis에 존재하는 link들 중에, dest node, channel이 존재하는지 찾아서, 존재한다면 몇 번째 link에 있는지 반환하는 함수이다. 존재하지 않거나 link count가 0이면 -1을 반환한다.
-- 
+# get Link
+- current_vertex_index, current ch index, axis number, link index를 input으로 받아서 해당 link index에 해당하는 link data(vertex, ch)가 존재하는지 확인하여 존재한다면 vertex, ch 값을 반환한다. 

@@ -5,7 +5,7 @@
 # [[Axis 관련 함수]]
 
 # [[Command 관련 함수]]
-# [[Node 관련 함수]]
+# [[Vertex 관련 함수]]
 # [[Cycle 관련 함수]]
 
 # `create_DB`
