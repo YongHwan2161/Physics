@@ -61,7 +61,19 @@ Size (bytes)    Offset
 ## repeating tokens
 - 동일한 token이 반복되는 문자열의 경우의 처리가 문제된다. 
 - 예를 들어 "AA"라는 문자열이 input으로 주어지는 경우를 생각해 보자. 이 경우에는 (65, 1)-> (65, 2) -> (65, 1)로 이루어진 cycle이 형성되어야 한다. 
-- 
+```c
+        tokens[count] = result->vertex_index;
+        if (tokens[count] == tokens[count-1]) // repeat token
+        {
+            create_channel(tokens[count]);
+            channels[count] = channels[count-1] + 1;
+        }
+        else // ordinary token sequence
+        {
+            channels[count] = recycle_or_create_channel(result->vertex_index);
+        }
+```
+
 ## repeating sentence test
 - 문자열 내에 반복되는 문자열이 포함된 경우를 테스트한다. 
 - 예: "ABCABCABC"와 같은 문자열을 생성할 때 에러가 발생하지 않는지 테스트한다. 
