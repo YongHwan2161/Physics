@@ -56,3 +56,25 @@ int handle_create_sentence(char* args) {
             return ERROR;
         }
 ```
+- 두 번째 이상 반복문을 도는 경우(count > 0)
+- pev_vertex에 이전 반복문에서 찾았던 token vertex index를 대입한다. 
+```c
+        if (count > 0) {
+            uint prev_vertex = tokens[count-1];
+            uint vertex_position = get_vertex_position(prev_vertex);
+            if (!Core[vertex_position]) {
+                continue;
+            }
+```
+- prev_vertex에 ch_count가 1인 경우에는 탐색을 진행할 필요가 없다.
+- 
+```c
+            ushort channel_count = get_channel_count(Core[vertex_position]);
+            if (channel_count == 1) {
+                create_channel(prev_vertex);
+                create_channel(tokens[count]);
+                channels[count] = 1;
+                count++;
+                break;
+            }
+```
