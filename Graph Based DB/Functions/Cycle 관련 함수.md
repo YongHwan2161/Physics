@@ -125,3 +125,7 @@ int handle_create_sentence(char* args) {
 tokens[count-1] = new_vertex;
 count--;
 ```
+## Case 2: 반복되는 token
+- input으로 주어진 sentence에 반복되는 token이 있는 경우 처리가 문제된다. 
+- 예를 들면 "ABCABCABC"라는 문자열을 입력하는 경우를 생각해 볼 수 이다. 
+- 
