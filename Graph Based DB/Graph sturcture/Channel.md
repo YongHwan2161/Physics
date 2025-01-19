@@ -58,7 +58,7 @@
 - clear_channel을 이용해서 초기화된 channel이 vertex에 존재할 수 있다. 이 경우에는 새로 channel을 추가할 게 아니라 빈 ch을 재활용하면 된다. 
 - 이 함수는 주어진 vertex의 ch들을 순회하면서 empty channel이 있는지 확인하다가 empty channel을 발견하면 해당 ch_index를 반환하고, 마지막 ch까지 확인했는데, empty ch이 없으면 새로 ch을 추가한 뒤 추가된 ch의 index를 반환한다. 
 # Clear channel
-- 생성된 channel을 삭제해도, 실제로 channel이 삭제되지는 않는다. 다만, channel 내의 모든 data가 초기화될 뿐이다(axis 개수가 0으로 변경됨). 그 이유는 channel을 삭제하려면 더 높은 번호의 channel들의 channel index를 변경해야 하는데, link 정보에 node와 channel이 들어가기 때문에, channel index는 함부로 변경되어서는 안 된다. 변경된 channel 번호를 참조하는 모든 link들을 업데이트하는 것은 비효율적이다. 어차피 삭제된 channel은 나중에 재활용될 수 있기 때문에, 그대로 두고 channel data만 초기화하는 것이 효율적이다. 따라서 delete channel이 아닌 clear channel로 이름을 정한다. 
+- 생성된 channel을 삭제해도, 실제로 channel이 삭제되지는 않는다. 다만, channel 내의 모든 data가 초기화될 뿐이다(axis 개수가 0으로 변경됨). 그 이유는 channel을 삭제하려면 더 높은 index의 channel들의 channel index를 1씩 감소해야 하는데, link 정보에 node와 channel이 들어가기 때문에, channel index는 함부로 변경하면 안 된다. 변경된 channel index를 참조하는 모든 link들을 업데이트하는 것은 비효율적이다. 어차피 삭제된 channel은 나중에 재활용될 수 있기 때문에, 그대로 두고 channel data만 초기화하는 것이 효율적이다. 따라서 delete channel이 아닌 clear channel로 이름을 정한다. 
 ## clear channel 과정
 - 초기화하려는 channel index의 offset에서 axis count를 0으로 변경시켜 주고, target channel보다 index가 큰 channel들의 offset을 제거한 data size만큼 앞으로 당겨준다. 
 - 

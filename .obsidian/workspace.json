@@ -53,18 +53,13 @@
             "id": "556860fd6d39ac82",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Graph Based DB/Tests.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Tests"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       },
       {
         "id": "df523d78af4f1eda",
@@ -265,8 +260,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "556860fd6d39ac82",
+  "active": "594785c1ec721c4f",
   "lastOpenFiles": [
+    "Graph Based DB/Tests.md",
     "Graph Based DB/Functions/Cycle 관련 함수.md",
     "Graph Based DB/Functions/Vertex 관련 함수.md",
     "Graph Based DB/Graph sturcture/Vertex.md",
@@ -284,7 +280,6 @@
     "Graph Based DB/binary file/Free Space.md",
     "LaTex.md",
     "ArXiv.md",
-    "Graph Based DB/Tests.md",
     "Graph Based DB/Functions/Axis 관련 함수.md",
     "Images/Pasted image 20250111213533.jpg",
     "Images/Pasted image 20250111210724.jpg",
