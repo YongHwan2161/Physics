@@ -65,16 +65,25 @@ int handle_create_sentence(char* args) {
         }
 ```
 - 두 번째 이상 반복문을 도는 경우(count > 0 && need_serarch)
-- pev_vertex에 이전 반복문에서 찾았던 token vertex index를 대입한다. 
+- prev_vertex에 이전 반복문에서 찾았던 token vertex index를 대입한다. 
+- 그리고 ch count만큼 반복문을 도는데, [[Link#get Link|get Link]]를 이용해서 다음으로 가리키는 next_vertex, next_channel 정보를 받아온다. 
 ```c
-        if (count > 0) {
+        if (count > 0 && need_search) {
             uint prev_vertex = tokens[count-1];
-            uint vertex_position = get_vertex_position(prev_vertex);
-            if (!Core[vertex_position]) {
-                continue;
-            }
+            // Check each channel for matching next token
+            for (ushort ch = 1; ch < channel_count; ch++) {
+                uint next_vertex;
+                ushort next_channel;
+                if (get_link(prev_vertex, ch, (ushort)2, (ushort)0, &next_vertex, &next_channel) != LINK_SUCCESS) {
+                    continue;
+                }
 ```
-- prev_vertex에 ch_count가 1인 경우에는 탐색을 진행할 필요가 없다.
+- next token data를 [[Vertex#get Token vertex data|get token data]]를 이용해 받아온다.
+```c
+                char* next_token = get_token_data(next_vertex);
+                printf("next_token: %s\n", next_token);
+                if (!next_token) continue;
+```
 - 
 ```c
             ushort channel_count = get_channel_count(Core[vertex_position]);
