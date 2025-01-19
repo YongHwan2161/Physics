@@ -44,16 +44,27 @@ int handle_create_sentence(char* args) {
     while (remaining_len > 0 && count < MAX_SENTENCE_TOKENS) {
 ```
 - 첫 번째 반복문을 도는 경우(count == 0)
-- 다시 token을 찾아서 `tokens[count], channels[count]`에 기록한다. 
+- 다시 token을 찾아서 `result`에 기록한다. 
 ```c
-        result = search_token(current_pos, remaining_len);
+        TokenSearchResult *result = search_token(current_pos, remaining_len);
         if (!result) break;
-  
         tokens[count] = result->vertex_index;
         channels[count] = recycle_or_create_channel(result->vertex_index);
         if (channels[count] == CHANNEL_ERROR) {
             printf("Error: Failed to create channel for vertex %u\n", result->vertex_index);
+            free_search_result(result);
             return ERROR;
+        }
+```
+- 만약 result->vertex_index의 ch_count가 2이면 ch 탐색을 할 필요가 없으므로, 값을 저장하고, 다음 반복문으로 jump한다. 
+- `channels[count]`에 값을 저장할 때 [[Channel#recycle or create ch|recycle_or_create_channel]]을 사용하므로 ch_count = 2인 경우에도 더이상 ch 탐색을 할 필요가 없다.  
+```c
+        if (channel_count == 2) {
+            current_pos += result->matched_length;
+            remaining_len -= result->matched_length;
+            count++;
+            free_search_result(result);
+            continue;
         }
 ```
 - 두 번째 이상 반복문을 도는 경우(count > 0)
