@@ -97,3 +97,31 @@ int handle_create_sentence(char* args) {
                         if (new_vertex >= 0) {
                             cycleInfo* existing_cycle = get_cycle_info(prev_vertex, ch, 2);
 ```
+- 만약 cycle count가 2이면, delete path form cycle을 이용해서 2개의 token을 삭제하는 게 불가능하다. 이 경우는 특수 case로, cycle의 모든 vertex, ch 을 clear하고 new vertex의 ch 1에 axis 2 loop를 생성한다. 만약 sentence 보다 상위 구조와 연관되어 있다면, new_vertex의 ch1을 기존의 prev_vertex, ch의 위치와 치환해야 한다(후속작업 필요).
+```c
+    if (existing_cycle && existing_cycle->count == 2) {
+       printf("existing_cycle->count == 2\n");
+       clear_cycle(existing_cycle);                               
+       create_loop(new_vertex, 1, 2);
+   }
+```
+- 그렇지 않은 경우에는 cycle에서 2개의 vertex token, ch을 뽑아내고, new_vertex, ch 1을 대시 삽입한다. 
+```c
+    else
+    {
+    delete_path_from_cycle(tokens[count - 1], channels[count - 1], 2, 2);
+    if (existing_cycle)
+        free_cycle_info(existing_cycle);
+    uint new_path[1] = {(uint)new_vertex};
+    ushort new_channels[1] = {0};
+    insert_path_into_cycle(tokens[count - 1], channels[count - 1],
+                           new_path, new_channels, 1, 2);
+    }
+```
+- tokens array에서 prev token위치를 new token vertex로 바꾼다(실제로 생성되는 sentence token이므로)
+- count--를 이용해 다음 루프에서 다시 count 위치에 새로운 token을 추가하도록 한다. 
+```c
+// Update tokens array
+tokens[count-1] = new_vertex;
+count--;
+```
