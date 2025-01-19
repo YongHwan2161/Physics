@@ -84,14 +84,16 @@ int handle_create_sentence(char* args) {
                 printf("next_token: %s\n", next_token);
                 if (!next_token) continue;
 ```
-- 
+- next token data가 result의 token_data와 같다면, 새로운 token을 생성해야 한다. 
+- new_vertex에 ch을 하나만 생성하는 이유는 기존에 존재하는 sentence cycle에서 delete path and inset new vertex할 때 사용할 ch 1을 생성하는 것이고, 새로 추가될 sentence는 ch 2를 지나가지만 ch 2는 create senten cycle 함수에서 알아서 생성하므로 미리 생성할 필요가 없다. 
 ```c
-            ushort channel_count = get_channel_count(Core[vertex_position]);
-            if (channel_count == 1) {
-                create_channel(prev_vertex);
-                create_channel(tokens[count]);
-                channels[count] = 1;
-                count++;
-                break;
-            }
+                      if (strcmp(next_token, result->token_data) == 0) {
+                        // Create combined token
+                        int new_vertex = create_token_vertex(prev_vertex, result->vertex_index);
+                        create_channel(new_vertex);
+```
+- new_vertex 가 제대로 생성되었다면, prev_token, ch을 지나는 cycle info를 받아온다. 
+```c
+                        if (new_vertex >= 0) {
+                            cycleInfo* existing_cycle = get_cycle_info(prev_vertex, ch, 2);
 ```
