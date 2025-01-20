@@ -48,7 +48,7 @@
 ## Connected Graph
 - A graph is *connected* if, for every partition of its vertex set into two nonempty sets $X$ and $Y$, there is an edge with one end in $X$ and one end in $Y$; otherwise the graph is *disconnected*. In other words, a graph is disconnected if its vertex set can be partitioned into two nonempty subsets $X$ and $Y$ so that no edge has one end in $X$ and one end in $Y$. (It is instructive to compare this definition with that of a bipartite graph.) Examples of connected and disconnected graphs are displayed in [[Graphs and Their Representation#Figure 1.4|Figure 1.4]].
 ###### Figure 1.4
-![[Pasted image 20250111210724.jpg]]
+![[Pasted image 20250120165515.jpg]]
 - As observed earlier, examples of graphs abound in the real world. Graphs also arise naturally in the study of other mathematical structures such as polyhedra, lattices, and groups. There graphs are generally defined by means of an adjacency rule, prescribing which unordered pairs of vertices are edges and which are not. A number of such examples are given in the exercises at the end of this section and in Section 1.3.
 - For the sake of clarity, we observe certain conventions in representing graphs by diagrams: we do not allow an edge to intersect itself, nor let an edge pass through a vertex that is not an end of the edge; clearly, this is always possible. However, two edges may intersect at a point that does not correspond to a vertex, as in the drawings of the first two graphs in [[Graphs and Their Representation#Figure 1.2|Figure 1.2]]. A  graph which can be drawn in the plane in such a way that edges meet only at points corresponding to their common ends is called a *planar graph*, and  such a drawing is called a *planar embedding* of the graph. For instance, the graphs $G$ and $H$ of Examples 1 and 2 are both planar, even though there are crossing edges in the particular drawing of $G$ shown in [[Graphs and Their Representation#Figure 1.1.|Figure 1.1]]. The first two graphs in [[Graphs and Their Representation#Figure 1.2|Figure 1.2]], on the other hand, are not planar, as proved later.
 - Although not all graphs are planar, every graph can be drawn on some surface so that its edges intersect only at their ends. Such a drawing is called an *embedding* of the graph on the surface. Figure 1.21 provides an example of an embedding of a graph on the torus. Embeddings of graphs on surfaces are discussed in Chapter 3 and, more thoroughly, in Chapter 10.
@@ -257,5 +257,6 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
   - Case 2: $n$ is not divisible by $k(n=kq+r, \text{ where }0<r<k)$
   - $$e(G)=\frac 12 \left(n^2-\sum_{i=1}^ka_i^2\right)$$
 ### 1.1.12
-- a) Show that if $G$ is simple and $m>\binom{n-1}{2}$, then $G$ is connected.
+- a) Show that if $G$ is simple and $m>\binom{n-1}{2}$, then $G$ is connected.([[Graphs and Their Representation#Connected Graph|connected graph]], [[Binomial#Binomial expression|binomal]])
+  - $\binom{n-1}{2}=\frac{(n-1)!}{2!(n-3)}=\frac{(n-2)(n-1)}{2}$
   - 
