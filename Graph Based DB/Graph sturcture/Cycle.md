@@ -20,7 +20,7 @@ int handle_create_sentence(char* args) {
 
     TokenSearchResult *result_first = search_token(current_pos, remaining_len);
 ```
-- 만약 input으로 들어온 data와 완전히 일치하는 token이 한 번에 발견되면, 더이상 코드를 진행시킬 필요가 없다. 그냥 해당 token vertex에 빈 channel을 하나 찾거나 새로 만들어서 loop를 만들어 주면 된다. 
+- 만약 input으로 들어온 data와 완전히 일치하는 token이 한 번에 발견되면, 더 이상 코드를 진행시킬 필요가 없다. 그냥 해당 token vertex에 빈 channel을 하나 찾거나 새로 만들어서 loop를 만들어 주면 된다. 
 ```c
     if (remaining_len == (size_t)result_first->matched_length)
     { // if the remaining length is 0, then we are at the end of the string
