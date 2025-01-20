@@ -45,6 +45,7 @@
 - Likewise, a ==*cycle*== on three or more vertices is a simple graph whose vertices can be arranged in a cyclic sequence in such a way that two vertices are adjacent if they are consecutive in the sequence, and are nonadjacent otherwise; a cycle on one vertex consists of a single vertex with a loop, and a cycle on two vertices consists of two vertices joined by a pair of parallel edges. The ==*length*== of a path or a cycle is the number of its edges. A path or cycle of length $k$ is called a *k-path* or *k-cycle*, respectively; the path or cycle is *odd* or *even* according to the parity of $k$. A 3-cycle is often called a *triangle*, a 4-cycle a *quadrilateral*, a 5-cycle a *pentagon*, a 6-cycle a *hexagon*, and so on. [[Graphs and Their Representation#Figure 1.3|Figure 1.3]] epicts a 3-path and a 5-cycle.
 ###### Figure 1.3
 ![[Pasted image 20250110213155.jpg]]
+## Connected Graph
 - A graph is *connected* if, for every partition of its vertex set into two nonempty sets $X$ and $Y$, there is an edge with one end in $X$ and one end in $Y$; otherwise the graph is *disconnected*. In other words, a graph is disconnected if its vertex set can be partitioned into two nonempty subsets $X$ and $Y$ so that no edge has one end in $X$ and one end in $Y$. (It is instructive to compare this definition with that of a bipartite graph.) Examples of connected and disconnected graphs are displayed in [[Graphs and Their Representation#Figure 1.4|Figure 1.4]].
 ###### Figure 1.4
 ![[Pasted image 20250111210724.jpg]]
@@ -249,7 +250,12 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
   - $$\sum_{i=1}^k a_i(n-a_i)=n\sum_{i=1}^k a_i -\sum_{i=1}^k a_i^2=n^2-\sum_{i=1}^ka_i^2$$
   - $$e(G)=\frac 12 \left(n^2-\sum_{i=1}^ka_i^2\right)$$
   - Maximizing $e(G)$ is therefore equivalent to minimizing $\sum a_i^2$ 
-  - It is a well-known "convexity" (or "equalizing") fact that for a fixed sum $n$, the sum of quares $\sum a_i^2$ is minimized precisely when the $a_i$ are as equal as possible-differing from one another at most 1.
-- b) Determine $e(T$
+  - It is a well-known "convexity" (or "equalizing") fact that for a fixed sum $n$, the sum of squares $\sum a_i^2$ is minimized precisely when the $a_i$ are as equal as possible-differing from one another at most 1.
+- b) Determine $e(T_{k, n})$
+  - if $a_i=\frac nk$, $e(T_{k, n})=\frac 12 \left(n^2-\frac{n^2}{k}\right)=\frac{(k-1)n^2}{2k}$
+  - if $a_i \neq \frac nk ??$
+  - Case 2: $n$ is not divisible by $k(n=kq+r, \text{ where }0<r<k)$
+  - $$e(G)=\frac 12 \left(n^2-\sum_{i=1}^ka_i^2\right)$$
 ### 1.1.12
-- 
+- a) Show that if $G$ is simple and $m>\binom{n-1}{2}$, then $G$ is connected.
+  - 
