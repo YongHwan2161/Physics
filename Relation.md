@@ -1,0 +1,3 @@
+- relation은 element들의 관계를 나타내는 데 사용된다. element는 sentence, paragraph 등 데이터가 저장된 단위들을 의미한다. 하나의 데이터 저장 단위도 의미가 있지만, 데이터들 간의 관계를 표현하기 위해서는 새로운 axis를 이용해서 이를 표현해야 한다. 
+- 데이터 저장단위들은 기본적으로 두 가지의 axis를 사용하여 서로에 대한 관계를 나타낸다. parent, child인데, 상위 디렉토리와 하위 디렉토리 같은 개념으로 이해하면 된다. 처음 database가 생성될 때, root node가 생성되고, 이후 생성되는 data unit들은 root node의 child node로 연결이 되어 나간다. 이렇게 관계를 정해 놓으면 root node로부터 어떠한 data unit 도 찾을 수 있다. 다만 서로 다른 root node를 사용하는 독립된 관계망에 존재하는 data은 서로의 정확한 vertex_index를 알지 못하면 relation을 이용해서 절대 탐색할 수 없다. 아예 다른 세계에 존재하는 data라고 볼 수 있다. 
+- 
