@@ -116,6 +116,12 @@ create_link(tokens[count - 1], channels[count - 1], tokens[count], channels[coun
                     if (ch == channels[count - 1])
                         continue; // skip the current channel
 ```
+3. next_token=prev_token, && next_ch == prev_ch
+- loop를 형성하고 있는 token의 경우에는 당연히 더 이상 탐색할 필요가 없다. 
+```c
+if (next_vertex == tokens[count - 1] && next_channel == channels[count - 1]) 
+    continue; // skip if the next vertex is the same as itself
+```
 - 이후 각 ch이 가리키는 다음 token과 channel을 계산하고 next_token도 받아온다. 이 next_token이 현재 tokens[count]의 data와 같은지를 비교해서 token을 새로 생성할지 결정하게 된다. 
 ```c
    uint next_vertex;
