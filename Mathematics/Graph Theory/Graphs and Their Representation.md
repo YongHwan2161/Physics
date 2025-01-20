@@ -244,4 +244,12 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
 ### 1.1.11 Turan Graph
 - A $k$-partite graph is complete if any two vertices in different parts are adacent. A simple complete $k$-partite graph on $n$ vertices whose parts are of equal or almost equal sizes (that is, $\lfloor n/k\rfloor$ or $\lceil n/k\rceil$) is called a Turan graph and denoted $T_{k, n}$
 - a) Show that $T_{k, n}$ has more edges than any other simple complete $k$-paitite graph on $n$ vertices.
+  - all part differ in size at most 1.
+  - $$e(G) = \frac 12 \sum_{i=1}^k a_i(n-a_i)$$
+  - $$\sum_{i=1}^k a_i(n-a_i)=n\sum_{i=1}^k a_i -\sum_{i=1}^k a_i^2=n^2-\sum_{i=1}^ka_i^2$$
+  - $$e(G)=\frac 12 \left(n^2-\sum_{i=1}^ka_i^2\right)$$
+  - Maximizing $e(G)$ is therefore equivalent to minimizing $\sum a_i^2$ 
+  - It is a well-known "convexity" (or "equalizing") fact that for a fixed sum $n$, the sum of quares $\sum a_i^2$ is minimized precisely when the $a_i$ are as equal as possible-differing from one another at most 1.
+- b) Determine $e(T$
+### 1.1.12
 - 
