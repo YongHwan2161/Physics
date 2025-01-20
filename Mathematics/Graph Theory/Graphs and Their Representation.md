@@ -109,7 +109,7 @@ $$|X|=\sum_{x\in X}\sum_{\substack{y\in Y \\xy\in E}}{\frac{1}{d(x)}}=\sum_{\sub
 - Furthermore, if $|X|=|Y|$, the middle inequality must be an equality, implying that $d(x)=d(y)$ for all $xy\in E$.$$\tag*{$\Box$}$$
 - An application of this proof technique to a problem in set theory about geometric configurations is described in Exercise 1.3.15.
 
-## Exercises
+# Exercises
 ### 1.1.1 
 - Let $G$ be a [[Graphs and Their Representation#Simple Graph|simple graph]]. Show that $m\le \binom{n}{2}$, and determine when equality holds.
 #### solution
@@ -239,5 +239,9 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
 ### 1.1.10 $k$-Partite Graph
 - A $k$-partite graph is one whose vertex set can be partitioned into $k$ subsets, or parts, in such a way that no edge has both ends in the same part. (Equivalently, one may think of the vertices as being colourable by $k$ colours so that no edge joins two vertices of the same colour.) Let $G$ be a simple $k$-partite graph with parts of sizes $a_1, a_2, \cdots, a_k$. Show that $m\le \frac 12 \sum_{i=1}^k a_i(n-a_i)$.($n\equiv v(G)$)
 #### soluion
-- $max\left\{\sum_{v\in a_i}d(v)\right\}=a_i(n-a_i)$
+- $\operatorname{max}\left\{\sum_{v\in a_i}d(v)\right\}=a_i(n-a_i)$
+- $$m=e(G)\le \frac 12 \sum_{i=i}^k \sum_{v\in a_i}d(v)=\frac 12 \sum_{i=1}^k a_i(n-a_i)\tag*{$\Box$}$$
+### 1.1.11 Turan Graph
+- A $k$-partite graph is complete if any two vertices in different parts are adacent. A simple complete $k$-partite graph on $n$ vertices whose parts are of equal or almost equal sizes (that is, $\lfloor n/k\rfloor$ or $\lceil n/k\rceil$) is called a Turan graph and denoted $T_{k, n}$
+- a) Show that $T_{k, n}$ has more edges than any other simple complete $k$-paitite graph on $n$ vertices.
 - 

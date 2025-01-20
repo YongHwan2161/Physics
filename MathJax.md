@@ -76,7 +76,8 @@ $$\lim_{x\rightarrow 0}\frac{x}{2}$$
   - `(), [], \{\}`: $(), [], \{\}$
   - `\left( \right)`: $\left(\frac{1}{2} + 3\right)$
   - `\left\{ \right\}`: $\left\{\frac{1}{2}+3 \right\}$
-
+ - `\lceil, \rceil`: $\lceil, \rceil$
+ - `lfloor, \rfloor`: $\lfloor, \rfloor$
 - 정의: `\equiv`: $L\equiv T-U$
 ## Binomial
 - `\binom{}{}`: $\binom{n}{2}$
