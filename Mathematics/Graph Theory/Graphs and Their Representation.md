@@ -54,7 +54,9 @@
 - Although not all graphs are planar, every graph can be drawn on some surface so that its edges intersect only at their ends. Such a drawing is called an *embedding* of the graph on the surface. Figure 1.21 provides an example of an embedding of a graph on the torus. Embeddings of graphs on surfaces are discussed in Chapter 3 and, more thoroughly, in Chapter 10.
 # Incidence and Adjacency Matrices
 - Although drawings are a convenient means of specifying graphs, they are clearly not suitable for storing graphs in computers, or for applying mathematical methods to study their properties. For these purposes, we consider two matrices associated with a graph, its incidence matrix and its adjacency matrix.
+## Incidence matrix
 - Let $G$ be a graph, with vertex set $V$ and edge set $E$. The *incidence matrix* of $G$ is the $n\times m$ matrix $\mathbf{M}_G:=(m_{ve})$, where $m_{ve}$ is the number of times (0, 1, or 2) that vertex $v$ and edge $e$ are incident. Clearly, the incidence matrix is just another way of specifying the graph.
+## Adjacency matrix
 - The *adjacency matrix* of $G$ is the $n\times n$ matrix $\mathbf{A}_G:=(a_{uv})$, where $a_{uv}$ is the number of edges joining vertices $u$ and $v$, each loop counting as two edges. Incidence and adjacency matrices of the graph $G$ of [[Graphs and Their Representation#Figure 1.1.|Figure 1.1]] are shown in [[Graphs and Their Representation#Figure 1.5|Figure 1.5]].
 ###### Figure 1.5
 ![[Pasted image 20250111213533.jpg]]
@@ -289,8 +291,29 @@ k\ge\Bigg\lceil{\frac n2}\Bigg\rceil+1
 - This leads to a contradiction, as $\big\lceil\frac n2\big\rceil+1>n-1$ for $n\ge3$
 - Therefore, $G$ must be connected.
 - b) For $n$ even, find a disconnected $\frac 12(n-2)$-regular simple graph.
-- $$m=\frac{n(n-2)}{2}$$
+- $$m=\frac{n(n-2)}{2}\times \frac 12 = \frac{n(n-2)}{4}$$
 - if disconnected, [[#1.1.12]]$$m\le\frac{(n-1)(n-2)}{2}$$
-- then, $$\frac{n(n-2)}{2}\le\frac{(n-1)(n-2)}{2}$$
-- therefore, $$n=2, \text{ and }m=0$$
+- then, $$\frac{n(n-2)}{4}\le\frac{(n-1)(n-2)}{2}$$
+- therefore, $$\begin{align}n^2-2n&\le 2n^2-6n+4\\
+n^2-4n+4&\ge0\\
+(n-2)^2&\ge0\\
+n&\ge2
+\end{align}$$
+- partition: two subsets of $\frac n2$ vertices each.
+- Graphs: Two complete graph $K_{\frac n2}$ graphs(each is a single edge).
+- then, each vertex within $K_{\frac n2}$ has degree $\frac n2 -1=\frac{n-2}{2}$
+### 1.1.14
+- For a simple graph $G$, show that the diagonal entries of boh $\mathbf{A}^2$ and $\mathbf{MM}^t$(where $\mathbf{M}^t$ denotes the transpose of $\mathbf{M}$) are the degrees of the vertices of $G$. [[#Incidence and Adjacency Matrices]]
+- The *adjacency matrix* of $G$ is the $n\times n$ matrix $\mathbf{A}_G:=(a_{uv})$, where $a_{uv}$ is the number of edges joining vertices $u$ and $v$
+- for a simple graph, $a_{uu}=0, (u\in V(G))$ because it has no loop.
+- $$(\mathbf{A}^2)_{11}=a_{11}a_{11}+a_{12}a_{21}+a_{13}a_{31}+\cdots+a_{1n}a_{n1}$$
+- Because $a_{uv}\in \{0,1\}$, $$\left(\mathbf{A^2}\right)_{uu}=\sum_{v\in V(G)}a_{uv}a_{vu}=\sum_{v\in V(G)}a_{uv}=deg(u)$$
+- in simple graph, $a_{ij}$ has only 0 or 1. and $a_{ij}=a_{ji}$. then 
+- $$(\mathbf{A}^2)_{11}=\text{degree of vertex 1}$$
+- 참조: [[#Incidence matrix]]
+- $\mathbf{M}_G:=(m_{ve}), \mathbf{M}_G^t:=(m_{ev})$
+- $(m_{ve})$ has only 0 and 1, because it has no loop(simple graph).
+- since $m_{ue}\in \{0,1\}$ and each edge connects exactly two vertices, 
+- $$\sum_{e\in E(G)}m_{ue}^2=\sum_{e\in E(G)}n_{ue}=\operatorname{deg}(u)$$
+- $$\mathbf{MM^t}_{ii}=\text{degree of each vertex $v_i$}$$
 - 
