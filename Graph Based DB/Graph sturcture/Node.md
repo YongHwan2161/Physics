@@ -10,11 +10,12 @@
 - channel 개수 다음에는 각 채널의 offset을 가리키는 4 bytes * (채널 개수) 만큼의 데이터가 기록된다. 
 - 채널 데이터에 접근하기 위해서는 채널 수 정보 다음부터 원하는 채널번호의 offset을 찾아서 해당 offset으로 이동하면 된다. offset은 node data의 시작점을 기준으로 계산한다. 
 
-# Specialized Vertices
-## vertex 0 ~ 255
-- vertex 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 vertex_index 자체가 1바이트의 데이터를 표현한다. 
-## vertex 256: Garbage Vertex
-- 삭제된 vertex들이 저장되는 휴지통이다. 삭제된 vertex들은 나중에 vertex를 새로 생성할 때 재활용될 수 있다. 
+# Specialized Nodes
+## node 0 ~ 255
+- node 0부터 255까지는 데이터베이스 생성시 자동으로 생성된다. 이들은 node_index 자체가 1바이트의 데이터를 표현한다. 
+## node 256: Garbage Node
+- 삭제된 node들이 저장되는 휴지통이다. 삭제된 node들은 나중에 node를 새로 생성할 때 재활용될 수 있다. 
+- 다만, 이전 버전과 달리 모든 node는 반드시 token을 가지고 있으므로, node가 삭제될 일은 없을 것 같다. 혹시 몰라서 일단 둔다.
 # Token
 ## get Token vertex data
 - Token vertex는 데이터가 저장되는 최소 단위이다. 각각의 Token vertex들은 고유한 데이터를 저장하고 있다. 

@@ -14,7 +14,7 @@ int handle_create_sentence(char* args) {
     const char* current_pos = args;
     size_t remaining_len = strlen(args);
 ```
-- [[Vertex#Search Token|search token]]을 이용해 일치하는 token을 찾는다. 
+- [[Node#Search Token|search token]]을 이용해 일치하는 token을 찾는다. 
 ```c
         TokenSearchResult* result = search_token(current_pos, remaining_len);
         if (!result) {
@@ -78,7 +78,7 @@ int handle_create_sentence(char* args) {
                     continue;
                 }
 ```
-- next token data를 [[Vertex#get Token vertex data|get token data]]를 이용해 받아온다.
+- next token data를 [[Node#get Token vertex data|get token data]]를 이용해 받아온다.
 ```c
                 char* next_token = get_token_data(next_vertex);
                 printf("next_token: %s\n", next_token);

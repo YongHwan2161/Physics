@@ -1,4 +1,4 @@
-# [[Vertex]]
+# [[Node]]
 # [[Channel]]
 
 # [[Axis]]
@@ -73,7 +73,10 @@ void create_DB() {
 - map.bin file이 있는지 확인하고, 없으면 생성한다. map.bin file이 있으면 CoreMap에 mapping information을 올린다. 
 - data.bin file이 있는지 확인하고, 없으면 database를 새로 생성한다(참조: [[Functions#`create_DB`|create_DB]]). 데이터베이스를 새로 생성하는 경우에는 data.bin 파일로 저장을 해 두어야 한다. data.bin file이 있는 경우에는 map.bin file을 참조하여 index 0부터 255까지 Core variable에 올린다. 
 - free-space.bin file이 있는지 확인하고, 없으면 생성한다. 없는 경우에는 FreeSpace를 초기화한 뒤에 binary file을 저장해 놓는다. 
-
+## root string 생성
+- database 생성시 모든 요소들의 조상이 될 root element를 생성한다. root element는 하의 string이며, string의 시작점의 vertex를 기준으로 하위 elements가 생성될 것이다. 이 vertex의 위치는 (node, ch) pair로 표현될 수 있고, 이를 coordinate라고 부른다. root string의 coordinates를 알면 우리는 그 위치로 바로 이동할 수 있다. token이 저장된 layer보다 한 단계 더 높은 element layer에서는 모든 element들이 root를 기준으로 뻗어나가며, 모든 element들은 지정된 경로로만 탐색이 가능하며 root와 연결되어 있지 않은 다른 영역은 접근할 수 없다. 
+- root string은 "Start"로 생성한다. 생성 후 start vertex의 coordinates를 알고 있어야 한다. 그리고 이 coordinates를 현재 coordinates에 저장한다. coordinates는 전역변수로 관리되어야 하며, 현재 보고 있는 element의 위치를 가리킨다. 
+- 
 # [[Command Line Interface(CLI)]]
 
 # CoreMap
