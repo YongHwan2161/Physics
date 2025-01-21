@@ -258,5 +258,21 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
   - $$e(G)=\frac 12 \left(n^2-\sum_{i=1}^ka_i^2\right)$$
 ### 1.1.12
 - a) Show that if $G$ is simple and $m>\binom{n-1}{2}$, then $G$ is connected.([[Graphs and Their Representation#Connected Graph|connected graph]], [[Binomial#Binomial expression|binomal]])
-  - $\binom{n-1}{2}=\frac{(n-1)!}{2!(n-3)}=\frac{(n-2)(n-1)}{2}$
-  - 
+  - $\binom{n-1}{2}=\frac{(n-1)!}{2!(n-3)}=\frac{(n-2)(n-1)}{2}$, which is the maximum number of edges possible in a graph with $n-1$ vertices(ref. [[Graphs and Their Representation#1.1.1|Exercise 1.1.1]]).
+  - Contrapositive staement: If $G$ is disconnected, then $m\le \binom{n-1}{2}$.
+  - If $G$ is disconnected, its vertex set can be partitioned into two non-empty, disjoint subsets $X$ and $Y$ such that there are no edges between $X$ and $Y$.
+  - Let $|X|=k$ and $|Y|=n-k$, where $1\le k\le n-1$
+  - Within $X$: The maximum number of edges is $\binom{k}{n}$
+  - Within $Y$: The maximum number of edges if $\binom{n-k}{2}$
+  - Therefore, the total maximum number of edges in $G$ is: $m_{max}=\binom{k}{2}+\binom{n-k}{2}$
+  - $$\begin{align}
+  \binom{k}{2}+\binom{n-k}{2}&=\frac{k!}{2(k-2)!}+\frac{(n-k)!}{2(n-k-2)!}\\
+  &=\frac{k(k-1)}{2}+\frac{(n-k-1)(n-k)}{2}
+  \end{align}$$
+  - The expression $\binom{k}{n}+\binom{n-k}{2}$ is maximized when the difference between $k$ and $n-k$ is as large as possible. This occurs when one partition has as many vertices as possible while the other has as few as possible. then $k=1$ and $n-k=n-1$
+  - then $$m_{max}=\binom{n-1}{2}\tag*{$\Box$}$$
+  - b) For $n>1$, find a disconnected simple graph $G$ with $m=\binom{n-1}{2}$
+   - $m_{\text{max}=\binom{n-1}{2}}$
+### 1.1.13
+- a) Show that if $G$ i simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.
+- 
