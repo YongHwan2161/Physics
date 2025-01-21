@@ -277,5 +277,5 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
    - $m_{\text{max}=\binom{n-1}{2}}$
 ### 1.1.13
 - a) Show that if $G$ is simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.(ref. [[#minimum and maximum degrees|minimu degree]])
-- $$e(G)>\delta m$$
-- if $G$ is disconnected, then $m\le $
+- $$e(G)=m>\delta n=\binom n2$$
+- therfore, $G$ is simple complete grpah.
