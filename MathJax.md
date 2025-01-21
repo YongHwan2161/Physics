@@ -78,6 +78,7 @@ $$\lim_{x\rightarrow 0}\frac{x}{2}$$
   - `\left\{ \right\}`: $\left\{\frac{1}{2}+3 \right\}$
  - `\lceil, \rceil`: $\lceil, \rceil$
  - `lfloor, \rfloor`: $\lfloor, \rfloor$
+ - `\Bigg(\bigg(\Big(\big((x)\big)\Big)\bigg)\Bigg)`:$\Bigg(\bigg(\Big(\big((x)\big)\Big)\bigg)\Bigg)$
 - 정의: `\equiv`: $L\equiv T-U$
 ## Binomial
 - `\binom{}{}`: $\binom{n}{2}$

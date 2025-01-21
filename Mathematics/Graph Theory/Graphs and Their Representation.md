@@ -277,5 +277,20 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
    - $m_{\text{max}=\binom{n-1}{2}}$
 ### 1.1.13
 - a) Show that if $G$ is simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.(ref. [[#minimum and maximum degrees|minimu degree]])
-- $$e(G)=m>\delta n=\binom n2$$
-- therfore, $G$ is simple complete grpah.
+- In a disconnected graph, consider the smallest component with $k$ vertices.
+- $$\delta>\frac 12(n-1)\le\frac 12(k+(n-k+1))$$
+- However, within the smallest component:$d(v)=\delta\le k-1$
+- Therefore:$$k-1\ge\delta>\frac 12(n-1)$$
+- $$\begin{align}
+k>\frac 12(n-1)+1\\
+k\ge\Bigg\lceil{\frac n2}\Bigg\rceil+1
+\end{align}$$
+- But:$$k\le n-1$$
+- This leads to a contradiction, as $\big\lceil\frac n2\big\rceil+1>n-1$ for $n\ge3$
+- Therefore, $G$ must be connected.
+- b) For $n$ even, find a disconnected $\frac 12(n-2)$-regular simple graph.
+- $$m=\frac{n(n-2)}{2}$$
+- if disconnected, [[#1.1.12]]$$m\le\frac{(n-1)(n-2)}{2}$$
+- then, $$\frac{n(n-2)}{2}\le\frac{(n-1)(n-2)}{2}$$
+- therefore, $$n=2, \text{ and }m=0$$
+- 
