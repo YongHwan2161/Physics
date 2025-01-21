@@ -61,7 +61,9 @@
 - Because most graphs have many more edges than verties, the adjacency matrix of a graph is generally much smaller than its incidence matrix and thus requires less storage space. When dealing with simple graphs, an even more compact representation is possible. For each vertex $v$, the neighbours of $v$ are listed in some order. A list $(N(v):v\in V)$ of these lists is called an *adjacency list* of the graph. Simple graphs are usually stored in computers as adjacency lists.
 - When $G$ is a bipartite graph, as there are no edges joining pairs of vertices belonging to the same part of its bipartition, a matrix of smaller size than the adjacency matrix may be used to record the numbers of edges joining pairs of vertics. Suppose that $G[X, Y]$ is a bipartite graph, where $X:=\{x_1, x_2, \cdots, x_r\}$ and $Y:=\{y_1, y_2, \cdots, y_s\}$. We define the *bipartite adjacency matrix* of $G$ to be the $r\times s$ matrix $\mathbf{B}_G=(b_{ij})$, where $b_{ij}$ is the number of edges joining $x_i$ and $y_j$.
 # Vertex Degrees
-- The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. We denote by $\delta(G)$ and $\Delta(G)$ the minimum and maximum degrees of the vertices of $G$, 
+- The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
+## minimum and maximum degrees
+- We denote by $\delta(G)$ and $\Delta(G)$ the minimum and maximum degrees of the vertices of $G$, 
 ## Average Degree
 - and by $d(G)$ their *average degree*, $\frac 1n \sum_{v\in V}d(v)$. The following theorem established a fundamental identity relating the degrees of the vertices of a graph and the number of its edges.
 ## Theorem 1.1 
@@ -274,5 +276,6 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
   - b) For $n>1$, find a disconnected simple graph $G$ with $m=\binom{n-1}{2}$
    - $m_{\text{max}=\binom{n-1}{2}}$
 ### 1.1.13
-- a) Show that if $G$ i simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.
-- 
+- a) Show that if $G$ is simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.(ref. [[#minimum and maximum degrees|minimu degree]])
+- $$e(G)>\delta m$$
+- if $G$ is disconnected, then $m\le $
