@@ -143,6 +143,65 @@ if (strcmp(next_token, result->token_data) == 0)
        return ERROR;
    }
 ```
+- 새로운 new token을 생성했으면 기존에 존재하던 cycle에서 두 개의 token을 new token으로 대체해야 한다. 다만, ch을 탐색하던 중에 찾은 prev_token이 현재 생성중인 string을 구성하는 token인 경우에 처리가 문제된다. 예를 들면 ABCDEFAB라는 string을 생성하려고 하면 처음에 A->B link가 존재하는데, 뒤에 다시 AB가 등장하므로, 앞에서 만든 A->B token을 새로운 AB 토큰으로 대체해야 한다. 
+```c
+    if (new_node >= 0)
+    {
+       bool found = false;
+       for (int i = 0; i < count - 2; i++)
+       {
+          if (tokens[i] == tokens[count - 1] && tokens[i + 1] == tokens[count])
+          {
+              clear_channel(tokens[i], channels[i]);
+              clear_channel(tokens[i + 1], channels[i + 1]);
+              clear_channel(tokens[count - 2], channels[count - 2]);
+              clear_channel(tokens[count - 1], channels[count - 1]);
+              clear_channel(tokens[count], channels[count]);
+              tokens[i] = new_node;
+              channels[i] = 1;
+              tokens[count - 1] = new_node;
+              channels[count - 1] = 2;
+              create_link(tokens[i], channels[i], tokens[i + 2], channels[i + 2], 2);
+              for (int j = i + 1; j < count - 1; j++)
+              {
+                  tokens[j] = tokens[j + 1];
+                  channels[j] = channels[j + 1];
+              }
+              if (count > 3)
+              {
+                 create_link(tokens[count - 3], channels[count - 3], tokens[count - 2], channels[count - 2], 2); // create a link between the previous token and the current token
+              }
+              count -= 2;
+              found = true;
+              break;
+          }
+      }
+      if (found)
+      break;
+```
+- 그렇지 않은 경우에는 기존의 cycle에서 token 2개를 new token으로 대체하면 된다. 
+- 이 과정에서 delete_path_from_cycle 함수와 insert_path_into_cycle 함수가 사용되는데, 이 때 prev_node와 ch을 넣어주어야 한다. 
+```c
+cycleInfo *existing_cycle = get_cycle_info(prev_node, ch, 2);
+  
+if (existing_cycle && existing_cycle->count == 2)
+{
+    printf("existing_cycle->count == 2\n");
+    clear_cycle(existing_cycle);
+    create_loop(new_node, 1, 2);
+}
+else
+{
+    delete_path_from_cycle(tokens[count - 1], channels[count - 1], 2, 2);
+    if (existing_cycle)
+        free_cycle_info(existing_cycle);
+  
+    uint new_path[1] = {(uint)new_node};
+    ushort new_channels[1] = {0};
+    insert_path_into_cycle(tokens[count - 1], channels[count - 1],
+                           new_path, new_channels, 1, 2);
+}
+```
 
 ## Get Sentence
 - sentence data를 읽기 위해서는 sentence의 시작 vertex index와 channel index를 input으로 주어야 한다. 
