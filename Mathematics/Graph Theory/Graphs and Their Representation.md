@@ -60,7 +60,7 @@
 - The *adjacency matrix* of $G$ is the $n\times n$ matrix $\mathbf{A}_G:=(a_{uv})$, where $a_{uv}$ is the number of edges joining vertices $u$ and $v$, each loop counting as two edges. Incidence and adjacency matrices of the graph $G$ of [[Graphs and Their Representation#Figure 1.1.|Figure 1.1]] are shown in [[Graphs and Their Representation#Figure 1.5|Figure 1.5]].
 ###### Figure 1.5
 ![[Pasted image 20250111213533.jpg]]
-- Because most graphs have many more edges than verties, the adjacency matrix of a graph is generally much smaller than its incidence matrix and thus requires less storage space. When dealing with simple graphs, an even more compact representation is possible. For each vertex $v$, the neighbours of $v$ are listed in some order. A list $(N(v):v\in V)$ of these lists is called an *adjacency list* of the graph. Simple graphs are usually stored in computers as adjacency lists.
+- Because most graphs have many more edges than verticies, the adjacency matrix of a graph is generally much smaller than its incidence matrix and thus requires less storage space. When dealing with simple graphs, an even more compact representation is possible. For each vertex $v$, the neighbours of $v$ are listed in some order. A list $(N(v):v\in V)$ of these lists is called an *adjacency list* of the graph. Simple graphs are usually stored in computers as adjacency lists.
 - When $G$ is a bipartite graph, as there are no edges joining pairs of vertices belonging to the same part of its bipartition, a matrix of smaller size than the adjacency matrix may be used to record the numbers of edges joining pairs of vertics. Suppose that $G[X, Y]$ is a bipartite graph, where $X:=\{x_1, x_2, \cdots, x_r\}$ and $Y:=\{y_1, y_2, \cdots, y_s\}$. We define the *bipartite adjacency matrix* of $G$ to be the $r\times s$ matrix $\mathbf{B}_G=(b_{ij})$, where $b_{ij}$ is the number of edges joining $x_i$ and $y_j$.
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
@@ -316,4 +316,10 @@ n&\ge2
 - since $m_{ue}\in \{0,1\}$ and each edge connects exactly two vertices, 
 - $$\sum_{e\in E(G)}m_{ue}^2=\sum_{e\in E(G)}n_{ue}=\operatorname{deg}(u)$$
 - $$\mathbf{MM^t}_{ii}=\text{degree of each vertex $v_i$}$$
+### 1.1.15
+- Show that the rank over $GF(2)$ of the incidence matrix of a graph $G$ is at most $n-1$, with equality if and only if $G$ is connected. 참조: [[Field Theory#GF(2)|GF(2)]]
+- Given a (finite) graph $G$ on $n$ vertices, let $\mathbf{M}_G$ be its indicence matrix over $GF(2)$. We wish to show:
+- 1. $\operatorname{rank}(\mathbf{M}_G)\le n-1$
+- 2. Moreover, $\operatorname{rank}(\mathbf{M}_G)=n-1$ iff $G$ is connected. (For loops: a loop at vertex $v$ contributes "2 copies of $v$", but since $2=0$ in $GF(2)$, effectively it contributes a single 1 if we define it carefully. However, loops do not affect the standard argument about connectivity, so we often treat the simple-graph case first.)
+- 
 - 

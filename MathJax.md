@@ -126,6 +126,17 @@ $$
  \lambda_{22}=\cos{(x_2', x_2)}&=\cos{\theta}
  \end{align}\end{array}\right\}
  $$
+ - `\hline`and alinement(l, c, r)
+ - 
+$$
+\begin{array}{c|lcr}
+n & \text{Left} & \text{Center} & \text{Right} \\
+\hline
+1 & 0.24 & 1 & 125 \\
+2 & -1 & 189 & -8 \\
+3 & -20 & 2000 & 1+10i
+\end{array}
+$$
  $$\pmb{\lambda}=
  \left(\begin{array}{3}
  \lambda_{11} & \lambda_{12} &\lambda_{13}\\
