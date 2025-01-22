@@ -186,8 +186,10 @@
   },
   "active": "6379cc839d4a1fea",
   "lastOpenFiles": [
-    "/Graph Based DB/Graph sturcture/Axis.md",
+    "Mathematics/Linear Algebra/Linear indepence.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
+    "Mathematics/Linear Algebra",
+    "/Graph Based DB/Graph sturcture/Axis.md",
     "MathJax.md",
     "Mathematics/Matrix/Rank.md",
     "Mathematics/Field Theory.md",
@@ -212,7 +214,6 @@
     "Graph Based DB/Graph sturcture/Vertex.md",
     "Cycle.md",
     "/Cycle.md",
-    "Mathematics/Example 1.1.md",
     "Images/Pasted image 20250111213533.jpg",
     "Images/Pasted image 20250111210724.jpg",
     "Images/Pasted image 20250111210600.jpg",
@@ -232,7 +233,6 @@
     "Untitled 1.canvas",
     "Untitled.canvas",
     "철학",
-    "Mathematics/Matrix",
-    "Mathematics"
+    "Mathematics/Matrix"
   ]
 }
