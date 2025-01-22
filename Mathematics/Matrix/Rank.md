@@ -1,0 +1,3 @@
+- In linear algebra, the rank of a matix $A$ is the dimension of the vector space generated(or spanned) by its columns. This corresponds to the maximal number of linearly independent columns of $A$. This, in turn, is identical to the dimension of the vector space spanned by its rows. Rank is thus a measure of the "nondegenerateness" of the system of linear equations and linear transformation encoded by $A$. There are multiple equivalent definitions of rank. A matrix's rank is one of its most fundamental characteristics.
+- The **column rank** of $A$ is the dimension of the the column space of $A$, while the row rank of $A$ is the dimension of the row space of $A$.
+- A fundamental result in linear algebra is that the column rank and the row rank are always equal.

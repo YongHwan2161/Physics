@@ -317,9 +317,15 @@ n&\ge2
 - $$\sum_{e\in E(G)}m_{ue}^2=\sum_{e\in E(G)}n_{ue}=\operatorname{deg}(u)$$
 - $$\mathbf{MM^t}_{ii}=\text{degree of each vertex $v_i$}$$
 ### 1.1.15
-- Show that the rank over $GF(2)$ of the incidence matrix of a graph $G$ is at most $n-1$, with equality if and only if $G$ is connected. 참조: [[Field Theory#GF(2)|GF(2)]]
+- Show that the rank over $GF(2)$ of the incidence matrix of a graph $G$ is at most $n-1$, with equality if and only if $G$ is connected. 참조: [[Field Theory#GF(2)|GF(2)]], [[Rank]]
 - Given a (finite) graph $G$ on $n$ vertices, let $\mathbf{M}_G$ be its indicence matrix over $GF(2)$. We wish to show:
 - 1. $\operatorname{rank}(\mathbf{M}_G)\le n-1$
 - 2. Moreover, $\operatorname{rank}(\mathbf{M}_G)=n-1$ iff $G$ is connected. (For loops: a loop at vertex $v$ contributes "2 copies of $v$", but since $2=0$ in $GF(2)$, effectively it contributes a single 1 if we define it carefully. However, loops do not affect the standard argument about connectivity, so we often treat the simple-graph case first.)
-- 
+#### 1. A Global Linear Dependence Among Rows
+- Over GF(2), summing all row vectors of $\mathbf{M}_G$ gives the zero vector. Concretely, 
+  - Each edge $e$ appears exactly twice among the incidence entries (once for each endpoint),
+  - In GF(2), "2" is the same as "0"
+- Hence when you add all row vectors in GF(2), each column sum becomes zero:
+- $$\underbrace{1+1}_{=0 in GF(2)}​​=0\implies v\in V(G)\sum_{v\in V(G)}​(\operatorname{row}_v​)=0.$$
+- This shows there is at least one nontrivial linear dependence among the row. thus,$$\operatorname{rank}(\mathbf{M}_G)\le n-1$$
 - 
