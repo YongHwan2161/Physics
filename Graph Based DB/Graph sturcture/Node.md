@@ -36,7 +36,7 @@
 - 맨 앞의 data가 0xAABBCCDD로 시작한다고 가정하면 먼저 vertex 0xAA의 ch 0, axis 0(token search axis)에 있는 link들을 탐색한다.  
 - 각각의 link들이 가리키는 다음 vertex index들의 token data를 조사해서 0xBB로 시작하며 input data와 일치하는 token data가 있는지 조사해서 없으면 현재 token data와 vertex index를 반환하고, 일치하는 token data를 가진 vertex가 있으면 한 단계 더 들어가서 그 다음 다시 일치하는 token data를 가진 vertex를 찾는 과정을 더이상 일치하는 token data를 가진 vertex를 찾을 수 없을 때까지 탐색한 다음 결과를 반환한다. 
 - 위 과정을 거치면 sentence를 구성하는 token의 개수를 char* array 의 size만큼이 아니라 훨씬 더 줄일 수 있고 database의 저장공간을 훨씬 줄이면서 데이터의 원본을 그대로 저장할 수 있게 된다. 
-## Integrate Token
+## Integrate Tokens
 - input으로 node index가 주어지면 주어진 node의 모든 ch을 돌면서 두 개의 token을 new_token으로 합칠 수 있는지 탐색한다. 
 - ch 개수가 2개 이하인 경우에는 합칠 수 있는 token이 있을 수 없으므로 건너뛴다. 
 - ch 개수가 3개 이상인 경우에는 ch 1부터 탐색을 시작한다. 
@@ -44,6 +44,8 @@
 - string을 구성하는 ch을 만나면 일단 해당 ch과 해당 ch의 axis 2가 가리키는 다음 token data를 저장해 놓고, 그 다음 ch부터 마지막 ch까지 다시 반복문을 돌면서 저장한 token data와 동일한 next token을 갖는 ch이 있는지 탐색한다. 
 - 발견하면 두 개의 token을 합친 new_token을 생성하고, 남은 ch도 탐색하면서 new_token으로 대체할 수 있는 모든 ch을 찾는다.
 - 찾은 다음에는 기존의 string을 구성하고 있던 2개의 token을 제거하고, 한 개의 new_token으로 대체한다. 
+- 위 과정을 cycle을 구성하고 있는 모든 ch에 대해서 반복한다. 총 두 개의 반복문을 모두 돌아야 하나의 node에 대한 token 통합이 완료된다. 
+- 
 
 # Vertex data loading
 - node data는 기본적으로 binary file에 저장되어 있고, RAM에 올라와 있지 않다. 필요한 node data가 있으면 그 때마다 binary file에서 필요한 node data를 읽어와야 한다. 이렇게 하는 이유는 node data가 많아지면 그 모든 것을 RAM에 모두 올릴 수는 없기 때문이다. 
