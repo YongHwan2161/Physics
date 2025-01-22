@@ -327,6 +327,7 @@ n&\ge2
   - In GF(2), "2" is the same as "0"
 - Hence when you add all row vectors in GF(2), each column sum becomes zero:
 - $$\underbrace{1+1}_{=0 in GF(2)}​​=0\implies v\in V(G)\sum_{v\in V(G)}​(\operatorname{row}_v​)=0.$$
+- Because we found a nontrivial linear combination that gives $\mathbf{0}$, the rows cannot all be linearly independent. ref. [[Linear indepence#Definition|linearly dependency]]
 - This shows there is at least one nontrivial linear dependence among the row. thus,$$\operatorname{rank}(\mathbf{M}_G)\le n-1$$
 - 1. If $G$ is connected, $\operatorname{rank}(M_G)=n-1$
 - The idea is that when $G$ is connected, there is exactly one linear dependence among the row vectors-namely, the one we already found (the sum of all rows equals zero). To make this rigorous, one can use a spanning tree $T$ of $G$.
