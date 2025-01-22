@@ -90,6 +90,8 @@ create_link(tokens[count - 1], channels[count - 1], tokens[count], channels[coun
             if (prev_channel_count <= 2)
                 need_search = false;
 ```
+- ch탐색은 진행하지 않는다. 이전 버전에서는 string을 생성하는 과정에서 동시에 token integration도 함께 진행하도록 코드를 작성하려고 했으나, 코드가 너무 복잡해지고, 예측하기 힘든 에러가 계속 발생하여, string 생성 logic과 분리하기로 했다. 이 기능을 분리하면 string을 생성할 때 아주 긴 string이더라도 빠르게 일단 데이터베이스에 저장이 가능하고, token 통합 및 최적화 과정은 이후에 background에서 자동으로 진행되도록 수정하기로 했다. 추후에 GPU 연산을 사용할 수 있게 되면 이 과정은 GPU에서 수행하도록 한다. 
+- 
 - 그 이외의 경우, 즉 channel count가 3 이상인 경우에는 탐색을 진행한다. 
 - 탐색은 ch 1부터 prev_channel_count - 1까지 진행한다. ch 0을 제외한 모든 channel을 다 탐색한다. 다만 이 channel 중에는 현재 생성중인 sentence를 구성하는 channel도 한 개 이상 포함되어 있다. 적어도 하나는 반드시 현재 생성 중인 sentence를 구성하는 prev_channel이다.
 ```c
