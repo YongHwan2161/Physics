@@ -209,6 +209,9 @@
   },
   "active": "594785c1ec721c4f",
   "lastOpenFiles": [
+    "Mathematics/Matrix/Matrix Operations.md",
+    "Mathematics/Linear Algebra/Linear indepence.md",
+    "Mathematics/Linear Algebra",
     "Graph Based DB/Tests.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Graph Based DB/Graph sturcture/Node.md",
@@ -238,12 +241,10 @@
     "Graph Based DB/Graph sturcture",
     "Graph Based DB/Command Line Interface(CLI).md",
     "Graph Based DB/Variables.md",
-    "Graph Based DB/Functions/초기화 관련 함수.md",
     "Images",
     "Images/Pasted image 20250110213155.jpg",
     "Images/Pasted image 20250110211649.jpg",
     "Mathematics/Graph Theory",
-    "Graph Based DB/Functions/Command 관련 함수.md",
     "Graph Based DB/Build",
     "문학",
     "Graph Based DB/Tests",
@@ -251,7 +252,6 @@
     "Graph Based DB/Functions",
     "Graph Based DB/binary file/free space",
     "Graph Based DB/binary file",
-    "Graph Based DB",
     "Untitled 1.canvas"
   ]
 }
