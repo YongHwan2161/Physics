@@ -333,6 +333,10 @@ n&\ge2
 - The idea is that when $G$ is connected, there is exactly one linear dependence among the row vectors-namely, the one we already found (the sum of all rows equals zero). To make this rigorous, one can use a spanning tree $T$ of $G$.
 - Since $G$ is connected, pick any spanning tree $T$ with $n-1$ edges. ref. [[Tree#Spanning Tree]]
 - Look at the columns of $\mathbf{M}_G$ that correspond specifically to the edges of $T$.
-- It can be shown (by induction, or by explicit construction) that the rows of $\mathbf{M}_G$ restricted to those $n-1$ tree-edge columns are linearly independent over $GF(2)$ up to exactly one global sum. Equivalently, you can argue there is no smaller nontrivial dependency than the one forcing the sum of all rows to be zero.
+#### Restrict the Incidence Matrix to Tree Edges
+- It can be shown (by induction, or by explicit construction) that the rows of $\mathbf{M}_G$ restricted to those $n-1$ tree-edge columns are linearly independent over $GF(2)$ up to exactly one global sum. 
+- In the full icidence matrix $\mathbf{M}_G$, some columns correspond to the edges in $T$, and the rest correspond to edges not in $T$.
+- Focus just on the $n-1$ columns corresponding to the tree edges $e_1,\cdots,e_{n-1}$. Call this submatrix $M_T$. It is an $n\times (n-1)$ matrix over $GF(2)$.
+- Equivalently, you can argue there is no smaller nontrivial dependency than the one forcing the sum of all rows to be zero.
 - Hence the dimension of the row space is exactly $n-1$. therefore, $$\operatorname{rank}(\mathbf{M}_G)=n-1\text{  if $G$ is connected.}$$
 - 
