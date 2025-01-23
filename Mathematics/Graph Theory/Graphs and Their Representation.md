@@ -331,7 +331,7 @@ n&\ge2
 - This shows there is at least one nontrivial linear dependence among the row. thus,$$\operatorname{rank}(\mathbf{M}_G)\le n-1$$
 - 1. If $G$ is connected, $\operatorname{rank}(M_G)=n-1$
 - The idea is that when $G$ is connected, there is exactly one linear dependence among the row vectors-namely, the one we already found (the sum of all rows equals zero). To make this rigorous, one can use a spanning tree $T$ of $G$.
-- Since $G$ is connected, pick any spanning tree $T$ with $n-1$ edges.
+- Since $G$ is connected, pick any spanning tree $T$ with $n-1$ edges. ref. [[Tree#Spanning Tree]]
 - Look at the columns of $\mathbf{M}_G$ that correspond specifically to the edges of $T$.
 - It can be shown (by induction, or by explicit construction) that the rows of $\mathbf{M}_G$ restricted to those $n-1$ tree-edge columns are linearly independent over $GF(2)$ up to exactly one global sum. Equivalently, you can argue there is no smaller nontrivial dependency than the one forcing the sum of all rows to be zero.
 - Hence the dimension of the row space is exactly $n-1$. therefore, $$\operatorname{rank}(\mathbf{M}_G)=n-1\text{  if $G$ is connected.}$$
