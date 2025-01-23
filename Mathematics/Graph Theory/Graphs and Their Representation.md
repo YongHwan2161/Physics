@@ -354,3 +354,5 @@ n&\ge2
 ### 1.1.16 Degree Sequence
 - If $G$ has vertices $v_1,v_2,\cdots,v_n$, the sequence $(d(v_1), d(v_2), \cdots, d(v_n))$ is called a *degee sequence* of $G$. Let $\mathbf{d}:=(d_1, d_2, \cdots, d_n)$ be a nonincreasing sequence of nonnegative integers, that is $d_1\ge d_2\ge \cdots\ge d_n\ge 0$. Show that:
 - a) there is a graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even.
+- b) there is a loopless graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even and $d_1\le \sum_{i=2}^n d_i$.
+- 
