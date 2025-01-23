@@ -338,5 +338,19 @@ n&\ge2
 - In the full icidence matrix $\mathbf{M}_G$, some columns correspond to the edges in $T$, and the rest correspond to edges not in $T$.
 - Focus just on the $n-1$ columns corresponding to the tree edges $e_1,\cdots,e_{n-1}$. Call this submatrix $M_T$. It is an $n\times (n-1)$ matrix over $GF(2)$.
 - Equivalently, you can argue there is no smaller nontrivial dependency than the one forcing the sum of all rows to be zero.
-- Hence the dimension of the row space is exactly $n-1$. therefore, $$\operatorname{rank}(\mathbf{M}_G)=n-1\text{  if $G$ is connected.}$$
-- 
+- Here is one intuitive way(among several) to see why the rows of $M_T$ are as independent as possible in $GF(2)$.
+- 1. Root the Tree. Pick any vertex as a "root", say $v_1$. A spanning tree with a chosen root gives you a parent-child structure: Every vertex $v_i\neq v_1$ has a unique parent in the tree, denoted $p(i)$, such that $(v_i, p(i))$ is exactly one of the tree edges.
+- 2. Incidence Patterns in $M_T$.
+  - For each edge $(v_i, p(i))$, exactly those two vertices' rows(row $\operatorname{row}(v_i)$ and row $\operatorname{row}(p(i))$) have a 1 in the column corresponding to this edge.
+  - Over $GF(2)$, that means if you look at row $\operatorname{row}(v_i)$ and row $\operatorname{row}(p(i))$, they differ in exactly that column (and possibly coincide in others).
+- 3. No Smaller Dependence.
+  - Suppose there is a nonempty subset of rows that sum to zero. In $GF(2)$, summing a set of row vectors to zero means that, for each column, an even number of those rows have a 1 in that column.
+  - But if the tree is acyclic and connected, you can show via induction or a direct parent-child argument that the only way this can happen for all the tree-edge columns at once is if you include all the vertices (all rows). In that scenario, precisely every tree edge is counted twice (once by each endpoint), and so each column sum is zero.
+  - Hence, the unique dependence among the rows is the global sum of all $n$ rows.
+- Because that one global sum is a dependence, the dimension of the row space of $M_T$ cannot be $n$; it is at most $n-1$. But you cannot find any fewer rows that sum to zero, so the rank of $M_T$ is exactly $n-1$.
+#### Why This Implies $\operatorname{rank}(M_G)=n-1$
+- Recall we only used the edges in $T$ to construct $M_T$. Adding more edges (the columns of edges not in $T$) to form the full incidence matrix $M_G$ might only increase the possible row-dependence relations, so $\operatorname{rank}(M_G)$ can never exceed $\operatorname{rank}(M_T)$. We already know $\operatorname{rank}(M_G)\le n-1$. Therefore, from the chain:$$\operatorname{rank}(M_T)\le \operatorname{rank}(M_G)\le n-1$$
+- but, $\operatorname{rank}(M_G)=n-1$. Thus, by "pinching" the inequality, we get $$\operatorname{rank}(M_G)=n-1\text{   provided $G$ is connected}$$
+### 1.1.16 Degree Sequence
+- If $G$ has vertices $v_1,v_2,\cdots,v_n$, the sequence $(d(v_1), d(v_2), \cdots, d(v_n))$ is called a *degee sequence* of $G$. Let $\mathbf{d}:=(d_1, d_2, \cdots, d_n)$ be a nonincreasing sequence of nonnegative integers, that is $d_1\ge d_2\ge \cdots\ge d_n\ge 0$. Show that:
+- a) there is a graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even.
