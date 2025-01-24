@@ -120,7 +120,7 @@ $$d(v)\equiv\left\{
   - A complete bipartite graph $K_{a,b}$ (with $a,b>0$) is connected: any vertex in $X$ can reach any vertex in $Y$ by a single edge, and any two vertices within $X$ can reach each other by going via (at most) one vertex in $Y$, and vice versa.
   - 2. Is the Converse True?
    - if $G$ is connected, then $\overline{G}$ is disconnected.
-   - 
+   - consider a cycle of length 5, $G$ and $\overline{G}$ are all connected.
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
 - For $k=0, 1, 2$, characterize the $k$-regular graphs.
@@ -389,4 +389,7 @@ n&\ge2
 - Recall we only used the edges in $T$ to construct $M_T$. Adding more edges (the columns of edges not in $T$) to form the full incidence matrix $M_G$ might only increase the possible row-dependence relations, so $\operatorname{rank}(M_G)$ can never exceed $\operatorname{rank}(M_T)$. We already know $\operatorname{rank}(M_G)\le n-1$. Therefore, from the chain:$$\operatorname{rank}(M_T)\le \operatorname{rank}(M_G)\le n-1$$
 - but, $\operatorname{rank}(M_G)=n-1$. Thus, by "pinching" the inequality, we get $$\operatorname{rank}(M_G)=n-1\text{   provided $G$ is connected}$$
 
+### 1.1.18 Graphic Seuence
+- A sequence $\mathbf{d}=(d_1, d_2, \cdots, d_n)$ is graphic if there is a simple graph with degree sequence $\mathbf{d}$. Show that:
+- a) the sequences (7, 6, 5, 4, 3, 2) and (6, 6, 5, 4, 3, 3, 1) are not graphic,
 - 
