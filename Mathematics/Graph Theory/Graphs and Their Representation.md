@@ -112,7 +112,9 @@ $$d(v)\equiv\left\{
   - $d_{\overline{G}}(v)=(n-1)-d_G(v)$
   - $\mathbf{d}_{\overline{G}}=(d_{v_n}, \cdots, d_{v_1})$
 - b) Show that if $G$ is disconnected, then $\overline{G}$ is connected. Is the converse true?
-  - 
+  - let bipartite graph $G$, and  $X(G), Y(G)$ and $v_x\in X, v_y\in Y, (v_x\neq v_y)$
+  - $|X|=n_x, |Y|=n_y=n-n_x$
+  - consider $\overline{G}$, every $v_x$ 
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
 - For $k=0, 1, 2$, characterize the $k$-regular graphs.
