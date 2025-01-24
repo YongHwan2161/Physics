@@ -112,9 +112,14 @@ $$d(v)\equiv\left\{
   - $d_{\overline{G}}(v)=(n-1)-d_G(v)$
   - $\mathbf{d}_{\overline{G}}=(d_{v_n}, \cdots, d_{v_1})$
 - b) Show that if $G$ is disconnected, then $\overline{G}$ is connected. Is the converse true?
-  - let bipartite graph $G$, and  $X(G), Y(G)$ and $v_x\in X, v_y\in Y, (v_x\neq v_y)$
+  - let complete bipartite graph $G$, and  $X(G), Y(G)$ and $v_x\in X, v_y\in Y, (v_x\neq v_y)$
   - $|X|=n_x, |Y|=n_y=n-n_x$
-  - consider $\overline{G}$, every $v_x$ 
+  - consider $\overline{G}$, every $v_x$ adjacent to $v_y$, then $dv_x=n_y$, then $\sum_{v_x\in X} dv_x=n_x n_y$
+  - also $\sum_{v_y\in Y}dv_y=n_x n_y$
+  - then, $\sum_{i=1}^n d_i=2n_x n_y=2m$
+  - if $m>\binom{n-1}{2}=\frac{(n-1)(n-2)}{2}$ , then $\overline{G}$ is connected. ref. [[Graphs and Their Representation#1.1.12|1.1.12]]
+  - $2n_x(n-n_x)>n^2-3n+2$
+  - ???
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
 - For $k=0, 1, 2$, characterize the $k$-regular graphs.
@@ -309,7 +314,7 @@ The *boolean lattice* $BL_n(n\ge 1)$ is the graph whose vertex set is the set of
   - b) For $n>1$, find a disconnected simple graph $G$ with $m=\binom{n-1}{2}$
    - $m_{\text{max}=\binom{n-1}{2}}$
 ### 1.1.13
-- a) Show that if $G$ is simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.(ref. [[#minimum and maximum degrees|minimu degree]])
+- a) Show that if $G$ is simple and $\delta>\frac 12 (n-1)$, then $G$ is connected.(ref. [[#minimum and maximum degrees|minimum degree]])
 - In a disconnected graph, consider the smallest component with $k$ vertices.
 - $$\delta>\frac 12(n-1)\le\frac 12(k+(n-k+1))$$
 - However, within the smallest component:$d(v)=\delta\le k-1$
