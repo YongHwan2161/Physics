@@ -35,6 +35,7 @@
 - A graph is *bipartite* if its vertex set can be partitioned into two subsets $X$ and $Y$ so that every edge has one end in $X$ and one end in $Y$; such a partition $(X, Y)$ is call ==*bipartition*== of the graph, and $X$ and $Y$ its *parts*. We denote a bipartite graph $G$ with bipartition $(X, Y)$ by $G[X, Y]$.
 - No edge connects two vertices within $X$.
 - No edge connects two vertices within $Y$.
+### Complete Bipartite Graph
 - If $G[X, Y]$ is simple and every vertex in $X$ is joined to every vertex in $Y$, then $G$ is called a *complete bipartite graph*. A *star* is a complete bipartite graph $G[X, Y]$ with $|X|=1$ or $|Y|=1$. [[Graphs and Their Representation#Figure 1.2|figure 1.2]] shows diagrams of a complete graph, a complete bipartite graph, and a star.
 ###### Figure 1.2
 ![[Pasted image 20250110211649.jpg]]
@@ -114,12 +115,12 @@ $$d(v)\equiv\left\{
 - b) Show that if $G$ is disconnected, then $\overline{G}$ is connected. Is the converse true?
   - let complete bipartite graph $G$, and  $X(G), Y(G)$ and $v_x\in X, v_y\in Y, (v_x\neq v_y)$
   - $|X|=n_x, |Y|=n_y=n-n_x$
-  - consider $\overline{G}$, every $v_x$ adjacent to $v_y$, then $dv_x=n_y$, then $\sum_{v_x\in X} dv_x=n_x n_y$
-  - also $\sum_{v_y\in Y}dv_y=n_x n_y$
-  - then, $\sum_{i=1}^n d_i=2n_x n_y=2m$
-  - if $m>\binom{n-1}{2}=\frac{(n-1)(n-2)}{2}$ , then $\overline{G}$ is connected. ref. [[Graphs and Their Representation#1.1.12|1.1.12]]
-  - $2n_x(n-n_x)>n^2-3n+2$
-  - ???
+  - For every $x\in X$ and every $y\in Y, (x, y)$ is an edge in $\overline{G}$.
+  - Therefore, restricted to the bipartition ($X, Y$), the graph $\overline{G}$ contains all possible edges between $X$ and $Y$. In other words, $\overline{G}$ includes the [[Graphs and Their Representation#Complete Bipartite Graph|complete bipartite graph]] $K_{|X|,|Y|}$ on than same vertex partition. That is enough to see that $\overline{G}$ is connected:
+  - A complete bipartite graph $K_{a,b}$ (with $a,b>0$) is connected: any vertex in $X$ can reach any vertex in $Y$ by a single edge, and any two vertices within $X$ can reach each other by going via (at most) one vertex in $Y$, and vice versa.
+  - 2. Is the Converse True?
+   - if $G$ is connected, then $\overline{G}$ is disconnected.
+   - 
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
 - For $k=0, 1, 2$, characterize the $k$-regular graphs.
