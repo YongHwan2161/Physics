@@ -84,6 +84,35 @@ $$d(v)\equiv\left\{
 0(\text{mod 2})& \text{if }d(v)\text{ is even.}
 \end{array}\right.$$
 - Thus, modulo 2, the left-hand side is congruent to the number of vertices of odd degree, and the right-hand side is zero. The number of vertices of odd degree is therefore congruent to zero modulo 2.$$\tag*{$\Box$}$$
+### 1.1.16 Degree Sequence
+- If $G$ has vertices $v_1,v_2,\cdots,v_n$, the sequence $(d(v_1), d(v_2), \cdots, d(v_n))$ is called a *degee sequence* of $G$. Let $\mathbf{d}:=(d_1, d_2, \cdots, d_n)$ be a nonincreasing sequence of nonnegative integers, that is $d_1\ge d_2\ge \cdots\ge d_n\ge 0$. Show that:
+- a) there is a graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even.
+  - $\Rightarrow$ Necessity: The sum of degrees in a graph is even 
+  - we know from the [[Graphs and Their Representation#Equation 1.1 Handshaking Lemma|Handshaking Lemma]] that $\sum_{i=1}^n d(v_i)=2e(G)$, then $\sum_{i=1}^n d_i$ is an even integer.
+  - $\Leftarrow$ Sufficiency: Constructing a graph when $\sum d_i$ is even
+  - Conversely, assume we have a sequence $\mathbf{d}=(d_1, \cdots, d_n)$ of nonnegative integers whose sum is even. We show there exists some graph $G$ (with possible loops and parallel edges) realizing $\mathbf{d}$ as its degree sequence.
+  - 1. Total half-edges (stubs).
+   - Because $\sum_{i=1}^n d_i$ is even, let $m:=\frac 12 \sum_{i=1}^n d_i$
+  - 2. Pairing the stubs to form edges.
+   - We have a total of $\sum d_i=2m$ half-edges across all vertices. We can simply pair up these $2m$ half-edges is any manner we like:
+   - If a pair of half-edges both come from the same vertex $v_i$, we form a loop at $v_i$
+   - If they com from different vertices $v_i$ and $v_j$, we form a link(possibly a parallel edge if we use the same pair $(v_i, v_j)$ multiple times).
+  - 3. Degrees are as prescribed.
+   - Each vertex $v_i$ had wxactly $d_i$ half-edges (stubs) to start with; they all get paired in the above step. Hence the resulting graph has vertex $v_i$ of degree $d_i$.
+- b) there is a loopless graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even and $d_1\le \sum_{i=2}^n d_i$. 
+  - $(\Rightarrow)$for loopless graph, $\operatorname{max}(d_1)=n-1$, and the graph has no loop, then the another $n-1$ vertices are share the same edges with $v_1$. then $d_1\le \sum_{i=2}^n d_i$.
+  - $(\equiv)$  if $\sum_{i=1}^n d_i$ is not even or $d_1> \sum_{i=2}^n d_i$, then  the graph has loop, but $\sum_{i=1}^n d_i$ is always even, then $d_1> \sum_{i=2}^n d_i\Rightarrow$ the graph has loop.
+  - for loopless graph, $d_1\le \sum_{i=2}^n d_i$, therefore, if $d_1$ has loop, then $d_1>\sum_{i=2}^n d_i$.
+### 1.1.17 Complement of a Graph
+- Let $G$ be a simple graph. The complement $\overline{G}$ of $G$ is the simple graph whose vertex set is $V$ and whose edges are the pairs of nonadjacent vertices of $G$.
+- a) Express the degree sequence of $\overline{G}$ in terms of the degree sequence of $G$.
+  - $\mathbf{d_G}=(d_{v_1}, \cdots, d_{v_n}), \text{ where } v_i\in V$
+  - $\mathbf{d}_{\overline{G}}=(d_{u_1}, \cdots, d_{u_i}) \text{where } u_i\in V$
+  - because edges of $\overline{G}$ are the pairs of nonadjacent vertices of $G$, and simple graph, 
+  - $d_{\overline{G}}(v)=(n-1)-d_G(v)$
+  - $\mathbf{d}_{\overline{G}}=(d_{v_n}, \cdots, d_{v_1})$
+- b) Show that if $G$ is disconnected, then $\overline{G}$ is connected. Is the converse true?
+  - 
 ## Regular graph
 - A graph $G$ is *k-regular* if $d(v)=k$ for all $v\in V$; a *regular graph* is one that is $k$-regular for some $k$. For instance, the [[Graphs and Their Representation#complete graph|complete graph]] on $n$ vertices is $(n-1)$-regular, and the complete bipartite graph with $k$ vertics in each part is $k$-regular. For $k=0, 1$ and 2, $k$-regular graphs have very simple structures and are easily characterized (Exercise 1.1.5). By contrast, 3-regular graphs can be remarkably complex. These graphs, also referred to as $\text{cubic}$ graphs, play a prominent role in graph theory. We present a number of interesting examples of such graphs in the section.
 - For $k=0, 1, 2$, characterize the $k$-regular graphs.
@@ -351,27 +380,5 @@ n&\ge2
 #### Why This Implies $\operatorname{rank}(M_G)=n-1$
 - Recall we only used the edges in $T$ to construct $M_T$. Adding more edges (the columns of edges not in $T$) to form the full incidence matrix $M_G$ might only increase the possible row-dependence relations, so $\operatorname{rank}(M_G)$ can never exceed $\operatorname{rank}(M_T)$. We already know $\operatorname{rank}(M_G)\le n-1$. Therefore, from the chain:$$\operatorname{rank}(M_T)\le \operatorname{rank}(M_G)\le n-1$$
 - but, $\operatorname{rank}(M_G)=n-1$. Thus, by "pinching" the inequality, we get $$\operatorname{rank}(M_G)=n-1\text{   provided $G$ is connected}$$
-### 1.1.16 Degree Sequence
-- If $G$ has vertices $v_1,v_2,\cdots,v_n$, the sequence $(d(v_1), d(v_2), \cdots, d(v_n))$ is called a *degee sequence* of $G$. Let $\mathbf{d}:=(d_1, d_2, \cdots, d_n)$ be a nonincreasing sequence of nonnegative integers, that is $d_1\ge d_2\ge \cdots\ge d_n\ge 0$. Show that:
-- a) there is a graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even.
-  - $\Rightarrow$ Necessity: The sum of degrees in a graph is even 
-  - we know from the [[Graphs and Their Representation#Equation 1.1 Handshaking Lemma|Handshaking Lemma]] that $\sum_{i=1}^n d(v_i)=2e(G)$, then $\sum_{i=1}^n d_i$ is an even integer.
-  - $\Leftarrow$ Sufficiency: Constructing a graph when $\sum d_i$ is even
-  - Conversely, assume we have a sequence $\mathbf{d}=(d_1, \cdots, d_n)$ of nonnegative integers whose sum is even. We show there exists some graph $G$ (with possible loops and parallel edges) realizing $\mathbf{d}$ as its degree sequence.
-  - 1. Total half-edges (stubs).
-   - Because $\sum_{i=1}^n d_i$ is even, let $m:=\frac 12 \sum_{i=1}^n d_i$
-  - 2. Pairing the stubs to form edges.
-   - We have a total of $\sum d_i=2m$ half-edges across all vertices. We can simply pair up these $2m$ half-edges is any manner we like:
-   - If a pair of half-edges both come from the same vertex $v_i$, we form a loop at $v_i$
-   - If they com from different vertices $v_i$ and $v_j$, we form a link(possibly a parallel edge if we use the same pair $(v_i, v_j)$ multiple times).
-  - 3. Degrees are as prescribed.
-   - Each vertex $v_i$ had wxactly $d_i$ half-edges (stubs) to start with; they all get paired in the above step. Hence the resulting graph has vertex $v_i$ of degree $d_i$.
-- b) there is a loopless graph with degree sequence $\mathbf{d}$ if and only if $\sum_{i=1}^n d_i$ is even and $d_1\le \sum_{i=2}^n d_i$. 
-  - $(\Rightarrow)$for loopless graph, $\operatorname{max}(d_1)=n-1$, and the graph has no loop, then the another $n-1$ vertices are share the same edges with $v_1$. then $d_1\le \sum_{i=2}^n d_i$.
-  - $(\equiv)$  if $\sum_{i=1}^n d_i$ is not even or $d_1> \sum_{i=2}^n d_i$, then  the graph has loop, but $\sum_{i=1}^n d_i$ is always even, then $d_1> \sum_{i=2}^n d_i\Rightarrow$ the graph has loop.
-  - for loopless graph, $d_1\le \sum_{i=2}^n d_i$, therefore, if $d_1$ has loop, then $d_1>\sum_{i=2}^n d_i$.
-### 1.1.17 Complement of a Graph
-- Let $G$ be a simple graph. The complement $\overline{G}$ of $G$ is the simple graph whose vertex set is $V$ and whose edges are the pairs of nonadjacent vertices of $G$.
-- a) Express the degree sequence of $\overline{G}$ in terms of the degree sequence of $G$.
-  - 
+
 - 
