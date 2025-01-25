@@ -1,8 +1,8 @@
 # Create Cycle
 - input으로 연결될 (node_index, ch_index) pair들의 정보와, 연결할 axis number를 받아와서, (node, ch) pair들을 순서대로 create_link 함수를 이용해서 연결하여 cycle을 완성하면 된다. 
-# Sentence
+# String
 - 문장(sentence)은 하나의 cycle로 이루어진다. sentence는 token의 연결로 이루어지므로, sentence data를 읽는 방식은 sentence cycle을 구성하는 vertex의 token data들을 읽어서 연결하는 과정으로 설명할 수 있다. 
-## Create Sentence
+## Create String
 ### Handle create sentence
 - sentence를 생성하기 위해서는 먼저 주어진 data를 tokenize 해야 한다. 이를 위해서 search_token 함수를 사용한다([[Node#Search Token|Search Token]]). 
 ```c
@@ -215,3 +215,7 @@ else
 # Delete Path from Cycle
 - 이미 존재하는 Cycle을 구성하는 특정 vertex, ch을 기준으로 특정 개수의 (vertex, ch) 들을 Cycle로부터 제거하고 다시 Cycle을 이어붙여서 길이가 줄어든 새로운 Cycle을 생성하는 함수이다. 
 - 제거된 Path를 구성하는 (vertex, ch)들은 서로에 대한 연결도 모두 끊고, axis_count를 0으로 초기화해야 한다.  이는 clear_channel 함수를 이용하면 된다. 
+# Upload text document
+- 텍스트가 저장된 문서의 경로를 지정하여 함수를 호출하면, 줄바꿈 문자를 기준으로 텍스트를 string으로 분리한 후, 모든 string을 database에 저장한다. 이 경우에는 is_embedded = true로 설정해서 handle_create_string 함수를 호출하면 된다. 
+- 모든 문서가 저장되면, 자동으로 token화 되어서 이후에 저장되려는 string들이 더 효율적으로 tokenization될 수 있다. 
+- 

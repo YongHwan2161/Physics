@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Functions/Vertex 관련 함수.md",
+                "file": "Graph Based DB/Graph sturcture/Cycle.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vertex 관련 함수"
+              "title": "Cycle"
             }
           }
         ]
@@ -175,6 +175,8 @@
   },
   "active": "b3d195753beb62ec",
   "lastOpenFiles": [
+    "Graph Based DB/Graph Based Database.md",
+    "Graph Based DB/Functions/Vertex 관련 함수.md",
     "Graph Based DB/Functions/Node 관련 함수.md",
     "Graph Based DB/Graph sturcture/Node.md",
     "Graph Based DB/Memory.md",
@@ -193,12 +195,10 @@
     "Mathematics/Matrix/Rank.md",
     "Mathematics/Field Theory.md",
     "Graph Based DB/Graph sturcture/Cycle.md",
-    "Graph Based DB/Graph Based Database.md",
     "Relation.md",
     "Graph Based DB/Graph sturcture/Channel.md",
     "Pasted image 20250120165515.jpg",
     "Graph Based DB/Functions/Cycle 관련 함수.md",
-    "Graph Based DB/Functions/Vertex 관련 함수.md",
     "Graph Based DB/Functions/Functions.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
     "Mathematics/Binomial.md",
