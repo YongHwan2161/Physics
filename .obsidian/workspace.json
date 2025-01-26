@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Graph sturcture/Cycle/String.md",
+                "file": "Graph Based DB/Graph sturcture/Node/Token.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "String"
+              "title": "Token"
             }
           }
         ]
@@ -175,13 +175,15 @@
   },
   "active": "b3d195753beb62ec",
   "lastOpenFiles": [
-    "Graph Based DB/Graph sturcture/Cycle/Cycle.md",
     "Graph Based DB/Graph sturcture/Cycle/String.md",
+    "Graph Based DB/Graph sturcture/Node/Node.md",
+    "Graph Based DB/Graph sturcture/Node/Token.md",
+    "Graph Based DB/Graph sturcture/Node",
+    "Graph Based DB/Graph sturcture/Cycle/Cycle.md",
     "Graph Based DB/Graph sturcture/Cycle",
     "Graph Based DB/Graph Based Database.md",
     "Graph Based DB/Functions/Vertex 관련 함수.md",
     "Graph Based DB/Functions/Node 관련 함수.md",
-    "Graph Based DB/Graph sturcture/Node.md",
     "Graph Based DB/Memory.md",
     "Graph Based DB/Functions/Axis 관련 함수.md",
     "Graph Based DB/Graph sturcture/Axis.md",
@@ -203,7 +205,6 @@
     "Graph Based DB/Functions/Cycle 관련 함수.md",
     "Graph Based DB/Functions/Functions.md",
     "Graph Based DB/Functions/Channel 관련 함수.md",
-    "Mathematics/Binomial.md",
     "Images/Pasted image 20250111213533.jpg",
     "Images/Pasted image 20250111210724.jpg",
     "Images/Pasted image 20250111210600.jpg",
@@ -217,7 +218,6 @@
     "Graph Based DB/Tests",
     "Graph Based DB/CGDB flow chart.canvas",
     "Graph Based DB/Functions",
-    "Graph Based DB/binary file/free space",
     "Untitled 1.canvas"
   ]
 }

@@ -62,5 +62,5 @@ visited_nodes[j] = 1;
    if (existing_cycle == NULL) continue;
    if (existing_cycle->count <= 1) continue;
 ```
-- 모든 j ch을 돌면서 합칠 수 있는 token 순서쌍을 가지고 있는 ch들을 모두 조사한다. 그리고 이 ch 값들을 새로운 함수에 전달하여 그 함수에서 token 결합을 진행하기로 한다. 하나의 함수 내에서 이를 모두 처리하면 코드의 복잡도가 너무 증가하기 때문에 기능을 분리한다. 
+- 모든 j ch을 돌면서 합칠 수 있는 token 순서쌍을 가지고 있는 ch들을 모두 조사한다. 그리고 이 ch 값들을 새로운 함수에 전달하여 그 함수에서 token 결합을 진행하기로 한다. 하나의 함수 내에서 이를 모두 처리하면 코드의 복잡도가 너무 증가하기 때문에 기능을 분리한다. 이는 [[Token#Integrate_token|Integrate_token]] 함수를 참조한다. 
 - 
