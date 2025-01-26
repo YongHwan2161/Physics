@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Graph Theory/Graphs and Their Representation.md",
+                "file": "Mathematics/Graph Theory/Graphic.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Graphs and Their Representation"
+              "title": "Graphic"
             }
           },
           {
@@ -186,6 +186,8 @@
   },
   "active": "6379cc839d4a1fea",
   "lastOpenFiles": [
+    "Mathematics/Graph Theory/Graphs and Their Representation.md",
+    "Mathematics/Graph Theory/Graphic.md",
     "Graph Based DB/Graph sturcture/Cycle/Cycle.md",
     "/Graph Based DB/Graph sturcture/Cycle/Cycle.md",
     "Graph Based DB/Graph sturcture/Node/Token.md",
@@ -205,7 +207,6 @@
     "/Graph Based DB/Functions/Node 관련 함수.md",
     "/Graph Based DB/Functions/Memory 관련 함수.md",
     "MathJax.md",
-    "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Graph Theory/Tree.md",
     "Mathematics/Linear Algebra/Linear indepence.md",
     "Mathematics/Linear Algebra",
@@ -216,7 +217,6 @@
     "/Graph Based DB/Graph sturcture/Node.md",
     "/Graph Based DB/Graph Based Database.md",
     "/Graph Based DB/Functions/Cycle 관련 함수.md",
-    "Relation.md",
     "Pasted image 20250120165515.jpg",
     "Images/Pasted image 20250111213533.jpg",
     "Images/Pasted image 20250111210724.jpg",

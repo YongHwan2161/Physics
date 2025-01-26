@@ -1,0 +1,11 @@
+# 1.1.18 Graphic Seuence
+- A sequence $\mathbf{d}=(d_1, d_2, \cdots, d_n)$ is graphic if there is a simple graph with degree sequence $\mathbf{d}$. Show that:
+- a) the sequences (7, 6, 5, 4, 3, 2) and (6, 6, 5, 4, 3, 3, 1) are not graphic,
+  - the sequence (7, 6, 5, 4, 3, 2), the sum is odd. then it  cannot make graph. ref. [[Graphs and Their Representation#1.1.16 Degree Sequence|1.1.16]]
+  - consider the sequence (6, 6, 5, 4, 3, 3, 1), $d_1=d_2=6$, but $V(G)=n=7$, if $d_1$ and $d_2$ does not have a loop, then all other vertices has at leat degree 2. but this sequence's $d_7=1$, then it is not simple graph.
+# Erdős–Gallai theorem
+- b) if $\mathbf{d}=(d_1, d_2, \cdots, d_n)$ is *graphic* and $d_1\ge d_2\ge \cdots \ge d_n$, then $\sum_{i=1}^n d_i$ is even and $$\sum_{i=1}^n d_i\le k(k-1)+\sum_{i=k+1}^n \operatorname{min}\{k, d_i\}, 1\le k\le n$$
+- (Erdos and Gallai (1960) showed that these necessary conditions for a sequence
+to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem
+## Proofs
+- It is not difficult to show that the conditions of the Erdős–Gallai theorem are necessary for a sequence of numbers to be graphic. The requirement that the sum of the degrees be even is the [[Graphs and Their Representation#Equation 1.1 Handshaking Lemma|Handshaking Lemma]], already used by Euler by in his 1736 paper on the bridges of Königsberg. The inequality between the sum of the $k$ largest degrees and the sum of the remaining degrees can be established by double counting: the left side gives the numbers of edge-vertex adjacencies among the $k$ highest-degree vertices, each such adjacency must either be on an edge with one or two high-degree vertices, each such adjacency must either be on an edge with one or two hige-degree endpoints, the $k(k-1)$ term on the right gives the maximum possible number of edge-vertex adjacencies in which both endpoints have high degree, and the remaining term on the right upper bounds the number of edges that have exactly one high degree endpoint. Thus, the more difficult part of the proof is to show that, for any sequence of numbers obeying these conditions, there exists a graph for which it is the degree sequence. 
