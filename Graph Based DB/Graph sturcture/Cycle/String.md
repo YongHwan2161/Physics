@@ -44,4 +44,23 @@ int integrate_token_data(unsigned int node_index) {
 ```c
     if (next_vertex.node == next_vertex2.node) {
 ```
+- j ch 반복문을 돌면서 새로운 token은 단 한 번만 생성되어야 한다. 이를 보장하기 위해 new_node_create 변수를 이용한다. 
+```c
+   if (!new_node_created)
+   {
+       new_node = create_token_node(node_index, next_vertex.node);
+       new_node_created = true;
+   }
+```
+- j ch과 i ch이 새로운 token으로 합쳐질 수 있다면, 이후 i 반복문에서는 j ch을 탐색할 이유가 없다. 이런 중복을 방지히기 위해서 token을 합치기 전에 j 값을 visited_nodes 배열에 1로 저장해 놓는다. 이 값이 0이면 token을 합치는 과정이 진행되지 않은 ch이고, 1이면 이미 token을 합치는 과정이 진행되었으므로, 건너 뛰어도 된다는 의미이다. 
+```c
+visited_nodes[j] = 1;
+```
+- 이제 token을 합치는 과정이 남았다. 먼저 string cycle 정보를 받아오고, cycle_count가 1 이하인 경우는 건너뛴다. 0인 경우는 에러 상황이고, 1인 경우는 loop이므로 합칠 token이 없으므로 건너뛴다. 하지만 loop인 경우은 이미 앞에서 걸러지므로, 이 코드가 작동하는 경우는 에러 상황이라고 볼 수 있을 것이다.
+```c
+   cycleInfo *existing_cycle = get_cycle_info(node_index, i, 2);
+   if (existing_cycle == NULL) continue;
+   if (existing_cycle->count <= 1) continue;
+```
+- 모든 j ch을 돌면서 합칠 수 있는 token 순서쌍을 가지고 있는 ch들을 모두 조사한다. 그리고 이 ch 값들을 새로운 함수에 전달하여 그 함수에서 token 결합을 진행하기로 한다. 하나의 함수 내에서 이를 모두 처리하면 코드의 복잡도가 너무 증가하기 때문에 기능을 분리한다. 
 - 
