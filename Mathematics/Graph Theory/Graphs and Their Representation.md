@@ -394,6 +394,7 @@ n&\ge2
 - a) the sequences (7, 6, 5, 4, 3, 2) and (6, 6, 5, 4, 3, 3, 1) are not graphic,
   - the sequence (7, 6, 5, 4, 3, 2), the sum is odd. then it  cannot make graph. ref. [[Graphs and Their Representation#1.1.16 Degree Sequence|1.1.16]]
   - consider the sequence (6, 6, 5, 4, 3, 3, 1), $d_1=d_2=6$, but $V(G)=n=7$, if $d_1$ and $d_2$ does not have a loop, then all other vertices has at leat degree 2. but this sequence's $d_7=1$, then it is not simple graph.
-- b) if $\mathbf{d}=(d_1, d_2, \cdots, d_n)$ is *graphic* and $d_1\ge d_2\ge \cdots \ge d_n$, then $\sum_{i=1}^n d_i$ is even and $$\sum_{i=1}^n d_i\le k(k+1)+\sum_{i=k+1}^n \operatorname{min}\{k, d_i\}, 1\le k\le n$$
+- b) if $\mathbf{d}=(d_1, d_2, \cdots, d_n)$ is *graphic* and $d_1\ge d_2\ge \cdots \ge d_n$, then $\sum_{i=1}^n d_i$ is even and $$\sum_{i=1}^n d_i\le k(k-1)+\sum_{i=k+1}^n \operatorname{min}\{k, d_i\}, 1\le k\le n$$
 - (Erdos and Gallai (1960) showed that these necessary conditions for a sequence
-to be graphic are also sufficient.)
+to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem
+- 
