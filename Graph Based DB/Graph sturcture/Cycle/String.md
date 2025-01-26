@@ -39,3 +39,9 @@ int integrate_token_data(unsigned int node_index) {
   
             if (are_vertices_in_same_cycle(node_index, i, node_index, j, STRING_AXIS)) continue;
 ```
+- 다음으로, 이제 어느 조건일 때 token을 합칠 것인지를 결정해야 한다. 서로 다른 string에 속한 2개의 token이 연속된 순서로 있는 경우에 이를 새로운 token으로 합치는 것이 규칙이다. 
+- 이미 node_index가 같으므로, next_vertex.node가 서로 동일하다면 이는 새로운 token으로 합쳐도 된다고 판단할 수 있다. 
+```c
+    if (next_vertex.node == next_vertex2.node) {
+```
+- 
