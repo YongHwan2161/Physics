@@ -28,8 +28,14 @@ int integrate_token_data(unsigned int node_index) {
     for (int i = 1; i < channel_count; i++) {
         Vertex current_vertex = {node_index, i};
         bool new_node_created = false;
-        if (!has_axis(node_index, i, STRING_AXIS)) continue;
-        if (get_link_count(node_index, i, STRING_AXIS) == 0) continue;
-        Vertex next_vertex = get_next_vertex(node_index, i, STRING_AXIS);
-        if (is_start_string_vertex(next_vertex)) continue;
+        Vertex next_vertex = get_next_vertex_check(node_index, i, STRING_AXIS);
+        if (next_vertex.node == 0 && next_vertex.channel == 0) continue;
+```
+- 다음으로 ch i + 1부터 channel_count - 1까지 다시 반복문을 도는데, 일단 ch j의 next_vetex를 check하고, 만약 ch i와 ch_i의 vertex가 한 string 내에 속해 있는 경우(ABCCCCABDDDDD같은 경우 A와 B는 하나의 string cycle에서 같은 node_index를 가지고 ch만 다를 수 있음.)에는 반복문을 건너 뛴다. 이 경우에 token을 합치게 되면, 최소 두 개의 string을 비교하여 token을 합치는 게 아니라 하나의 string만 있어도 token이 합쳐지게 되고, 예측하기 어려운 결과가 발생할 수 있다. 어차피 같은 token 조합을 가진 다른 string이 나중에 input으로 들어오면 그 때 자동으로 합쳐지기 되므로 여기서는 건너뛴다.
+```c
+        for (int j = i + 1; j < channel_count; j++) {
+            Vertex next_vertex2 = get_next_vertex_check(node_index, j, STRING_AXIS);
+            if (next_vertex2.node == 0 && next_vertex2.channel == 0) continue;
+  
+            if (are_vertices_in_same_cycle(node_index, i, node_index, j, STRING_AXIS)) continue;
 ```
