@@ -80,4 +80,7 @@ Size (bytes)    Offset
 - 예: "ABCABCABC"와 같은 문자열을 생성할 때 에러가 발생하지 않는지 테스트한다. 
 - 한 개의 문자가 반복되는 경우, 두 개의 문자가 반복되는 경우, 3, 4, 5, 개의 문자가 반복되는 경우 순서로 10개의 문자가 반복되는 경우까지 테스트한다. 반복횟수는 2부터 10까지 테스트 한다. 
 - 생성 과정에서 error가 발생하지 않아야 한다. 
-- 
+
+# Integrate Token Test
+- 동일한 token 배열이 반복될 때 새로운 token으로 합치는 과정을 진행하게 되는데, 하나의 node에서 channel을 탐색하면서, 2개의 동일한 배열이 발견될 때 integration을 진행할 지, 3개 혹은 그 이상의 동일한 배열이 발견될 때 integration을 진행할 지 테스트할 필요가 있다. 전역변수로 선언된 integration_count 값을 2, 3, 4, 5로 변화시켜 가면서 주어진 file의 upload를 진행하면서 결과를 분석한다. 
+- 분석해야 하는 결과는 file 내용을 모두 업로드한 뒤, check-node-consistency-all을 이용해서 문제가 없는지 확인하고, 생성된 node의 개수를 currentNodeCount를 이용해서 분석하고, data.bin file의 end offset을 이용해서 database의 크기를 확인한다. 
