@@ -26,8 +26,9 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
   - Putting these pieces together, we have:$$\sum_{i=1}^k d_i=2e(S)+e(S,T)\le 2\cdot\frac{k(k-1)}{2}+\sum_{j=k+1}^n\operatorname{min}\{k,d_j\}$$
   - $\sum_{i=1}^k d_i\le k(k-1)+\sum_{j=k+1}^n\operatorname{min}\{k,d_j\}$
 
-# 1.1.19
-- Let $\mathbf{d}=(d_1,d_2,\cdots,d_n)$ be a nonincreasing sequence of nonnegative integers. Set $\mathbf{d}':=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}-1, \cdots, d_n)$.
+# 1.1.19 Havel-Hakimi-type
+- Let $\mathbf{d}=(d_1,d_2,\cdots,d_n)$ be a nonincreasing sequence of nonnegative integers. Set $\mathbf{d}':=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}, \cdots, d_n)$.
 - a) Show that $\mathbf{d}$ is graphic if and only if $\mathbf{d}'$ is graphic.
-- if $d_1\le d_2\le \cdots \le d_n\implies d_2-1\le d_3-1\le \cdots$
+- if $d_1\le d_2\le \cdots \le d_n\implies d_2-1\le d_3-1\le \cdots\le d_n-1$
+- and $d_{d_1+1}\le d_{d_1+2}\le \cdots$
 - 
