@@ -389,3 +389,4 @@ n&\ge2
 - Recall we only used the edges in $T$ to construct $M_T$. Adding more edges (the columns of edges not in $T$) to form the full incidence matrix $M_G$ might only increase the possible row-dependence relations, so $\operatorname{rank}(M_G)$ can never exceed $\operatorname{rank}(M_T)$. We already know $\operatorname{rank}(M_G)\le n-1$. Therefore, from the chain:$$\operatorname{rank}(M_T)\le \operatorname{rank}(M_G)\le n-1$$
 - but, $\operatorname{rank}(M_G)=n-1$. Thus, by "pinching" the inequality, we get $$\operatorname{rank}(M_G)=n-1\text{   provided $G$ is connected}$$
 
+
