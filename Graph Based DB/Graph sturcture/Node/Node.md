@@ -18,6 +18,10 @@
 - 다만, 이전 버전과 달리 모든 node는 반드시 token을 가지고 있으므로, node가 삭제될 일은 없을 것 같다. 혹시 몰라서 일단 둔다.
 ## node 259: pointer_max_offset_node
 - resize_node_space 과정이나 create_new_node 과정에서 data.bin file 크기가 확장되어야 하는 경우에는 end_offset을 구해야 한다. 
+- database가 수정될 때마다 매번 binary file과 동기화 과정을 거치는 경우에는 data.bin file의 end_offset을 이용해서 쉽게 구할 수 있지만, 대량의 데이터를 한 번에 업로드하고 나서 동기화를 하는 경우에는 binary file의 마지막 위치가 새로 생성되는 node의 offset이 될 수 없다. 
+- 이를 관리하기 위해서 last_offset 변수를 관리한다. 
+- 새로운 node가 생성되는 경우에는 last_offset을 16 증가시킨다. 
+- node_size 재할당이 이루어지는 경우에는, last_offset에 재할당이 이루어지는 만큼의 크기를 더한다. 
 - 
 # Token
 ## get Token vertex data
