@@ -16,6 +16,9 @@
 ## node 256: Garbage Node
 - 삭제된 node들이 저장되는 휴지통이다. 삭제된 node들은 나중에 node를 새로 생성할 때 재활용될 수 있다. 
 - 다만, 이전 버전과 달리 모든 node는 반드시 token을 가지고 있으므로, node가 삭제될 일은 없을 것 같다. 혹시 몰라서 일단 둔다.
+## node 259: pointer_max_offset_node
+- resize_node_space 과정이나 create_new_node 과정에서 data.bin file 크기가 확장되어야 하는 경우에는 end_offset을 구해야 한다. 
+- 
 # Token
 ## get Token vertex data
 - Token vertex는 데이터가 저장되는 최소 단위이다. 각각의 Token vertex들은 고유한 데이터를 저장하고 있다. 

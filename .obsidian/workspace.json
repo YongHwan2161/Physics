@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Graph Based DB/Graph sturcture/Node/Token.md",
+                "file": "Graph Based DB/Graph sturcture/Node/Node.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Token"
+              "title": "Node"
             }
           }
         ]
@@ -175,9 +175,9 @@
   },
   "active": "b3d195753beb62ec",
   "lastOpenFiles": [
+    "Graph Based DB/Graph sturcture/Node/Token.md",
     "Mathematics/Graph Theory/Graphic.md",
     "Graph Based DB/Graph sturcture/Node/Node.md",
-    "Graph Based DB/Graph sturcture/Node/Token.md",
     "Graph Based DB/Graph sturcture/Cycle/String.md",
     "Graph Based DB/Graph sturcture/Node",
     "Graph Based DB/Graph sturcture/Cycle/Cycle.md",
