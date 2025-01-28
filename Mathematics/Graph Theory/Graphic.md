@@ -31,4 +31,11 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
 - a) Show that $\mathbf{d}$ is graphic if and only if $\mathbf{d}'$ is graphic.
 - if $d_1\le d_2\le \cdots \le d_n\implies d_2-1\le d_3-1\le \cdots\le d_n-1$
 - and $d_{d_1+1}\le d_{d_1+2}\le \cdots$
+- We assume $d_1\le n-1$ because no vertex in a simple graph on $n$ vertices can have degree exceeding $n-1$.
+- Forward Direction $(\mathbf{d}\implies \mathbf{d}')$
+  - Assume $\mathbf{d}$ is graphic. That means there exists a simple graph $G$ on $n$ vertices (say $v_1, \cdots, v_n$) such that $\operatorname{deg}(v_i)=d_i$ (for each $i=1,\cdots, n$).
+  - Because $d_1\ge d_2\ge \cdots$, let $v_1$ be a vertex of degree $d_1$. Then:
+   - 1. Delete $v_1$ from $G$.
+   - 2. Remove the $d_1$ edges that connect $v_1$ to its $d_1$ neighbors.
+- In the resulting graph $G-v_1$, we have $n-1$ vertices. Each neighbor of $v_1$ in $G$ had its degree reduced by 1; the other vertices remain with the same degree. If you write down the new degrees of the $n-1$ remaining vertices in nonincreasing order. you precisely get:$$\mathbf{d}'=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}, \cdots, d_n)$$
 - 
