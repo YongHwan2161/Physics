@@ -14,3 +14,13 @@ void UpdateZoom(int delta) {
     panY = panY * (zoomLevel / oldZoom);
 }
 ```
+# Update Pan
+- 화면을 상하좌우로 확장하여 이동시키기 위해 필요함. zoom level에 따라서 움직이는 양이 변화함.
+```c
+void UpdatePan(int dx, int dy) {
+    // Scale the pan movement by zoom level for consistent feel
+    float zoom = GetZoomLevel();
+    panX += dx / zoom;
+    panY += dy / zoom;
+}
+```

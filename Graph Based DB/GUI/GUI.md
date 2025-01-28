@@ -23,4 +23,18 @@
 ```
 ## mouse R click
 - mouse의 right button을 click하고 drag하면 화면을 이동시킬 수 있다. 
-- 
+- mouse movement가 감지될 때 right button이 click되었는지를 검사하여 click된 경우에는 [[Zoom#Update Pan|update pan]] 함수를 호출하여 pan을 조정한다. 
+```c
+        case WM_MOUSEMOVE: {
+            int mouseX = LOWORD(lParam);
+            int mouseY = HIWORD(lParam);
+            static int lastMouseX = 0;
+            static int lastMouseY = 0;
+            if (wParam & MK_RBUTTON) {  // Right button is down
+                int dx = mouseX - lastMouseX;
+                int dy = mouseY - lastMouseY;
+                UpdatePan(dx, dy);
+                InvalidateRect(hwnd, NULL, TRUE);
+                SetCursor(LoadCursor(NULL, IDC_SIZEALL));
+            }
+```
