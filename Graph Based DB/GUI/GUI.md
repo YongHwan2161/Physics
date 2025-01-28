@@ -21,3 +21,6 @@
             return 0;
         }
 ```
+## mouse R click
+- mouse의 right button을 click하고 drag하면 화면을 이동시킬 수 있다. 
+- 
