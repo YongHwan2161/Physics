@@ -49,4 +49,5 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
   - This is a valid construction in a simple graph: we are adding exactly $d_1$ edges, $u_1, u_j$ for $j=2, \cdots, d_1+1$. Then: 
     - The degree of $u_1$ in the new graph is $d_1$.
     - Each $u_j=2, \cdots, d_1+1$ sees its old degree $\operatorname{deg}_H(u_j)=d_j-1$ incremented by 1 (because it now has a new neighbor $u_1$), thus its new degree is $d_j$.
-    - Each $u_j$ with $j>d_1+1$ keeps its old degree $$
+    - Each $u_j$ with $j>d_1+1$ keeps its old degree $d_j$ because $u_1$ is not connected to it.
+  - Hence in this augmented graph (on $n$ vertices), the degree of vertex $u_j$ is exactly $d_j$ for all $j=1, \cdots, n$. We have thus built a simple graph whose degree sequence is $\mathbf{d}$. Therefore, $\mathbf{d}$ is graphic.
