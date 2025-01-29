@@ -40,4 +40,8 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
 - In the resulting graph $G-v_1$, we have $n-1$ vertices. Each neighbor of $v_1$ in $G$ had its degree reduced by 1; the other vertices remain with the same degree. If you write down the new degrees of the $n-1$ remaining vertices in nonincreasing order. you precisely get:$$\mathbf{d}'=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}, \cdots, d_n)$$
 - The resolution is that after we remove $v_1$ and reduce the degrees of its neighbors by 1, we then "relabel" or "re-sort" the remaining vertices so that their degrees are again in nonicreasing order before defining the new sequence $\mathbf{d}'$. This step is often left implicit but is essential in the Havel-Hakimi procedure.
 - When you list those new degrees in nonincreasing order, that is precisely the sequence $\mathbf{d}'$. There is no requirement that "$v_2$" remain "$v_2$" after removing $v_1$. We effectively give them fresh labels $u_2, \cdots, u_n$ to keep them sorted.
-- 
+- Reverse Direction ($\mathbf{d}'=\mathbf{d}$)
+  - Now assume $\mathbf{d}'$ is graphic. That means there is a simple graph $H$ on ($n-1$) vertices whose degree sequence (in nonincreasing order) is $\mathbf{d}'$. Label these vertices $u_2, u_3, \cdots, u_n$ is such a way that $$\operatorname{deg}_H(u_i)=\begin{cases}d_i-1, & \text{for }i=2, \cdots, d_1+1,\\
+  d_i, & \text{for } i=d_1+2, \cdots, n.\end{cases}$$
+  - Now add a new vertex $u_1$ into $H$. We want $u_1$ to have degree $d_1$. We can achieve this by:
+   1. Making $u_1$ adjacent precisely to the $d_1$ vertices $u_2, $
