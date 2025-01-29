@@ -38,4 +38,6 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
    - 1. Delete $v_1$ from $G$.
    - 2. Remove the $d_1$ edges that connect $v_1$ to its $d_1$ neighbors.
 - In the resulting graph $G-v_1$, we have $n-1$ vertices. Each neighbor of $v_1$ in $G$ had its degree reduced by 1; the other vertices remain with the same degree. If you write down the new degrees of the $n-1$ remaining vertices in nonincreasing order. you precisely get:$$\mathbf{d}'=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}, \cdots, d_n)$$
+- The resolution is that after we remove $v_1$ and reduce the degrees of its neighbors by 1, we then "relabel" or "re-sort" the remaining vertices so that their degrees are again in nonicreasing order before defining the new sequence $\mathbf{d}'$. This step is often left implicit but is essential in the Havel-Hakimi procedure.
+- When you list those new degrees in nonincreasing order, that is precisely the sequence $\mathbf{d}'$. There is no requirement that "$v_2$" remain "$v_2$" after removing $v_1$. We effectively give them fresh labels $u_2, \cdots, u_n$ to keep them sorted.
 - 
