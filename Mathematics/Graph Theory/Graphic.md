@@ -44,4 +44,9 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
   - Now assume $\mathbf{d}'$ is graphic. That means there is a simple graph $H$ on ($n-1$) vertices whose degree sequence (in nonincreasing order) is $\mathbf{d}'$. Label these vertices $u_2, u_3, \cdots, u_n$ is such a way that $$\operatorname{deg}_H(u_i)=\begin{cases}d_i-1, & \text{for }i=2, \cdots, d_1+1,\\
   d_i, & \text{for } i=d_1+2, \cdots, n.\end{cases}$$
   - Now add a new vertex $u_1$ into $H$. We want $u_1$ to have degree $d_1$. We can achieve this by:
-   1. Making $u_1$ adjacent precisely to the $d_1$ vertices $u_2, $
+   1. Making $u_1$ adjacent precisely to the $d_1$ vertices $u_2, \cdots, u_{d_1+1}$ (the ones whose degrees were reduced by 1 in $\mathbf{d}'$).
+   2. 2. Not adjoining $u_1$ to any other vertex $u_j$ for $j>d_1+1$.
+  - This is a valid construction in a simple graph: we are adding exactly $d_1$ edges, $u_1, u_j$ for $j=2, \cdots, d_1+1$. Then: 
+    - The degree of $u_1$ in the new graph is $d_1$.
+    - Each $u_j=2, \cdots, d_1+1$ sees its old degree $\operatorname{deg}_H(u_j)=d_j-1$ incremented by 1 (because it now has a new neighbor $u_1$), thus its new degree is $d_j$.
+    - Each $u_j$ with $j>d_1+1$ keeps its old degree $$
