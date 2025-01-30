@@ -20,4 +20,5 @@ void upload_from_json(json_t *element, Vertex parent_vertex)
     }
 ```
 - json eleement가 object인 경우에는 key, value로 분리할 수 있다. 
-- 먼저 parent_vertex를 기준으로 key에 해당하는 string을 생성한다. 
+- 먼저 parent_vertex를 기준으로 key에 해당하는 string을 생성한다. handle_create_string 함수는 무조건 currentVertex를 기준으로 string을 생성하기 때문에, currentVertex를 일시적으로 변경한 뒤 handle_create_string 함수를 call 해야 한다. 
+- 
