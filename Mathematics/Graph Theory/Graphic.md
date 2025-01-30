@@ -51,3 +51,4 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
     - Each $u_j=2, \cdots, d_1+1$ sees its old degree $\operatorname{deg}_H(u_j)=d_j-1$ incremented by 1 (because it now has a new neighbor $u_1$), thus its new degree is $d_j$.
     - Each $u_j$ with $j>d_1+1$ keeps its old degree $d_j$ because $u_1$ is not connected to it.
   - Hence in this augmented graph (on $n$ vertices), the degree of vertex $u_j$ is exactly $d_j$ for all $j=1, \cdots, n$. We have thus built a simple graph whose degree sequence is $\mathbf{d}$. Therefore, $\mathbf{d}$ is graphic.
+- b) Using (a), describe an algorithm which accepts as input a nonincreasing sequence $\mathbf{d}$ of nonnegative integers, and returns either a simple graph with degree sequence $\mathbf{d}$, if such a graph exists, or else a proof that $\mathbf{d}$ is not graphic.
