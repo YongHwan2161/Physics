@@ -63,6 +63,12 @@
 ![[Pasted image 20250111213533.jpg]]
 - Because most graphs have many more edges than verticies, the adjacency matrix of a graph is generally much smaller than its incidence matrix and thus requires less storage space. When dealing with simple graphs, an even more compact representation is possible. For each vertex $v$, the neighbours of $v$ are listed in some order. A list $(N(v):v\in V)$ of these lists is called an *adjacency list* of the graph. Simple graphs are usually stored in computers as adjacency lists.
 - When $G$ is a bipartite graph, as there are no edges joining pairs of vertices belonging to the same part of its bipartition, a matrix of smaller size than the adjacency matrix may be used to record the numbers of edges joining pairs of vertics. Suppose that $G[X, Y]$ is a bipartite graph, where $X:=\{x_1, x_2, \cdots, x_r\}$ and $Y:=\{y_1, y_2, \cdots, y_s\}$. We define the *bipartite adjacency matrix* of $G$ to be the $r\times s$ matrix $\mathbf{B}_G=(b_{ij})$, where $b_{ij}$ is the number of edges joining $x_i$ and $y_j$.
+### 1.1.21 Eigenvalues of a Graph
+- Recall that the eigenvalues of a squar matrix $\mathbf{A}$ are the roots of its characteristic polynomial $\operatorname{det}(\mathbf{A}-x\mathbf{I})$. An eigenvalue of a graph is an eigenvalue of its adjacency matrix. Likewise, the characteristic polynomial of a graph is the characteristic polynomial of its adjacency matrix. Show that:
+- a) every eigenvalue of a grap is real,
+  - In other words, if you take the adjacency matrix $A_G$ of a graph $G$ and look at its characteristic polynomial $\operatorname{deg}(A_G-x\mathbf{I})$, all the roots of this polynomial are real numbers.
+  - 
+- b) every rational eigenvalue of a graph is integral.
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
 ## minimum and maximum degrees
@@ -397,7 +403,3 @@ n&\ge2
   - By definition, each vertex $v\in S$ has $\operatorname{deg}(v)$ neighbors exactly 1 unit away from $v$. We want to sow that $\operatorname{deg}(v)\le6$ for each $v$. If this is true, then the sum of all degrees in the graph satisfies $$2e(G)=\sum_{v\in S} \operatorname{deg}(v)\le 6n\implies e(G)\le 3n$$
   - Why each point has at most 6 unit neighbors.
   - Suppose $v$ is a point in $S$. Around $v$, draw a circle of radius 1. Its neighbots in $G$ must lie on that circle(distance exactly 1 from $v$), and they must at least distance 1 from each other (since all points in $S$ are pairwise at least 1 apart).
-### 1.1.21 Eigenvalues of a Graph
-- Recall that the eigenvalues of a squar matrix $\mathbf{A}$ are the roots of its characteristic polynomial $\operatorname{det}(\mathbf{A}-x\mathbf{I})$. An eigenvalue of a graph is an eigenvalue of its adjacency matrix. Likewise, the characteristic polynomial of a graph is the characteristic polynomial of its adjacency matrix. Show that:
-- a) every eigenvalue of a grap is real,
-- b) every rational eigenvalue of a graph is integral.
