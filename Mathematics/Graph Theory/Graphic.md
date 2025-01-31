@@ -52,3 +52,20 @@ to be graphic are also sufficient.) ref. https://en.wikipedia.org/wiki/Erd%C5%91
     - Each $u_j$ with $j>d_1+1$ keeps its old degree $d_j$ because $u_1$ is not connected to it.
   - Hence in this augmented graph (on $n$ vertices), the degree of vertex $u_j$ is exactly $d_j$ for all $j=1, \cdots, n$. We have thus built a simple graph whose degree sequence is $\mathbf{d}$. Therefore, $\mathbf{d}$ is graphic.
 - b) Using (a), describe an algorithm which accepts as input a nonincreasing sequence $\mathbf{d}$ of nonnegative integers, and returns either a simple graph with degree sequence $\mathbf{d}$, if such a graph exists, or else a proof that $\mathbf{d}$ is not graphic.
+  - Step 0: Preliminary Checks
+   - Check sum of derees: if $\sum_{i=1}^n d_i$ is odd, stop-no such graph exists (the Handshaking Lemma requires an even sum).
+   - 2. Check maximum degree: if $d_1>n-1$, stop-no vertex can have degree exceeding $n-1$.
+- If either check fails, we immediately conclude $\mathbf{d}$ is not graphic.
+- Step 1: If All Degrees are Zero
+  - If $d_1=d_2=\cdots=d_n=0$, then $\mathbf{d}$ is graphic-specifically, it is realized by a graph with no edges(the empty graph).
+  - We can ouput that empty graph and teminate.
+- Step 2: Remove the First Term and Subtract 1 from the Next $d_1$ Largest Terms
+  1. Let $d_1$ be the first (largest) degree in the sequence.
+  2. Remove $d_1$ from the sequence (so now we have $n-1$ terms).
+  3. Subtract 1 from the next $d_1$ terms in the sequence:$$\mathbf{d}'=(d_2-1, d_3-1, \cdots, d_{d_1+1}-1, d_{d_1+2}, \cdots d_n)$$
+  4. If at nay point we need to "subtract 1" but do not have enough terms (i.e., $d_1>n-1$) or if any resulting entry becomes negatives, stop-$\mathbf{d}$ is not graphic. A vertex cannot "lose" more neighbors than it has.
+  5. Re-sort $\mathbf{d}'$ into nonincreasing order (this step ensures the format is consistent for the next iteration).
+  6. Now we have a new sequence $\mathbf{d}'$ of length ($n-1$).
+- Step 3: Repeat Recursively
+  - Return to Step 1, but now with the updated sequence $\mathbf{d}'$
+  - 

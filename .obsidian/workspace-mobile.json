@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Graph Theory/Graphic.md",
+                "file": "Mathematics/Graph Theory/Graphs and Their Representation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Graphic"
+              "title": "Graphs and Their Representation"
             }
           },
           {
@@ -186,8 +186,8 @@
   },
   "active": "6379cc839d4a1fea",
   "lastOpenFiles": [
-    "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Graph Theory/Graphic.md",
+    "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Graph Based DB/Upload.md",
     "/Graph Based DB/Upload.md",
     "Graph Based DB/GUI/Zoom.md",

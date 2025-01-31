@@ -391,3 +391,13 @@ n&\ge2
 
 
 
+### 1.1.20 
+- Let $S$ be a set of $n$ points in the plane, the distance between any two of which is at least one. Show that there are at most $3n$ pairs of points of $S$ at distance exactly one.
+  - Our goal is to show $e(G)\le3n$
+  - By definition, each vertex $v\in S$ has $\operatorname{deg}(v)$ neighbors exactly 1 unit away from $v$. We want to sow that $\operatorname{deg}(v)\le6$ for each $v$. If this is true, then the sum of all degrees in the graph satisfies $$2e(G)=\sum_{v\in S} \operatorname{deg}(v)\le 6n\implies e(G)\le 3n$$
+  - Why each point has at most 6 unit neighbors.
+  - Suppose $v$ is a point in $S$. Around $v$, draw a circle of radius 1. Its neighbots in $G$ must lie on that circle(distance exactly 1 from $v$), and they must at least distance 1 from each other (since all points in $S$ are pairwise at least 1 apart).
+### 1.1.21 Eigenvalues of a Graph
+- Recall that the eigenvalues of a squar matrix $\mathbf{A}$ are the roots of its characteristic polynomial $\operatorname{det}(\mathbf{A}-x\mathbf{I})$. An eigenvalue of a graph is an eigenvalue of its adjacency matrix. Likewise, the characteristic polynomial of a graph is the characteristic polynomial of its adjacency matrix. Show that:
+- a) every eigenvalue of a grap is real,
+- b) every rational eigenvalue of a graph is integral.
