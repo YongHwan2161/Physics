@@ -67,6 +67,10 @@
 - Recall that the eigenvalues of a squar matrix $\mathbf{A}$ are the roots of its characteristic polynomial $\operatorname{det}(\mathbf{A}-x\mathbf{I})$. An eigenvalue of a graph is an eigenvalue of its adjacency matrix. Likewise, the characteristic polynomial of a graph is the characteristic polynomial of its adjacency matrix. Show that:
 - a) every eigenvalue of a grap is real,
   - In other words, if you take the adjacency matrix $A_G$ of a graph $G$ and look at its characteristic polynomial $\operatorname{deg}(A_G-x\mathbf{I})$, all the roots of this polynomial are real numbers.
+  - The Adjacency Matrix is Real Symmetric
+  - A (simple) graph $G$ has an adjacency matrix $A_G=(a_{ij})$, where $$a_{ij}=\begin{cases}1, & \text{if vertex $v_i$ is adjacent to vertex $v_j$}\\
+  0, & \text{otherwise}\end{cases}$$
+  
   - 
 - b) every rational eigenvalue of a graph is integral.
 # Vertex Degrees
