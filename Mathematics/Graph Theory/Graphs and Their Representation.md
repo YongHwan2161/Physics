@@ -71,7 +71,11 @@
   - A (simple) graph $G$ has an adjacency matrix $A_G=(a_{ij})$, where $$a_{ij}=\begin{cases}1, & \text{if vertex $v_i$ is adjacent to vertex $v_j$}\\
   0, & \text{otherwise}\end{cases}$$
   
-  - 
+  - Of course, it is also a real matrix (all entries are 0 or 1). Hence $A_G$ is a real symmetric matrix.
+  - Real Symmetric Matrices Have Real Eigenvalues
+  - From basic linear algebra, one learns: A real symmetric ($n\times n$) matrix $M$ can be diagonalized by an orthogonal matrix. Equivalently, all the roots of its characteristic polynomial $\operatorname{det}(M-x\mathbf{I})$ are real numbers. ref. [[Eigenvalue, Eigenvector#symmetric matrices|symmetric matrix]]
+  - Therefore, the adjacency matrix $A_G$, being real symmetric, must have real eigenvalues.
+  - In symbols, if $\lambda$ is an eigenvalue of $A_G$, then $\lambda\in \mathbb{R}$.
 - b) every rational eigenvalue of a graph is integral.
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
