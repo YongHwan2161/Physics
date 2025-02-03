@@ -25,6 +25,7 @@
 - `\cdots`: $\cdots$
 - `\vdots`: $\vdots$
 - `\ddots`: $\ddots$
+- `\perp`: $\perp$
 - `\backslash, \setminus`: $\backslash, \setminus$
 - 
 - `\mathring{}`: $\mathring{A}$

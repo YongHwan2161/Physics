@@ -15,3 +15,5 @@
   1. $R(\mathbf{x})$ is real for all real $\mathbf{x}$.
   2. $R(\mathbf{x})$ attains a maximum and a minimum over the unit sphere $\mathbf{x}:|\mathbf{x}|=1$ (by compactness).
 - Let $\mathbf{v}$ be a vector at which $R(\mathbf{x})$ attains the maximum. One can then show (using Lagrange multipliers or direct variational arguments) that $M\mathbf{v}=\lambda_{max}, \mathbf{v}$ with $\lambda_{\operatorname{max}}=R(\mathbf{v})$. This exhibits a real eigenvalue $\lambda_{\operatorname{max}}\in \mathbb{R}$ with a real eigenvector $\mathbf{v}$.
+- Step 3: Induction on Dimension
+- Once you know $M$ has a real eigenvalue $\lambda_{\operatorname{max}}$, you can find a real eigenvector $\mathbf{v}$. Form the subspace $V_1-\operatorname{span}\mathbf{v}$. Then consider the orthogonal complement $V_1^{\perp}$ . One shows $M$ leaves $V_1^{\perp}$ invariant because $M$ is symmetric (so $\mathbf{v}$)
