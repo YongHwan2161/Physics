@@ -76,7 +76,17 @@
   - From basic linear algebra, one learns: A real symmetric ($n\times n$) matrix $M$ can be diagonalized by an orthogonal matrix. Equivalently, all the roots of its characteristic polynomial $\operatorname{det}(M-x\mathbf{I})$ are real numbers. ref. [[Eigenvalue, Eigenvector#symmetric matrices|symmetric matrix]]
   - Therefore, the adjacency matrix $A_G$, being real symmetric, must have real eigenvalues.
   - In symbols, if $\lambda$ is an eigenvalue of $A_G$, then $\lambda\in \mathbb{R}$.
-- b) every rational eigenvalue of a graph is integral.
+- b) every rational eigenvalue of a graph is integral. 
+  - The key point is that the adjacency matrix of a graph is a (0, 1)-matrix with integer entries, so its characteristic polynomial has integer (in fact, integral) coefficients. Once one knows the eigenvalue is rational, the Rational Root Theorem forces it to be an integer.
+  - Let $G$ be any (simple) graph on $n$ vertices.
+  - Its adjacency matrix $A_G$ is an $n\times n$ real symmetric matrix with integer entries in 0, 1.
+  - The characteristic polynomial of $A_G$ is then a **[[Polynomial|Monic polynimial]]** in $\mathbb{Z}[x]$:$$P_G(x)=\operatorname{det}(x\mathbf{I}-A_G)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0   \text{ where }a_i\in \mathbb{Z}$$
+  - **Claim**. If $\lambda$ is a rational eigenvalue of $A_G$, then $\lambda\in\mathbb{Z}$.
+  - Because $\lambda$ is an eigenvalue, it is a root of the characteristic polynimial $P_G(x)$. That is, $P_G(\lambda)=0$.
+  - 1. $q$ divides the leading coefficient (which is 1), implying $q=\pm1$.
+  - 2. $p$ divides the constant term $a_0$. But since $q=1$, that mean $\lambda=\frac pq=p\in\mathbb{Z}$.
+  - Hence any rational root $\lambda$ must be an integer.
+  - Thus any rational eigenvalue of the (integer) adjacency matrix of a graph must be integral.
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
 ## minimum and maximum degrees
