@@ -16,4 +16,8 @@
   2. $R(\mathbf{x})$ attains a maximum and a minimum over the unit sphere $\mathbf{x}:|\mathbf{x}|=1$ (by compactness).
 - Let $\mathbf{v}$ be a vector at which $R(\mathbf{x})$ attains the maximum. One can then show (using Lagrange multipliers or direct variational arguments) that $M\mathbf{v}=\lambda_{max}, \mathbf{v}$ with $\lambda_{\operatorname{max}}=R(\mathbf{v})$. This exhibits a real eigenvalue $\lambda_{\operatorname{max}}\in \mathbb{R}$ with a real eigenvector $\mathbf{v}$.
 - Step 3: Induction on Dimension
-- Once you know $M$ has a real eigenvalue $\lambda_{\operatorname{max}}$, you can find a real eigenvector $\mathbf{v}$. Form the subspace $V_1-\operatorname{span}\mathbf{v}$. Then consider the orthogonal complement $V_1^{\perp}$ . One shows $M$ leaves $V_1^{\perp}$ invariant because $M$ is symmetric (so $\mathbf{v}$)
+- Once you know $M$ has a real eigenvalue $\lambda_{\operatorname{max}}$, you can find a real eigenvector $\mathbf{v}$. Form the subspace $V_1-\operatorname{span}\mathbf{v}$. Then consider the orthogonal complement $V_1^{\perp}$ . One shows $M$ leaves $V_1^{\perp}$ invariant because $M$ is symmetric (so $\mathbf{v}^TM\mathbf{u}=\mathbf{u}^TM\mathbf{v}$ for any $\mathbf{u}$). Thus you can restric $M$ to $V_1^{\perp}$(an $(n-1)$-dimentional space) and apply the same reasoning. By induction on $n$, you eventually find a real orthonoraml basis of eigenvectors.
+- Hence one concludes:
+- 1. All eigenvalues are real (since each restriction or step yields a real eigenvalue).
+- 2. We can choose an orthonormal set of eigenvectors filling $\mathbb{R}^n$. In that basis, $M$ is diagonal, and the change-of-basis matrix is orthogonal.
+- 

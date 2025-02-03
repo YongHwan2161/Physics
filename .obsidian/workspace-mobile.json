@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Linear Algebra/Eigenvalue, Eigenvector.md",
+                "file": "Mathematics/Graph Theory/Graphs and Their Representation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Eigenvalue, Eigenvector"
+              "title": "Graphs and Their Representation"
             }
           },
           {
@@ -186,8 +186,8 @@
   },
   "active": "6379cc839d4a1fea",
   "lastOpenFiles": [
-    "MathJax.md",
     "Mathematics/Linear Algebra/Eigenvalue, Eigenvector.md",
+    "MathJax.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Graph Theory/Graphic.md",
     "Graph Based DB/Upload.md",
