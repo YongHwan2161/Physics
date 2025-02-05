@@ -87,6 +87,9 @@
   - 2. $p$ divides the constant term $a_0$. But since $q=1$, that mean $\lambda=\frac pq=p\in\mathbb{Z}$.
   - Hence any rational root $\lambda$ must be an integer.
   - Thus any rational eigenvalue of the (integer) adjacency matrix of a graph must be integral.
+### 1.1.22
+- a) Let $G$ be a $k$-regular graph. Show that:
+  - i) $\mathbf{MM}^t=\mathbf{A}+k\mathbf{I}$, where $\mathbf{I}$ is the $n\times n$ identity matrix.
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
 ## minimum and maximum degrees
