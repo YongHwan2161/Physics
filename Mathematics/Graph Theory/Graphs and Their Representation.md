@@ -87,9 +87,7 @@
   - 2. $p$ divides the constant term $a_0$. But since $q=1$, that mean $\lambda=\frac pq=p\in\mathbb{Z}$.
   - Hence any rational root $\lambda$ must be an integer.
   - Thus any rational eigenvalue of the (integer) adjacency matrix of a graph must be integral.
-### 1.1.22
-- a) Let $G$ be a $k$-regular graph. Show that:
-  - i) $\mathbf{MM}^t=\mathbf{A}+k\mathbf{I}$, where $\mathbf{I}$ is the $n\times n$ identity matrix.
+
 # Vertex Degrees
 - The *degree* of a vertex $v$ in a graph $G$, denoted by $d_G(v)$, is the number of edges of $G$ incident with $v$, each loop counting as two edges. In particular, if $G$ is a simple graph, $d_G(v)$ is the number of neighbours of $v$ in $G$. A vertex of degree zero is called an *isolated vertex*. 
 ## minimum and maximum degrees
@@ -166,7 +164,9 @@ $$d(v)\equiv\left\{
   - This implies each vertex is part of exactly two edges.
   - A 2-regular graph is a collection of disjoint cycles.
   - The graph may consist of one cycle (if it is connected) or multiple cycles (if disconnected).
-  - 
+### 1.1.22
+- a) Let $G$ be a $k$-regular graph. Show that:
+  - i) $\mathbf{MM}^t=\mathbf{A}+k\mathbf{I}$, where $\mathbf{I}$ is the $n\times n$ identity matrix.
 # Proof Technique: Counting in Two Ways
 - in proving [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], we used a common proof technique in combinatorics, known as *counting in two ways*. It consists of considering a suitable matrix and computing the sum of its entries in two different ways: firstly as the sum of its row sums, and secondly as the sum of its column sums. Equating these two quantities results in an identity. In the case of [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], the matrix we considered was the incidence matrix of $G$. In order to prove the identity of Exercise 1.1.9a, the appropriate matrix to consider is the bipartite adjacency matrix of the bipartite graph $G[X, Y]$. In both these cases, the choice of the appropriate matrix is fairly obvious. However, in some cases, making the right choice requires ingenuity.
 - Note that an upper bound on the sum of the column sums of a matrix is clearly also an upper bound on the sum of its row sums (and vice versa). The method of counting in two ways may therefore be adapted to establish inequalities. The proof of the following proposition illustrates this idea.
