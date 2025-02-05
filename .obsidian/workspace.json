@@ -20,21 +20,8 @@
               "icon": "lucide-file",
               "title": "Upload"
             }
-          },
-          {
-            "id": "c6b5ca01be5019e1",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.8.3"
-              },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.8.3"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -187,7 +174,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c6b5ca01be5019e1",
+  "active": "b3d195753beb62ec",
   "lastOpenFiles": [
     "monic polynomial.md",
     "Mathematics/Linear Algebra/Polynomial.md",
