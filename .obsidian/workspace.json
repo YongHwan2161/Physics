@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "Upload"
             }
+          },
+          {
+            "id": "c6b5ca01be5019e1",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.3"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.3"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -40,7 +53,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -173,8 +187,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b3d195753beb62ec",
+  "active": "c6b5ca01be5019e1",
   "lastOpenFiles": [
+    "monic polynomial.md",
+    "Mathematics/Linear Algebra/Polynomial.md",
+    "Mathematics/Linear Algebra/Eigenvalue, Eigenvector.md",
     "Mathematics/Linear Algebra/Eigenvalues.md",
     "Graph Based DB/GUI/Text.md",
     "Graph Based DB/Upload.md",
@@ -201,10 +218,7 @@
     "Mathematics/Graph Theory/Tree.md",
     "Graph Based DB/Variables.md",
     "LaTex.md",
-    "Mathematics/Matrix/Matrix Operations.md",
-    "Mathematics/Linear Algebra/Linear indepence.md",
     "Mathematics/Linear Algebra",
-    "Mathematics/Matrix/Rank.md",
     "Pasted image 20250120165515.jpg",
     "Images/Pasted image 20250111213533.jpg",
     "Images/Pasted image 20250111210724.jpg",
