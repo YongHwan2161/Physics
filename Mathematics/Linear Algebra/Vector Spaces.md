@@ -42,3 +42,18 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - Suppose $n$ is a nonnegative integer. A *list* of *length* $n$ is an ordered collection of $n$ elements (which might be numbers, other lists, or more abstract objects).
 - Two lists are equal if and only if they have the same length and the same elements in the same order.
 - many mathematicians call a list of length $n$ an $n$-tuple.
+## example: lists versus sets
+- The lists (3, 5) and (5, 3) are not equal, but the sets {3, 5} and {5, 3} are equal.
+- The lists (4, 4) and (4, 4, 4) are not equal (they do not have the same length), although the sets {4, 4} and {4, 4, 4} both equal the set {4}.
+# $\mathbf{F}^n$
+## definition: $\mathbf{F}^n$, coordinate
+- $\mathbf{F}^n$ is the set of all lists of length $n$ of elements of $\mathbf{F}$:$$\mathbf{F}^n=\{(x_1,\cdots,x_n):x_k\in\mathbf{F}\text{ for }k=1,\cdots,n\}$$ For $(x_1,\cdots,x_n)\in\mathbf{F}^n$ and $k\in\{1,\cdots,n\}$, we say that $x_k$ is the $k^{th}$ coordinate of $(x_1,\cdots,x_n)$
+## definition: addition in $\mathbf{F}^n$
+- Addition in $\mathbf{F}^n$ is defined by adding corresponding coordinates:$$(x_1,\cdots,x_n)+(y_1,\cdots,y_n)=(x_1+y_1,\cdots,x_n+y_n)$$
+## commutativity of addition in $\mathbf{F}^n$
+- If $x, y\in\mathbf{F}^n$, then $x+y=y+x$
+- Proof: Suppose $x=(x_1,\cdots,x_n)\in\mathbf{F}^n$ and $y=(y_1,\cdots,y_n)\in\mathbf{F}^n$. Then$$\begin{align}x+y&=(x_1,\cdots,x_n)+(y_1,\cdots,y_n)\\
+&=(x_1+y_1,\cdots,x_n+y_n)\\
+&=(y_1+x_1, \cdots,y_n+x_n)\\
+&=(y_1,\cdots,y_n)+(x_1,\cdots,\x_n)\\
+&=y+x\end{align}$$ where the second and fourth equalities above hold because of the definition of addition in $\mathbf{F}^n$ and the third equality holds because of the usual commutativity of addition in $\mathbf{F}$.$$\tag*{$\Box$}$$
