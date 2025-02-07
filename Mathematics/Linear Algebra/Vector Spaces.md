@@ -55,5 +55,5 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - Proof: Suppose $x=(x_1,\cdots,x_n)\in\mathbf{F}^n$ and $y=(y_1,\cdots,y_n)\in\mathbf{F}^n$. Then$$\begin{align}x+y&=(x_1,\cdots,x_n)+(y_1,\cdots,y_n)\\
 &=(x_1+y_1,\cdots,x_n+y_n)\\
 &=(y_1+x_1, \cdots,y_n+x_n)\\
-&=(y_1,\cdots,y_n)+(x_1,\cdots,\x_n)\\
+&=(y_1,\cdots,y_n)+(x_1,\cdots,x_n)\\
 &=y+x\end{align}$$ where the second and fourth equalities above hold because of the definition of addition in $\mathbf{F}^n$ and the third equality holds because of the usual commutativity of addition in $\mathbf{F}$.$$\tag*{$\Box$}$$
