@@ -32,3 +32,6 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - Subtraction of $\mathbb{C}$ is defined by$$\beta-\alpha=\beta+(-\alpha)$$
 - For $\alpha\neq0$, let $1/\alpha$ and $\frac {1}{\alpha}$ denote the numtiplicative inverse of $\alpha$. Thus, $1/\alpha$ is the unique complex number such that $$\alpha(1/\alpha)=1$$
 - For $\alpha\neq0$, divition by $\alpha$ is defined by$$\beta/\alpha=\beta(1/\alpha)$$
+## notion: $\mathbf{F}$
+- $\mathbf{F}$ stands for either $$
+- For $\alpha\in\mathbf{F}$ and 
