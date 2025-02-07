@@ -33,5 +33,12 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - For $\alpha\neq0$, let $1/\alpha$ and $\frac {1}{\alpha}$ denote the numtiplicative inverse of $\alpha$. Thus, $1/\alpha$ is the unique complex number such that $$\alpha(1/\alpha)=1$$
 - For $\alpha\neq0$, divition by $\alpha$ is defined by$$\beta/\alpha=\beta(1/\alpha)$$
 ## notion: $\mathbf{F}$
-- $\mathbf{F}$ stands for either $$
-- For $\alpha\in\mathbf{F}$ and 
+- $\mathbf{F}$ stands for either $\mathbb{R}$ or $\mathbb{C}$
+- For $\alpha\in\mathbf{F}$ and $m$ a positive integer, we define $\alpha^m$ to denote the product of $\alpha$ with itself $m$ times:$$\alpha^m=\underbrace{\alpha\cdots\alpha}_{m\text{ times}}$$
+- This definition implies that $$(\alpha^m)^n=\alpha^{mn}\text{ and }(\alpha\beta)^m=\alpha^m\beta^m$$ for all $\alpha,\beta\in\mathbb{F}$ and all positive integers $m,n$
+- The set $\mathbb{R}^2$, which you can think of as a plane, is the set of all ordered pairs of real numbers:$\mathbb{R}^2=\{(x,y):x,y\in\mathbb{R}\}$
+- $\mathbb{R}^3=\{(x,y,z):x,y,z\in\mathbb{R}\}$
+## definition: list, length
+- Suppose $n$ is a nonnegative integer. A *list* of *length* $n$ is an ordered collection of $n$ elements (which might be numbers, other lists, or more abstract objects).
+- Two lists are equal if and only if they have the same length and the same elements in the same order.
+- many mathematicians call a list of length $n$ an $n$-tuple.
