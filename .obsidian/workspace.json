@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "Upload"
             }
+          },
+          {
+            "id": "f9448b8d365e8b5d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.4"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.4"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -174,8 +187,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b3d195753beb62ec",
+  "active": "f9448b8d365e8b5d",
   "lastOpenFiles": [
+    "Mathematics/Linear Algebra/Vector Spaces.md",
     "monic polynomial.md",
     "Mathematics/Linear Algebra/Polynomial.md",
     "Mathematics/Linear Algebra/Eigenvalue, Eigenvector.md",
@@ -204,7 +218,6 @@
     "Graph Based DB/Graph sturcture/Link.md",
     "Mathematics/Graph Theory/Tree.md",
     "Graph Based DB/Variables.md",
-    "LaTex.md",
     "Mathematics/Linear Algebra",
     "Pasted image 20250120165515.jpg",
     "Images/Pasted image 20250111213533.jpg",
