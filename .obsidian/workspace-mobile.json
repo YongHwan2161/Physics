@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Linear Algebra/Vector Spaces.md",
+                "file": "Mathematics/Graph Theory/Graphs and Their Representation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vector Spaces"
+              "title": "Graphs and Their Representation"
             }
           },
           {
@@ -172,8 +172,8 @@
   },
   "active": "5836cf38f4c60770",
   "lastOpenFiles": [
-    "MathJax.md",
     "Mathematics/Linear Algebra/Vector Spaces.md",
+    "MathJax.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Linear Algebra/Polynomial.md",
     "Mathematics/Matrix/Rotation Matrix.md",
