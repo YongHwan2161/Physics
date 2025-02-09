@@ -167,6 +167,32 @@ $$d(v)\equiv\left\{
 ### 1.1.22
 - a) Let $G$ be a $k$-regular graph. Show that:
   - i) $\mathbf{MM}^t=\mathbf{A}+k\mathbf{I}$, where $\mathbf{I}$ is the $n\times n$ identity matrix.
+    - The $(u, v)$ entry of the product $\mathbf{MM}^T$ is given by $$(\mathbf{MM}^T)_{uv}=\sum_{e\in E}m_{ue}m_{ve}$$
+    - We now consider two cases:
+    - 1. When $u=v$: in this case, $$(\mathbf{MM}^T)_{uu}=\sum_{e\in E}m_{ue}^2=\sum_{e\in E}m_{ue}=k$$
+    - 2. when $u\neq v$: $$(\mathbf{MM}^T)_{uv}=\sum_{e\in E}m_{ue}m_{ve}=\begin{cases}
+   1, & \text{if } u \text{ and } v \text{ are adjacent},\\
+   0, & \text{if } u \text{ and } v \text{ are not adjacent}.
+   \end{cases}$$
+   - For $u=v:(\mathbf{MM^T})_{uu}=k$
+   - Fo $u\neq v:(\mathbf{MM}^T)_{uv}$ (the $(u,v)$ entry of $\mathbf{A}$)
+   - Thus, we can write $$\mathbf{MM}^T=\mathbf{A}+k\mathbf{I}\tag*{$\Box$}$$
+   - ii) $k$ is an eigenvalue of $G$, with corresponding eigenvector $\mathbf{1}$, the $n$-vector in which each entry is 1.
+     - We wish to show that $G$ is a $k$-regular graph, then $A_G\mathbf{1}=k\mathbf{1}$
+     - The adjacency matrix $A_G=(a_{ij})$ is defined by $$
+   a_{ij} = \begin{cases}
+   1, & \text{if vertices } v_i \text{ and } v_j \text{ are adjacent},\\
+   0, & \text{otherwise}.
+   \end{cases}$$
+     - The product $(A_G, \mathbf{1})$ (the $i$th entry of $A_G, \mathbf{1}$) is given by $$(A_G, \mathbf{1})_i=\sum_{j=1}^n a_{ij}\cdot1=\sum_{j=1}^n a_{ij}$$
+     - Since $G$ is $k$-regular, every vertex $v_i$ has degree $k$. Thus, for every $i$, $\sum_{j=1}^n a_{ij}=k$
+     - $(A_G\mathbf{1}_i)=k$  for all $i=1,2,\cdots,n$
+     - 
+  - b) Let $G$ be a complete graph of order $n$. Denote by $\mathbf{J}$ the $n\times n$ matrix all of whose entries are 1. Show that:
+    - i) $\mathbf{A}=\mathbf{J}-\mathbf{I}$
+      - no loop, and $k=n-1$
+    - ii) $\operatorname{det}(\mathbf{J}-(1+\lambda)\mathbf{I})=(1+\lambda-n)(1+\lambda)^{n-1}$
+    - 
 # Proof Technique: Counting in Two Ways
 - in proving [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], we used a common proof technique in combinatorics, known as *counting in two ways*. It consists of considering a suitable matrix and computing the sum of its entries in two different ways: firstly as the sum of its row sums, and secondly as the sum of its column sums. Equating these two quantities results in an identity. In the case of [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], the matrix we considered was the incidence matrix of $G$. In order to prove the identity of Exercise 1.1.9a, the appropriate matrix to consider is the bipartite adjacency matrix of the bipartite graph $G[X, Y]$. In both these cases, the choice of the appropriate matrix is fairly obvious. However, in some cases, making the right choice requires ingenuity.
 - Note that an upper bound on the sum of the column sums of a matrix is clearly also an upper bound on the sum of its row sums (and vice versa). The method of counting in two ways may therefore be adapted to establish inequalities. The proof of the following proposition illustrates this idea.
