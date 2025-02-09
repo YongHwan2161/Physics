@@ -192,7 +192,35 @@ $$d(v)\equiv\left\{
     - i) $\mathbf{A}=\mathbf{J}-\mathbf{I}$
       - no loop, and $k=n-1$
     - ii) $\operatorname{det}(\mathbf{J}-(1+\lambda)\mathbf{I})=(1+\lambda-n)(1+\lambda)^{n-1}$
-    - 
+    - We wish to show that if $$
+\mathbf{J} = \begin{pmatrix} 1 & 1 & \cdots & 1\\ 1 & 1 & \cdots & 1\\ \vdots & \vdots & \ddots & \vdots \\ 1 & 1 & \cdots & 1 \end{pmatrix}
+$$
+    - $\mathbf{X}:=\mathbf{J}-(1+\lambda)\mathbf{I}$,
+    - $\operatorname{det}\left(\mathbf{J}-(1+\lambda)\mathbf{I}\right)=(1+\lambda-n)(1+\lambda)^{n-1}$
+    - In many texts the characteristic polynomial of $\mathbf{J}$ is written as
+    - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=\big((1+\lambda)-n\big)(1+\lambda)^{n-1}$
+    - $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)$,
+    - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$ is the standard one.
+    - For the sake of this solution, we now explain the standard argument leading to $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$
+    - Step 1. Eigenvalues of J
+      - The matrix $\mathbf{J}$ is well known to have rank 1. It's eigenvalues are:
+      - $n$ (with multiplicity 1), with corresponding eigenvector $\mathbf{1}=(1,1,\cdots,1)^T$
+      - 0 (with multiplicity $n-1$); any vector orthogonal to $\mathbf{1}$ is an eigenvector with eigenvalue 0.
+    - Step 2. Eigenvalues of $(1+\lambda)\mathbf{I}-\mathbf{J}$
+      - Let, $x=1+\lambda$. then $x\mathbf{I}-\mathbf{J}$
+      - $(x\mathbf{I}-\mathbf{J})\mathbf{v}=(x-\mu)\mathbf{v}$
+      - $x-n=(1+\lambda)-n$(with multiplicity 1)
+      - $x-0=x=1+\lambda$(with multiplicity $n-1$)
+    - Step 3. Determinant from the Eigenvalues
+      - The determinant of a matrix equals the product of its eigenvalues (counting multiplicity). Hence,
+      - $\operatorname{det}\big(x\mathbf{I}-\mathbf{J}\big)=\big((1+\lambda)-n\big)(1+\lambda)^{n-1}$
+      - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$
+    - Step 4. Relating $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)$ to $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)$
+      - Since $\mathbf{J}-(1+\lambda)\mathbf{I}=-\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)$
+      - $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)$
+      - $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n(1+\lambda-n)(1+\lambda)^{n-1}$
+      - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$
+      - 
 # Proof Technique: Counting in Two Ways
 - in proving [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], we used a common proof technique in combinatorics, known as *counting in two ways*. It consists of considering a suitable matrix and computing the sum of its entries in two different ways: firstly as the sum of its row sums, and secondly as the sum of its column sums. Equating these two quantities results in an identity. In the case of [[Graphs and Their Representation#Theorem 1.1|Theorem 1.1]], the matrix we considered was the incidence matrix of $G$. In order to prove the identity of Exercise 1.1.9a, the appropriate matrix to consider is the bipartite adjacency matrix of the bipartite graph $G[X, Y]$. In both these cases, the choice of the appropriate matrix is fairly obvious. However, in some cases, making the right choice requires ingenuity.
 - Note that an upper bound on the sum of the column sums of a matrix is clearly also an upper bound on the sum of its row sums (and vice versa). The method of counting in two ways may therefore be adapted to establish inequalities. The proof of the following proposition illustrates this idea.
