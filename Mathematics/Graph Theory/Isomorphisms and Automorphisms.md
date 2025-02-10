@@ -6,4 +6,12 @@
 - In order to show that two graphs are isomophic, one must indicate an isomorphism between them. The pair of mappings $(\theta, \phi)$ defined by $$\theta:=\left(\begin{array}{}a &b&c&d\\w&z&y&x\end{array}\right), \phi:=\left(\begin{array}{}e_1&e_2&e_3&e_4&e_5&e_6\\f_3&f_4&f_1&f_6&f_5&f_2\end{array}\right)$$ is isomorphism between the graphs $G$ and $H$ in [[Isomorphisms and Automorphisms#fig 1.6|Figure 1.6]].
 ## Isomorphism in simple graphs
 - In the case of simple graphs, the definition of isomorphism can be stated more concisely, because if $(\theta, \phi)$ is an isomorphism between simple graphs $G$ and $H$, the mapping $\phi$ is completely determined by $\theta$; indeed, $\phi(e)=\theta(u)\theta(v)$ for any edge $e=uv$ of $G$. Thus one may define an isomorphism between two simple graphs $G$ and $H$ as a bijection $\theta: V(G)\to V(H)$ which preserves adjacency (that is, the vertices $u$ and $v$ are adjacent in $G$ if and only if their images $\theta(u)$ and $\theta(v)$ are adjacent in $H$).
-- Consider, for example, the graphs $G$ and $H$ in 
+- Consider, for example, the graphs $G$ and $H$ in [[Isomorphisms and Automorphisms#Figure 1.7|Figure 1.7]] 
+###### Figure 1.7
+![[Pasted image 20250210122123.jpg]]
+The mapping$$\theta:=\left(\begin{array}{}1&2&3&4&5&6\\b&d&f&c&e&a\end{array}\right)$$ is an isomorphism between $G$ and $H$, as is $$\theta':=\left(\begin{array}{}1&2&3&4&5&6\\a&c&e&d&f&b\end{array}\right)$$
+- Isomorphic graphs clearly have the same numbers of vertices and edges. On the other hand, equality of these parameters does not guarantee isomorphism. For instance, the two graphs shown in [[Isomorphisms and Automorphisms#Figure 1.8|Figure 1.8]] both have eight vertices and twelve edges, but they are not isomorphic. To see this, observe that the graph $G$ has four mutually nonadjacent vertices, $v_1, v_3, v_6, \text{ and } v_8$ of $H$ would like mutually nonadjacent. But it can readily be checked that no four vertices of $H$ are mutually nonadjacent. We deduce that $G$ and $H$ are not isomorphic.
+###### Figure 1.8
+![[Pasted image 20250210122929.jpg]]
+- It is clear from the foregoing discussion that if two graphs are isomorphic, then they are either identical or differ merely in the names of their vertices and edges, and thus have the same structure. Because it is primarily in structural properties that we are interested, we often omit labels when drawing graphs; formally, we may define an *unlabelled graph* as a representative of an equivalence class of isomorphic graphs. We assign labels to vertices and edges in a graph mainly for the purpose of referring to them (in proofs, for instance).
+- 
