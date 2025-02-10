@@ -3,4 +3,7 @@
 ###### fig 1.6
 ![[Pasted image 20250209212335.jpg]]
 - In general, two gaphs $G$ and $H$ are *isomorphic*, written $G\cong H$, if there are bijections $\theta:V(G)\to V(H)$ and $\phi:E(G)\to E(H)$ such that $\psi_G(e)=uv$ if and only if $\psi_H(\phi(e))=\theta(u)\theta(v)$; such a pair of mappings is called an *isomorphism* between $G$ and $H$.
-- 
+- In order to show that two graphs are isomophic, one must indicate an isomorphism between them. The pair of mappings $(\theta, \phi)$ defined by $$\theta:=\left(\begin{array}{}a &b&c&d\\w&z&y&x\end{array}\right), \phi:=\left(\begin{array}{}e_1&e_2&e_3&e_4&e_5&e_6\\f_3&f_4&f_1&f_6&f_5&f_2\end{array}\right)$$ is isomorphism between the graphs $G$ and $H$ in [[Isomorphisms and Automorphisms#fig 1.6|Figure 1.6]].
+## Isomorphism in simple graphs
+- In the case of simple graphs, the definition of isomorphism can be stated more concisely, because if $(\theta, \phi)$ is an isomorphism between simple graphs $G$ and $H$, the mapping $\phi$ is completely determined by $\theta$; indeed, $\phi(e)=\theta(u)\theta(v)$ for any edge $e=uv$ of $G$. Thus one may define an isomorphism between two simple graphs $G$ and $H$ as a bijection $\theta: V(G)\to V(H)$ which preserves adjacency (that is, the vertices $u$ and $v$ are adjacent in $G$ if and only if their images $\theta(u)$ and $\theta(v)$ are adjacent in $H$).
+- Consider, for example, the graphs $G$ and $H$ in 
