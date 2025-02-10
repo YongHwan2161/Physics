@@ -1,0 +1,6 @@
+# Isomorphisms
+- Two graphs $G$ and $H$ are identical, written $G=H$, if $V(G)=V(H), E(G)=E(H)$, and $\psi_G=\psi_H$. If two graphs are identical, they can clearly be represented by identical diagrams. However, it is also possible for graphs that are not identical to have essentially the same diagram. For example, the graph $G$ and $H$ in [[Isomorphisms and Automorphisms#fig 1.6|Fig 1.6]] can be represented by diagrams which look exactly the same, as the second drawing of $H$ shows; the sole difference lies in the labels of their vertices and edges. Although the graph $G$ and $H$ are not identical, they do have identical structures, and are said to be isomorphic.
+###### fig 1.6
+![[Pasted image 20250209212335.jpg]]
+- In general, two gaphs $G$ and $H$ are *isomorphic*, written $G\cong H$, if there are bijections $\theta:V(G)\to V(H)$ and $\phi:E(G)\to E(H)$ such that $\psi_G(e)=uv$ if and only if $\psi_H(\phi(e))=\theta(u)\theta(v)$; such a pair of mappings is called an *isomorphism* between $G$ and $H$.
+- 

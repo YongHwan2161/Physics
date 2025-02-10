@@ -81,6 +81,8 @@ $$\lim_{x\rightarrow 0}\frac{x}{2}$$
  - `lfloor, \rfloor`: $\lfloor, \rfloor$
  - `\Bigg(\bigg(\Big(\big((x)\big)\Big)\bigg)\Bigg)`:$\Bigg(\bigg(\Big(\big((x)\big)\Big)\bigg)\Bigg)$
 - 정의: `\equiv`: $L\equiv T-U$
+- `\approx, \sim \simeq \cong \prec \lhd`: $\approx, \sim, \simeq, \cong, \prec, \lhd$
+- 
 ## Binomial
 - `\binom{}{}`: $\binom{n}{2}$
 ## 합: \sum_{}^{} 
