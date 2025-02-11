@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Graph Theory/Isomorphisms and Automorphisms.md",
+                "file": "Physics/Quantum Computing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Isomorphisms and Automorphisms"
+              "title": "Quantum Computing"
             }
           },
           {
@@ -172,11 +172,13 @@
   },
   "active": "5836cf38f4c60770",
   "lastOpenFiles": [
+    "Mathematics/Graph Theory/Isomorphisms and Automorphisms.md",
+    "Physics/Quantum Computing.md",
+    "s41586-022-05434-1.pdf",
+    "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Pasted image 20250210122929.jpg",
     "Pasted image 20250210122123.jpg",
-    "Mathematics/Graph Theory/Isomorphisms and Automorphisms.md",
     "Mathematics/Graph Theory/Simple Graphs.md",
-    "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "MathJax.md",
     "Pasted image 20250209212335.jpg",
     "Mathematics/Graph Theory/Regular Graph.md",
@@ -201,7 +203,6 @@
     "/Graph Based DB/Graph sturcture/Node/Node.md",
     "Graph Based DB/Graph sturcture/Cycle/Cycle.md",
     "/Graph Based DB/Graph sturcture/Cycle/Cycle.md",
-    "Graph Based DB/Graph sturcture/Node/Token.md",
     "Graph Based DB/Graph sturcture/Node",
     "Graph Based DB/Graph sturcture/Cycle",
     "/Graph Based DB/Graph sturcture/Node",
@@ -214,10 +215,8 @@
     "/Images/Pasted image 20250111213533.jpg",
     "/Images/Pasted image 20250111210724.jpg",
     "/Images/Pasted image 20250111210600.jpg",
-    "Pasted image 20250111213533.jpg",
     "Graph Based DB/Graph sturcture",
     "/Graph Based DB/Graph sturcture",
-    "Mathematics/Graph Theory/Graphs and Their Rpresentation",
     "Untitled 1.canvas",
     "Untitled.canvas"
   ]
