@@ -57,3 +57,9 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 &=(y_1+x_1, \cdots,y_n+x_n)\\
 &=(y_1,\cdots,y_n)+(x_1,\cdots,x_n)\\
 &=y+x\end{align}$$ where the second and fourth equalities above hold because of the definition of addition in $\mathbf{F}^n$ and the third equality holds because of the usual commutativity of addition in $\mathbf{F}$.$$\tag*{$\Box$}$$
+## Definition: additive inverse in $\mathbf{F}^n, -x$
+- For $x\in\mathbf{F}^n$, the additive inverse of $x$, denoted by $-x$, is the vector $-x\in\mathbf{F}^n$ such that $$x+(-x)=0$$ Thus if $x=(x_1,\cdots,x_n)$, then $-x=(-x_1,\cdots,-x_n)$.
+## Definition: scalar multiplication in $\mathbf{F}^n$
+- The product of a number $\lambda$ and a vector in $\mathbf{F}^n$ is computed by multiplying each coordinate of the vector by $\lambda$:$$\lambda(x_1,\cdots,x_n)=(\lambda x_1,\cdots,\lambda x_n)$$ here $\lambda\in\mathbf{F}$ and $(x_1,\cdots,x_n)\in\mathbf{F}^n$.
+## Digression on Fields
+- A field is a set containing at least two distinct elements called 0 and 1, along with operations of addition
