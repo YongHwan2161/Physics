@@ -15,9 +15,21 @@
 - $\alpha\beta=\beta\alpha$ for all $\alpha,\beta\in\mathbb{C}$
   - proof: suppose $\alpha=a+bi, \beta=c+di$, where $a,b,c,d\in\mathbb{R}$. Then the definition of multiplication of complex numbers shows that $$\begin{align}\alpha\beta&=(a+bi)(c+di)\\&=(ac-bd)+(ad+bc)i\end{align}$$ and $$\begin{align}\beta\alpha&=(c+di)(a+bi)\\&=(ca-db)(cb+da)i\end{align}$$
   - The equations above and the commutivity of multiplication and addition of real numbers show that $\alpha\beta=\beta\alpha$
+- $\alpha+\beta=\beta+\alpha$ for all $\alpha, \beta\in \mathbb{C}$
+  - proof: suppose $\alpha=a+bi, \beta=c+di$, where $a,b,c,d\in\mathbb{R}$. Then $$\begin{align}\alpha+\beta&=(a+bi)+(c+di)\\&=(a+c)+(b+d)i\\&=(c+a)+(d+b)i\\&=(c+di)+(a+bi)\\&=\beta+\alpha\end{align}$$
   - 
 ### associativity
-- $(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$ and $(\alpha\beta)\gamma=\alpha(\beta\gamma)$ for all $\alpha,\beta,\gamma\in\mathbb{C}$
+- $(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$ 
+  - proof: suppose $\alpha=a+bi, \beta=c+di,\gamma=e+fi$ where $\alpha,\beta,\gamma\in\mathbb{C}, \text{ and }a,b,c,d,e,f\in\mathbb{R}$
+  - $$\begin{align}(\alpha+\beta)+\gamma&=((a+c)+(b+d)i)+(e+fi)\\
+  &=(a+c+e)+(b+d+f)i\\
+&=(a+bi)+((c+e)+(d+f)i)\\
+&=\alpha+(\beta+\gamma)\end{align}$$
+- $(\alpha\beta)\gamma=\alpha(\beta\gamma)$ for all $\alpha,\beta,\gamma\in\mathbb{C}$
+  - proof: $$\begin{align}(\alpha\beta)\gamma&=\big((ac-bd)+(ad+bc)i\big)(e+fi)\\
+  &=(ace-bde-adf-bcf)+(acf-bdf+ade+bce)i\\
+&=(a+bi)\big((ce-df)+(cf+de)i\big)\\
+&=\alpha(\beta\gamma)\end{align}$$
 ### identities
 - $\lambda+0=\lambda$ and $\lambda1=\lambda$ for all $\lambda\in\mathbb{C}$
 ### additive inverse
@@ -26,6 +38,11 @@
 - For every $\alpha\in\mathbb{C}$ with $\alpha\neq0$, there exists a unique $\beta\in\mathbf{C}$ such that $\alpha\beta=1$
 ### distributive property
 - $\lambda(\alpha+\beta)=\lambda\alpha+\lambda\beta$ for all $\lambda, \alpha, \beta\in\mathbb{C}$
+  - proof: $$\begin{align}\lambda(\alpha+\beta)&=(m+ni)\big((a+c)+(b+d)i\big)\\
+  &=(ma+mc-nb-nd)+(mb+md+na+nc)i\\
+&=\big((ma-nb)+(mb+na)i\big)+\big((mc-nd)+(md+nc)i\big)\\
+&=\lambda\alpha+\lambda\beta\end{align}$$
+
 ## definition: $-\alpha$, subtraction, $1/\alpha$, division
 Suppose, $\alpha, \beta\in\mathbb{C}$
 - Let $-\alpha$ denote the additive inverse of $\alpha$. Thus, $-\alpha$ is the unique complex number such that$$\alpha+(-\alpha)=0$$
@@ -61,5 +78,3 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - For $x\in\mathbf{F}^n$, the additive inverse of $x$, denoted by $-x$, is the vector $-x\in\mathbf{F}^n$ such that $$x+(-x)=0$$ Thus if $x=(x_1,\cdots,x_n)$, then $-x=(-x_1,\cdots,-x_n)$.
 ## Definition: scalar multiplication in $\mathbf{F}^n$
 - The product of a number $\lambda$ and a vector in $\mathbf{F}^n$ is computed by multiplying each coordinate of the vector by $\lambda$:$$\lambda(x_1,\cdots,x_n)=(\lambda x_1,\cdots,\lambda x_n)$$ here $\lambda\in\mathbf{F}$ and $(x_1,\cdots,x_n)\in\mathbf{F}^n$.
-## Digression on Fields
-- A field is a set containing at least two distinct elements called 0 and 1, along with operations of addition
