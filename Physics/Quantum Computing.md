@@ -17,4 +17,5 @@
 - Suppose that we take a fixed value $y_i$ from $Y$. From this we can get a conditional probability distribution $p(X|y_i)$ which are the probabilities of $X$ given that we have $y_i$ with certainty. Then $$H(X|Y)=-\sum_j p(x_j|y_i)\log_2 (p(x_j|y_i))$$
 - This is known as the *conditional entropy*. The conditional entropy satisfies $H(X|Y)\le H(X)$
 - To obtain equality in $H(X|Y)=H(X)$, the variables $X$ and $Y$ must be independent. So $H(X, Y)=H(Y)+H(X|Y)$
-- 
+- We are now in a position to difine *mutual information* of the variables $X$ and $Y$. In words, this is the difference between the entropy of $X$ and the entropy of $X$ given knowledge of what value $Y$ has assumed, that is, $$I(X|Y)=H(X)-H(X|Y)$$
+- This can also be written as $$I(X|Y)=H(X)+H(Y)-H(X,Y)$$
