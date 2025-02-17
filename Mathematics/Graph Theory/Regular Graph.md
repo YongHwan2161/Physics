@@ -74,4 +74,36 @@ $$
       - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$
       - If the problem statement asks for $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)$ exactly as written, then the answer is $$\bbox[border:1px solid white]{\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n(1+\lambda-n)(1+\lambda)^{n-1}}$$
 - c) Derive from (b) the eigenvalues of a complete graph and their multiplicities, and determine the corresonding eigenspaces.
-  - 
+  - We start with the fact that if $G$ is the complete graph $K_n$, then its adjacency matrix is $A=J-I$, where 1) $J$ is the $n\times n$ matrix in which every entry is 1, 2) $I$ is the $n\times n$ identity matrix.
+  - Recall from part (b) that $$\operatorname{det}\big((1+\lambda)I-J\big)=(1+\lambda-n)(1+\lambda)^{n-1}$$
+  - $n$ with multiplicity 1 (with eigenvector $\mathbf{1}=(1,1,\cdots,1)^T$),
+  - $0$ with multiplicity $n-1$.
+  - Now observe that $A=J-I\implies A+I=J$
+  - $(A+I)x=Jx$,
+  - $(\mu+1)x=Jx$
+  - 1. Case 1: $\mu +1=n$. Then $\mu = n-1$
+  - 2. Case 2: $\mu+1=0$. Then $\mu=-1$
+  - Thus, the eigenvalues of the complete graph $K_n$ are:
+    - $n-1$ with multiplicity 1,
+    - $-1$ with multiplicity $n-1$.
+  - Determining the Eigenspaces
+  - 1. For the eigenvalue $n-1$: Since $A+I=J$ and $J\mathbf{1}=n\mathbf{1}$, if we let $x=1$ (the all-ones vector), then $(A+I)\mathbf{1}=J\mathbf{1}=n\mathbf{1}$
+  - $A\mathbf{1}=(n-1)\mathbf{1}$
+  - 2. For the eigenvalue $-1$: If $\mu =-1$, then $Ax=-x$
+  - $(A+I)x=0\implies Jx=0$
+  - $\{x\in\mathbb{R}^n:x_1+x_2+\cdots+x_n=0\}$
+  - Final Answer
+    - Eigenvalues of $K_n$: 
+    - $n-1$ (with multiplicity 1),
+    - $-1$ (with multiplicity $n-1$)
+    - Eigenspaces:
+    - The eigenvector corresponding to $n-1$ is the all-ones vector $\mathbf{1}=(1,1,\cdots,1)^T$
+    - The eigenspace corresponding to $-1$ is the $(n-1)$-dimensional subspace of $\mathbb{R}^n$ consisting of all vectors whose entries sum to zero:$$\{x\in\mathbb{R}^n:x_1+x_2+\cdots+x_n=0\}$$
+    - $$
+\boxed{
+\begin{array}{l}
+\text{Eigenvalues of } K_n: \quad n-1 \text{ (multiplicity 1)} \text{ and } -1 \text{ (multiplicity } n-1\text{)}.\\
+\text{Eigenspaces: } \quad \text{Span}\{\mathbf{1}\} \text{ for } n-1, \quad \{x \in \mathbb{R}^n : \sum_{i=1}^n x_i=0\} \text{ for } -1.
+\end{array}
+}
+$$
