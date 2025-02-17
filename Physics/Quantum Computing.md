@@ -19,3 +19,4 @@
 - To obtain equality in $H(X|Y)=H(X)$, the variables $X$ and $Y$ must be independent. So $H(X, Y)=H(Y)+H(X|Y)$
 - We are now in a position to difine *mutual information* of the variables $X$ and $Y$. In words, this is the difference between the entropy of $X$ and the entropy of $X$ given knowledge of what value $Y$ has assumed, that is, $$I(X|Y)=H(X)-H(X|Y)$$
 - This can also be written as $$I(X|Y)=H(X)+H(Y)-H(X,Y)$$
+# Qubits and Quantum States
