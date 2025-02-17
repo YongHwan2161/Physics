@@ -36,5 +36,8 @@ $$\left\lceil\frac{2^{\binom n2}}{n!}\right\rceil$$
 # Exercises
 ## 1.2.1
 - a) Show that any isomorphism between two graphs maps each vertex to a vertex of the same degree.
+  - Let $G$ and $H$ be graphs and suppose $\theta:V(G)\to V(H)$, $uv\in E(G)\iff \theta(u)\theta(v)\in E(H)$.
+  - Let $v\in V(G)$. The **degree** of $v$ in $G$, denoted $\operatorname{deg}_G(v)$, is the number of vertices adjacent to $v$. Let $$N_G(v)=\{u\in V(G):uv\in E(G)\}$$
+  - Since $\theta$ is an isomorphism, for every $u\in N_G(v)$ we have that $uv\in E(G)$ implies 
 - b) Duduce that isomorphic graphs necessarily have the same (nonincreasing) degree sequence.
 - 
