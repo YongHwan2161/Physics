@@ -73,5 +73,5 @@ $$
       - $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n(1+\lambda-n)(1+\lambda)^{n-1}$
       - $\operatorname{det}\big((1+\lambda)\mathbf{I}-\mathbf{J}\big)=(1+\lambda-n)(1+\lambda)^{n-1}$
       - If the problem statement asks for $\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)$ exactly as written, then the answer is $$\bbox[border:1px solid white]{\operatorname{det}\big(\mathbf{J}-(1+\lambda)\mathbf{I}\big)=(-1)^n(1+\lambda-n)(1+\lambda)^{n-1}}$$
-- c) Derive from (b) the eigenvalues of a complete graph and their multiplicites, and determine the corresonding eigenspaces.
+- c) Derive from (b) the eigenvalues of a complete graph and their multiplicities, and determine the corresonding eigenspaces.
   - 
