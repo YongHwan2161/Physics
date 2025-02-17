@@ -7,6 +7,7 @@
 - The negative sign ensures that the information content of a message is positive, and that the less probable a message, the higher is the information content.
 - A message that is unlikely to occur has a low probability an therefore has a large information content.
 - A message that is very likely to occur has a high probability and therefore has a small information content.
+- 섀넌의 이항 엔트로피(binary entropy)는 정보의 척도다. 어떤 이항 무작위 변수(binary random variable)에 대한 확률 분포 $(p, 1-p)$가 주어져 있을 때, 섀넌의 binary entropy는 다음과 같다. $$h_2(p)\equiv -p\log_2 p-(1-p)\log_2(1-p)$$
 - Next let's develop a more formal definition. Let $X$ be a random variable characterized by a probability distribution $\vec{p}$, and suppose that it can assume one of the values $x_1,x_2,\cdots,x_n$ with probabilities $p_1,p_2,\cdots,p_n$. Probabilities satisfy $0\le p_i\le 1$ and $\sum_i p_i=1$.
 - If we are certain what the message is, the Shannon entropy is zero.
 - The more uncertain we are as to what comes next, the higher the Shannon entropy.
