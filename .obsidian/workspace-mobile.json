@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Graph Theory/Regular Graph.md",
+                "file": "Mathematics/Linear Algebra/Vector Spaces.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Regular Graph"
+              "title": "Vector Spaces"
             }
           },
           {
@@ -172,6 +172,7 @@
   },
   "active": "5836cf38f4c60770",
   "lastOpenFiles": [
+    "Mathematics/Graph Theory/Regular Graph.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Graph Theory/Isomorphisms and Automorphisms.md",
     "MathJax.md",
@@ -185,7 +186,6 @@
     "Pasted image 20250210122123.jpg",
     "Mathematics/Graph Theory/Simple Graphs.md",
     "Pasted image 20250209212335.jpg",
-    "Mathematics/Graph Theory/Regular Graph.md",
     "Mathematics/Matrix/Matrix Operations.md",
     "Mathematics/Linear Algebra/Polynomial.md",
     "Mathematics/Matrix/Rotation Matrix.md",

@@ -78,3 +78,31 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - For $x\in\mathbf{F}^n$, the additive inverse of $x$, denoted by $-x$, is the vector $-x\in\mathbf{F}^n$ such that $$x+(-x)=0$$ Thus if $x=(x_1,\cdots,x_n)$, then $-x=(-x_1,\cdots,-x_n)$.
 ## Definition: scalar multiplication in $\mathbf{F}^n$
 - The product of a number $\lambda$ and a vector in $\mathbf{F}^n$ is computed by multiplying each coordinate of the vector by $\lambda$:$$\lambda(x_1,\cdots,x_n)=(\lambda x_1,\cdots,\lambda x_n)$$ here $\lambda\in\mathbf{F}$ and $(x_1,\cdots,x_n)\in\mathbf{F}^n$.
+# Definition of Vector Space
+## difinition: addition, scalar multiplication
+- An *addition* on a set $V$ is a function that assigns an element $u+v\in V$ to each pair of elements $u,v\in V$.
+- A *scalar multiplication* on a set $V$ is a function that assigns an element $\lambda v\in V$ to each $\lambda\in\mathbf{F}$ and each $v\in V$.
+## definition: *vector space*
+- A *vector space* is a set $V$ along with an addition on $V$ and a scalar multiplication on $V$ such that the following properties hold.
+  - commutativity
+    - $u+v=v+u$ for all $u,v\in V$
+  - associativity
+    - $(u+v)+w=u+(v+w)$ and $(ab)v=a(bv)$ for all $u,v,w\in V$ and for all $a,b\in\mathbf{F}$.
+  - additive identity
+    - There exists an element $0\in V$ such that $v+0=v$ for all $v\in V$.
+ - additive inverse
+   - For every $v\in V$, there exixts $w\in V$ such that $v+w=0$.
+- multiplicative identity
+  - $1v=v$ for all $v\in V$.
+- distributive properties
+  - $a(u+v)=au+av$ and $(a+b)v=av+bv$ for all $a,b\in \mathbf{F}$ and all $u,v\in V$.
+## definition: vector, point
+- Elements of a vector space are called *vectors* or *points*.
+## definition: real vector space, complex vector space
+- A vector space over $\mathbb{R}$ is called *real vector space*
+- A vector space over $\mathbb{C}$ is called complex vector space
+## notation: $\mathbb{F}^S$
+- If $S$ is a set, then $\mathbb{F}^S$ denotes the set of functions from $S$ to $\mathbb{F}$.
+- For $f,g\in \mathbb{F}^S$, the sn $f+g\in\mathbb{F}^S$ is the function defined by $$(f+g)(x)=f(x)+g(x)$$ for all $x\in S$.
+- For $\lambda\in\mathbb{F}$ and $f\in\mathbb{F}^S$, the product $\lambda f\in \mathbb{F}^S$ is the function defined by $$(\lambda f)(x)=\lambda f(x)$$ for all $x\in S$.
+- 
