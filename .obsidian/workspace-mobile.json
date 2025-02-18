@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Linear Algebra/Vector Spaces.md",
+                "file": "Physics/Quantum physics/Quantum Computing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vector Spaces"
+              "title": "Quantum Computing"
             }
           },
           {
@@ -172,15 +172,16 @@
   },
   "active": "5836cf38f4c60770",
   "lastOpenFiles": [
+    "Physics/1D Schrödinger equation.md",
+    "Physics/Quantum physics",
+    "Mathematics/Linear Algebra/Vector Spaces.md",
     "Mathematics/Graph Theory/Regular Graph.md",
     "Mathematics/Graph Theory/Graphs and Their Representation.md",
     "Mathematics/Graph Theory/Isomorphisms and Automorphisms.md",
     "MathJax.md",
     "Pasted image 20250217200503.jpg",
-    "Physics/Quantum Computing.md",
-    "Physics/Untitled",
+    "Physics/Quantum physics/Quantum Computing.md",
     "Pasted image 20250213123635.jpg",
-    "Mathematics/Linear Algebra/Vector Spaces.md",
     "s41586-022-05434-1.pdf",
     "Pasted image 20250210122929.jpg",
     "Pasted image 20250210122123.jpg",

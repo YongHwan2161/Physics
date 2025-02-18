@@ -2,6 +2,8 @@
 # Suppressing quantum errors by scaling a surface code logical qubit
 [[s41586-022-05434-1.pdf|Suppressing quantum errors by scaling a surface code logical qubit]]
 
+# Classical Shannon Theory
+
 # Entropy and Shannon's Information Theory
 - Shannon quantified this by taking the base 2 logarithm of the probability of a given message occuring. That is, if we denote the information content of a message by $I$, and the probability of its occurrence by $p$, then $$I=-\log_2{p}$$
 - The negative sign ensures that the information content of a message is positive, and that the less probable a message, the higher is the information content.
