@@ -105,4 +105,36 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - If $S$ is a set, then $\mathbb{F}^S$ denotes the set of functions from $S$ to $\mathbb{F}$.
 - For $f,g\in \mathbb{F}^S$, the sn $f+g\in\mathbb{F}^S$ is the function defined by $$(f+g)(x)=f(x)+g(x)$$ for all $x\in S$.
 - For $\lambda\in\mathbb{F}$ and $f\in\mathbb{F}^S$, the product $\lambda f\in \mathbb{F}^S$ is the function defined by $$(\lambda f)(x)=\lambda f(x)$$ for all $x\in S$.
-- 
+## unique additive identity
+- A vector space has a unique additive identity.
+- proof: Suppose $0$ and $0'$ are both additive identities for some vector space $V$. Then $0'=0'+0=0+0'=0$, where the first equality holds because 0 is an additive identity, the second equlity comes from communicativity, and the third identity, the second equality comes from commutativity, and the third equality holds because 0' is an additive identity. Thus 0'=0, proving that $V$ has only one additive identity.
+## unique additive inverse
+- Every element in a vector space has a unique additive inverse.
+- Proof: Suppose $V$ is a vector space. Let $v\in V$. Suppose $w$ and $w'$ are additive inverses of $v$. Then $$w=w+0=w+(v+w')=(w+v)+w'=0+w'=w'$$
+- Thus $w=w'$, as desired.
+## notation: $-v, w-v$
+- Let $v,w\in V$, Then
+- $-v$ denotes the additive inverse of $v$;
+- $w-v$ is defined to be $w+(-v)$.
+## notation: $V$
+- For the rest of this book, $V$ denotes a vector space over $\mathbb{F}$.
+## the number $0$ times a vector
+- $0v=0$ for every $v\in V$
+- Proof: For $v\in V$, we have $0v=(0+0)v=0v+0v$. 
+- Adding the additive inverse of $0v$ to both sides of the equation above gives $0=0v$, as desired.
+## a number times the vector 0
+- $a0=0$ for every $a\in\mathbb{F}$.
+- Proof: For $a\in\mathbb{F}$, we have $a0=a(0+0)=a0+a0$
+- Adding the additive inverse of $a0$ to both sides of the equation above gives $0=a0$ as desired.
+## the number -1 times a vector
+- $(-1)v=-v$ for every $v\in V$.
+- Proof: For $v\in V$, we have $v+(-1)v=1v+(-1)v=(1+(-1))v=0v=0$.
+- This equation says that $(-1)v$, when added to $v$, gives 0. Thus $(-1)v$ is the additive inverse of $v$, as desired.
+# Exercises 1B
+## 1. 
+- Prove that $-(-v)=v$ for every $v\in V$.
+- Let $v$ be any elemetn in the vector space $V$. By definition, the additive inverse $-v$ satisfies $v+(-v)=0$, $(-v)+(-(-v))=0$, add $v$ to both sides, 
+- $-(-v)=v$.
+- this completes the proof
+## 2. 
+- Suppose $a\in\mathbf{F}, v\in V$, and $av=0$. Pove 
