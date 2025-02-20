@@ -82,7 +82,7 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 ## difinition: addition, scalar multiplication
 - An *addition* on a set $V$ is a function that assigns an element $u+v\in V$ to each pair of elements $u,v\in V$.
 - A *scalar multiplication* on a set $V$ is a function that assigns an element $\lambda v\in V$ to each $\lambda\in\mathbf{F}$ and each $v\in V$.
-## definition: *vector space*
+## 1.20 definition: *vector space*
 - A *vector space* is a set $V$ along with an addition on $V$ and a scalar multiplication on $V$ such that the following properties hold.
   - commutativity
     - $u+v=v+u$ for all $u,v\in V$
@@ -96,6 +96,17 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
   - $1v=v$ for all $v\in V$.
 - distributive properties
   - $a(u+v)=au+av$ and $(a+b)v=av+bv$ for all $a,b\in \mathbf{F}$ and all $u,v\in V$.
+- 
+- The empty set is not a vector space. The empty set fails to satisfy only one of the requirements listed in the definition of a vector space ([[Vector Spaces#1.20 definition *vector space*|definition:vector space]]). Which one?
+  - The empty set fails to have an additive identity. In a vector space, one of the requirements is that there must exist an element $0\in V$ such that for every $v\in V$, the equatin $v+0=v$ holds. Since the empty set contains no elements at all, it does not contain an additive identity (or any element), and therefore it cannot be a vector space.
+  - 
+  - Show that in the definition of a vector space [[Vector Spaces#1.20 definition *vector space*|1.20]], the additive inverse condition can be replaced with the condition that $$0v=0 \text{ for all }v\in V$$
+- Here the 0 on the left side is the number 0, and the 0 on the right side is the additive identity of $V$.
+- (The phrase a "condition can be replaced" is a difinition means that the collection of objects satisfying the definition is unchanged if the original condition is replaced with the new condition.)
+  - Let $v$ be any vector in $V$. Consider the scalar -1 (which exists because $\mathbf{F}$ is a field). By the distributive property of scalar multiplication over field addition, we have:$$\begin{align}&v+(-1)v=1v+(-1)v=(1+(-1))v\\
+  &(1+(-1))v=0v\\
+&v+(-1)v=0v=0\end{align}$$
+  - Thus, for every $v\in V$, there exists an additive inverse (namely, $(-1)v$). Consequently, the condition that every vector has an additive inverse is automatically satisfied if we assume $0v=0$ for all $v\in V$.
 ## definition: vector, point
 - Elements of a vector space are called *vectors* or *points*.
 ## definition: real vector space, complex vector space
@@ -137,4 +148,14 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - $-(-v)=v$.
 - this completes the proof
 ## 2. 
-- Suppose $a\in\mathbf{F}, v\in V$, and $av=0$. Pove 
+- Suppose $a\in\mathbf{F}, v\in V$, and $av=0$. Prove that $a=0$ or $v=0$.
+  - Case 1: If $a=0$, then the claim is immediately true. [[Vector Spaces#the number $0$ times a vector|0 times a vector]]
+  - Case 2: Suppose $a\neq 0$. Since $\mathbf{F}$ is a field, the multiplicative inverse $a^{-1}$ exists. Multiply both sides of the equation $av=0$ by $a^{-1}$:$$\begin{align}&a^{-1}(av)=a^{-1}0\\
+  &(a^{-1}a)v=1v=v\\
+&a^{-1}\mathbf{0}=\mathbf{0}\\
+&v=\mathbf{0}\end{align}$$
+  - In either case, we conclude that if $av=0$, then $a=0$ or $v=0$, as reauired.
+## 3. 
+- Suppose $v,w\in V$. Explain why there exists a unique $x\in V$ such that $v+3x=w$.
+## 6. 
+- Let $\infty$ and $-\infty$ denote two distinct objects, neither of which is in $\mathbb{R}$. Define an addition and scalar multiplication on $\mathbb{R}\cup\{\infty, -\infty\}$ as you could guess from the notation. Specifically, the sum and product of two real numbers is as usual, and for $t\in \mathbb{R}$ define $$t\infty=\begin{cases}-\infty & \text{if }t<0\\0&\text{if }t=0\\\infty&\text{if }t>0\end{cases}$$
