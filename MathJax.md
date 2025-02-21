@@ -4,7 +4,8 @@
 # 사용예시 
 ## 텍스트 입력
 `\text{}`: $\text{텍스트는 이 안에 입력하면 됩니다.}$
-
+# space
+`\quad`: 수식 사이에 공백 입력
 ## 기호, 상수
 - 그리스 문자 $\alpha\beta\gamma\delta\psi\mu\omega, \Delta\Omega\Phi\Pi\Gamma$
 - $\epsilon,  \varepsilon$

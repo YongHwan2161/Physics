@@ -97,9 +97,6 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
 - distributive properties
   - $a(u+v)=au+av$ and $(a+b)v=av+bv$ for all $a,b\in \mathbf{F}$ and all $u,v\in V$.
 - 
-- The empty set is not a vector space. The empty set fails to satisfy only one of the requirements listed in the definition of a vector space ([[Vector Spaces#1.20 definition *vector space*|definition:vector space]]). Which one?
-  - The empty set fails to have an additive identity. In a vector space, one of the requirements is that there must exist an element $0\in V$ such that for every $v\in V$, the equatin $v+0=v$ holds. Since the empty set contains no elements at all, it does not contain an additive identity (or any element), and therefore it cannot be a vector space.
-  - 
   - Show that in the definition of a vector space [[Vector Spaces#1.20 definition *vector space*|1.20]], the additive inverse condition can be replaced with the condition that $$0v=0 \text{ for all }v\in V$$
 - Here the 0 on the left side is the number 0, and the 0 on the right side is the additive identity of $V$.
 - (The phrase a "condition can be replaced" is a difinition means that the collection of objects satisfying the definition is unchanged if the original condition is replaced with the new condition.)
@@ -107,6 +104,21 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
   &(1+(-1))v=0v\\
 &v+(-1)v=0v=0\end{align}$$
   - Thus, for every $v\in V$, there exists an additive inverse (namely, $(-1)v$). Consequently, the condition that every vector has an additive inverse is automatically satisfied if we assume $0v=0$ for all $v\in V$.
+### example of not vector space
+#### Empty set is not a vector space
+- The empty set is not a vector space. The empty set fails to satisfy only one of the requirements listed in the definition of a vector space ([[Vector Spaces#1.20 definition *vector space*|definition:vector space]]). Which one?
+  - The empty set fails to have an additive identity. In a vector space, one of the requirements is that there must exist an element $0\in V$ such that for every $v\in V$, the equatin $v+0=v$ holds. Since the empty set contains no elements at all, it does not contain an additive identity (or any element), and therefore it cannot be a vector space.
+  - 
+- Let $\infty$ and $-\infty$ denote two distinct objects, neither of which is in $\mathbb{R}$. Define an addition and scalar multiplication on $\mathbb{R}\cup\{\infty, -\infty\}$ as you could guess from the notation. Specifically, the sum and product of two real numbers is as usual, and for $t\in \mathbb{R}$ define $$t\infty=\begin{cases}-\infty & \text{if }t<0\\0&\text{if }t=0\\\infty&\text{if }t>0\end{cases} \quad\quad t(-\infty)=\begin{cases}\infty&\text{if }t<0,\\0&\text{if }t=0,\\-\infty&\text{if }t>0,\end{cases}$$
+- and $$\begin{align}t+\infty&=\infty+t=\infty+\infty=\infty\\
+t+(-\infty)&=(-\infty)+t=(-\infty)+(-\infty)=-\infty\\
+\infty+(-\infty)&=(-\infty)+\infty=0\end{align}$$
+- With these operations of addition and scalar multiplication, is $\mathbb{R}\cup\{\infty,-\infty\}$ a vector space over $\mathbb{R}$? Explain.
+  - Exhibiting the failure of associativity:
+  - Choose $u=\infty, v=-\infty, \text{ and } w=1\quad (\text{with} 1\in\mathbb{R})$,
+  - 1. Compute $(u+v)+w=(\infty+(-\infty))+1=0+1=1$
+  - 2. Compute $u+(v+w)=\infty+(-\infty + 1)=\infty+(-\infty)=0$.
+  - Since, $(u+v)+w\neq u+(v+w)$.
 ## definition: vector, point
 - Elements of a vector space are called *vectors* or *points*.
 ## definition: real vector space, complex vector space
@@ -157,5 +169,6 @@ Suppose, $\alpha, \beta\in\mathbb{C}$
   - In either case, we conclude that if $av=0$, then $a=0$ or $v=0$, as reauired.
 ## 3. 
 - Suppose $v,w\in V$. Explain why there exists a unique $x\in V$ such that $v+3x=w$.
-## 6. 
-- Let $\infty$ and $-\infty$ denote two distinct objects, neither of which is in $\mathbb{R}$. Define an addition and scalar multiplication on $\mathbb{R}\cup\{\infty, -\infty\}$ as you could guess from the notation. Specifically, the sum and product of two real numbers is as usual, and for $t\in \mathbb{R}$ define $$t\infty=\begin{cases}-\infty & \text{if }t<0\\0&\text{if }t=0\\\infty&\text{if }t>0\end{cases}$$
+## 7. 
+- Suppose $S$ is a nonempty set. Let $V^S$ denote the set of functions from $S$ to $V$. Define a natural addition and scalar multiplication on $V^S$, and show that $V^S$ is a vector space with these definitions.
+- **Solution:**
