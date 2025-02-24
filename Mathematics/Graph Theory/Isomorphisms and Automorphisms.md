@@ -47,4 +47,10 @@ $$\left\lceil\frac{2^{\binom n2}}{n!}\right\rceil$$
   - If we list the degree in nonincreasing order (that is, arrange the degrees from highest to lowest), the degree sequence of $G$ will be exactly the same as the degree sequence of $H$.
   - Thus, isomorphic graphs necessarily have the same (nonincreasing) degree sequence.
 ## 1.2.2 
+- Show that the graphs in [[Isomorphisms and Automorphisms#Figure 1.11|Figure 1.11]] are not isomorphic (even though they have the same degree sequence).
+###### Figure 1.11
+![[Pasted image 20250224211728.jpg]]
+## 1.2.3
+- Let $G$ be a connected graph. Show that every graph which is isomorphic to $G$ is connected. (ref. [[Connected Graphs]] 
+- Let $G$ be a connected graph and suppose that $H$ is isomorphic to $G$; that is, there exists an isomorphism $\theta: V(G)\to V(H)$
 - 

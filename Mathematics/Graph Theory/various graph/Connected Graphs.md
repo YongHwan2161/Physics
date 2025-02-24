@@ -1,0 +1,3 @@
+- A graph is *connected* if, for every partition of its vertex set into two nonempty sets $X$ and $Y$, there is an edge with one end in $X$ and one end in $Y$; otherwise the graph is *disconnected*. In other words, a graph is disconnected if its vertex set can be partitioned into two nonempty subsets $X$ and $Y$ so that no edge has one end in $X$ and one end in $Y$. (It is instructive to compare this definition with that of a bipartite graph.) Examples of connected and disconnected graphs are displayed in [[Graphs and Their Representation#Figure 1.4|Figure 1.4]].
+###### Figure 1.4
+![[Pasted image 20250120165515.jpg]]
