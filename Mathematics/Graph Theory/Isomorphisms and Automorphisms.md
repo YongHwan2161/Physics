@@ -53,4 +53,12 @@ $$\left\lceil\frac{2^{\binom n2}}{n!}\right\rceil$$
 ## 1.2.3
 - Let $G$ be a connected graph. Show that every graph which is isomorphic to $G$ is connected. (ref. [[Connected Graphs]] 
 - Let $G$ be a connected graph and suppose that $H$ is isomorphic to $G$; that is, there exists an isomorphism $\theta: V(G)\to V(H)$
+- Proof: Since $G$ is connected, for any two vertices $u, v\in V(G)$, there exists a [[Graphs and Their Representation#Path|path]] in $G$ connecting them. That is, there is a sequence of vertices $u=v_0,v_1,\cdots,v_k=v$
+- Now, consider any two vertices $x,y\in V(H)$. Since $\theta$ is a bijection, there exist vertices $u, v\in V(G)$ such that $\theta(u)=x$ and $\theta(v)=y$. The connectivity of $G$ guarantees a path from $u$ to $v$ in $G$: $u=v_0,v_1,\cdots,v_k=v$.
+- Because $\theta$ preserves adjacency, for each edge $v_i v_{i+1}$ in $G$ we have an edge $\theta(v_i)\theta(v_{i+1})$ in $H$. Hence, the sequence $\theta(v_0)=x, \theta(v_1), \cdots, \theta(v_k)=y$
+- Since $x$ and $y$ were arbitrary vertices in $H$, it follows that $H$ in connected.
+- Thus, every graph isomorphic to a connected graph is itself connected.
+## 1.2.4 Determine:
+- a) the number of isomorphisms between the graphs $G$ and $H$ of [[Isomorphisms and Automorphisms#Figure 1.7|Figure 1.7]], 
+- b) the number of automorphisms of each of these graphs.
 - 
