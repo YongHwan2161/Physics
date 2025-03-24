@@ -1,5 +1,12 @@
 
-
+## classical energy expression
+$$E = \frac{p^2}{2m}+V(x)$$
+## Energy operator
+$$\hat{E}=i\hbar \frac{\partial}{\partial t}$$
+## momentum operator
+$$\hat{p}=-i\hbar\frac{\partial}{\partial x}$$
+- [[#Energy operator]]와 [[#momentum operator]]를 [[#classical energy expression]]에 대입
+$$i\hbar\frac{\partial}{\partial t}=-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x)$$
 1차원(x축)에서 Schrödinger equation은 다음과 같이 정의된다. 여기서 $\Psi(x, t)$는 wave function, $\hbar$는 [[plank's constant 1#^a86a94|plank constant]]이다.
 편미분에 대해서는 [[편미분(partial derivative)]] 참고.
 $$i\hbar\frac{\partial\Psi(x, t)}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\Psi(x, t)}{\partial x^2}+V(x)\Psi(x)\tag{1}$$
