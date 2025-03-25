@@ -11,6 +11,7 @@ $$\frac{\partial}{\partial t}\Psi(x,t)=\frac{\partial}{\partial t}e^{i(kx-\omega
 $$i\hbar\frac{\partial\Psi(x,t)}{\partial t}=\hbar\omega\Psi(x,t)=E\Psi(x,t)$$
 ## Energy operator
 $$\hat{E}=i\hbar \frac{\partial}{\partial t}$$
+$$\hat{E}\Psi(x,t)=E\Psi(x,t)$$
 ## momentum operator
 $$\hat{p}=-i\hbar\frac{\partial}{\partial x}$$
 - [[#Energy operator]]와 [[#momentum operator]]를 [[#classical energy expression]]에 대입
