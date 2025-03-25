@@ -5,10 +5,13 @@ $$E = \frac{p^2}{2m}+V(x)$$
 - for a free particle, the quantum state (wavefunction) is typically taken as a plane wave:$$\Psi(x,t)=e^{i(kx-\omega t)}$$
 - $k=\frac{p}{\hbar}$
 - $E=\hbar\omega$
-## Time derivative of plane wave
-$$\frac{\partial}{\partial t}\Psi(x,t)=\frac{\partial}{\partial t}e^{i(kx-\omega t)}=-i\omega e^{i(kx-\omega t)}-i\omega\Psi(x,t)$$
+## Partial derivative of plane wave
+$$\frac{\partial}{\partial t}\Psi(x,t)=\frac{\partial}{\partial t}e^{i(kx-\omega t)}=-i\omega e^{i(kx-\omega t)}=-i\omega\Psi(x,t)$$
+$$\frac{\partial}{\partial x}\Psi(x,t)=\frac{\partial}{\partial x}e^{i(kx-\omega t)}=ike^{i(kx-\omega t)}=ik\Psi(x,t)$$
 - multiply $i\hbar$
 $$i\hbar\frac{\partial\Psi(x,t)}{\partial t}=\hbar\omega\Psi(x,t)=E\Psi(x,t)$$
+- multiply $-ik$
+$$-i\hbar\frac{\partial\Psi(x,t)}{\partial x}=\hbar k\Psi(x,t) = p\Psi(x,t)$$
 ## Energy operator
 $$\hat{E}=i\hbar \frac{\partial}{\partial t}$$
 $$\hat{E}\Psi(x,t)=E\Psi(x,t)$$
