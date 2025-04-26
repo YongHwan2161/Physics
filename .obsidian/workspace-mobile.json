@@ -35,7 +35,8 @@
               "title": "MathJax"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -170,7 +171,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "5836cf38f4c60770",
+  "active": "5ec35f87c05d81d1",
   "lastOpenFiles": [
     "Physics/Quantum physics/Schrödinger equation.md",
     "Mathematics/Linear Algebra/Supspaces.md",
