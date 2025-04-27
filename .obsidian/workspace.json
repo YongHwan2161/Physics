@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Mathematics/Graph Theory/various graph/Connected Graphs.md",
+                "file": "MathJax.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Connected Graphs"
+              "title": "MathJax"
             }
           }
         ]
@@ -176,6 +176,7 @@
   },
   "active": "b3d195753beb62ec",
   "lastOpenFiles": [
+    "Mathematics/Graph Theory/various graph/Connected Graphs.md",
     "Graph Based DB/Upload.md",
     "s41586-022-05434-1.pdf",
     "Physics/Quantum physics/Schrödinger equation.md",
@@ -191,7 +192,6 @@
     "Mathematics/Graph Theory/various graph/Simple Graphs.md",
     "Mathematics/Graph Theory/various graph/Regular Graph.md",
     "Mathematics/Graph Theory/various graph/Pasted image 20250120165515.jpg",
-    "Mathematics/Graph Theory/various graph/Connected Graphs.md",
     "Mathematics/Graph Theory/various graph",
     "Pasted image 20250209212335.jpg",
     "Mathematics/Graph Theory/Simple Graphs.md",
