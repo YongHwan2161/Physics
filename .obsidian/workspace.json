@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "MathJax"
             }
+          },
+          {
+            "id": "e3090acd51855351",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.8.10"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.8.10"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -174,7 +187,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b3d195753beb62ec",
+  "active": "e3090acd51855351",
   "lastOpenFiles": [
     "Mathematics/Graph Theory/various graph/Connected Graphs.md",
     "Graph Based DB/Upload.md",
